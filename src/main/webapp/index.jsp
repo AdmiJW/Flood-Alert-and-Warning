@@ -13,7 +13,7 @@
 
 <body>
 	<div class='p-4'>
-		<p class='lead'>Hello IP</p>
+		<p class='lead'>Hello I am Hannson Chua</p>
 		<button class='btn btn-primary btn-lg'>Hello</button>
 	</div>
 </body>
