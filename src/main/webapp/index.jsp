@@ -12,7 +12,7 @@
 </jsp:include>  
 
 <body>
-
+<i class="bi bi-lightning-charge"></i>
 	<div class='container'>
 		<div class='p-4'>
 			<p class='lead'>Hello I am Hannson Chua</p>
