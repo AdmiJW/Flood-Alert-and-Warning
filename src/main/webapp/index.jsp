@@ -12,10 +12,14 @@
 </jsp:include>  
 
 <body>
-	<div class='p-4'>
-		<p class='lead'>Hello I am Hannson Chua</p>
-		<button class='btn btn-primary btn-lg'>Hello</button>
+
+	<div class='container'>
+		<div class='p-4'>
+			<p class='lead'>Hello I am Hannson Chua</p>
+			<button class='btn btn-primary btn-lg'>Hello</button>
+		</div>
 	</div>
+	
 </body>
 
 </html>
