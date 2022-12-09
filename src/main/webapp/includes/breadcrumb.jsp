@@ -1,37 +1,47 @@
+<%@page 
+	import="java.util.Arrays"
+%>
 
 
 <%
 	// By default the breadcrumb retrieves the URI path from request.getRequestURI
 	// But if you provide a parameter of "path", it will prioritize that instead.
-	
 	String path = request.getRequestURI();
 	if (request.getParameter("path") != null) path = request.getParameter("path");
 	
-	String[] tokens = path.split("/");
-	String[] urls = new String[tokens.length];
+	// Abstract tokens from URI and process it
+	String[] rawTokens = path.substring(1).split("/");
+	String[] processedTokens = Arrays.stream( rawTokens )
+		.map(s -> s.replaceAll(".jsp", ""))
+		.map(s -> s.replace('_', ' '))
+		.map(s -> s.substring(0,1).toUpperCase() + s.substring(1).toLowerCase())
+		.toArray(length -> new String[length]);
 	
-	StringBuilder sb = new StringBuilder();
+	// For every token, build its url
+	int len = rawTokens.length;
+	String[] urls = new String[len];
+	StringBuilder sb = new StringBuilder("/");
 	
-	for (int i = 0; i < tokens.length; ++i) {
-		sb.append(tokens[i] + "/");
+	for (int i = 0; i < len; ++i) {
+		sb.append(rawTokens[i] + "/");
 		urls[i] = sb.toString();
 	}
 %>
 
 
-<nav class='container py-2 my-3 bg-light rounded-4' aria-label="breadcrumb">
+<nav class='container py-2 my-3 bg-light rounded-3' aria-label="breadcrumb">
 	<ol class="breadcrumb m-0">
 	
 		<!-- Previous paths -->
-		<% for (int i = 0; i < urls.length - 1; ++i) { %>
+		<% for (int i = 0; i < len - 1; ++i) { %>
 			<li class="breadcrumb-item">
 				<a href="<%= urls[i] %>">
-					<%= tokens[i] %>
+					<%= processedTokens[i] %>
 				</a>
 			</li>
 		<% } %>
 		
 		<!--  Current path -->
-		<li class="breadcrumb-item active" aria-current="page"><%= tokens[tokens.length - 1] %></li>
+		<li class="breadcrumb-item active" aria-current="page"><%= processedTokens[len - 1] %></li>
 	</ol>
 </nav>

@@ -10,7 +10,7 @@
 
 <!-- Header -->
 <jsp:include page="includes/header.jsp">
-	<jsp:param name="title" value="Flood Alert and Warning" />
+	<jsp:param name="title" value="FAW" />
 </jsp:include>
 
 
