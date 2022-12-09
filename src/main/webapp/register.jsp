@@ -10,7 +10,7 @@
 
 <!-- Header -->
 <jsp:include page="includes/header.jsp">
-	<jsp:param name="title" value="FAW - Login" />
+	<jsp:param name="title" value="FAW - Register" />
 </jsp:include>
 
 <script src="public/scripts/showPassword.js"></script>
@@ -19,7 +19,7 @@
 
 	<!-- Navbar -->
 	<jsp:include page="includes/navbar.jsp">
-		<jsp:param name="route" value="login" />
+		<jsp:param name="route" value="register" />
 		<jsp:param name="username" value="" />
 	</jsp:include>
 	
@@ -36,34 +36,34 @@
 			</div>
 			
 			<p class='text-center fs-3 fw-light'>
-				User Login
+				Registration
 			</p>
 		
 			<div class="mb-3">
-				<label for="emailusername" class="form-label">Email/Username</label>
-				<input type="text" class="form-control" name='emailusername' id="emailusername">
+				<label for="username" class="form-label">Username</label>
+				<input type="text" class="form-control" id="username" name='username'>
+			</div>
+			
+			<div class="mb-3">
+				<label for="email" class="form-label">Email</label>
+				<input type="email" class="form-control" id="email" name='email'>
 			</div>
 			
 			<div class="mb-3">
 				<label for="password" class="form-label">Password</label>
 				<div class='input-group'>
-					<input type="password" class="form-control" id="password" name='password' data-show-password="password">
+					<input type="password" class="form-control" id="password" data-show-password="password">
 					<button class="btn btn-primary" type="button" data-show-password="password">
 						<i class="bi bi-eye-fill"></i>
 					</button>
 				</div>
 			</div>
 			
-			<div class="mb-3 form-check">
-				<input type="checkbox" class="form-check-input" name='remember' id="remember">
-				<label class="form-check-label" for="remember">Remember me</label>
-			</div>
-			
 			<button type="submit" class="btn btn-primary">Submit</button>
 			
 			<p class='text-muted mt-4'>
-				Don't have an account yet?
-				<a href='/Flood_Alert_and_Warning/register.jsp'>Register</a>
+				Already have an account?
+				<a href='/Flood_Alert_and_Warning/login.jsp'>Login</a>
 			</p>
 		</form>
 	</div>
