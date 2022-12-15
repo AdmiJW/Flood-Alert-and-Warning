@@ -50,6 +50,11 @@
 			</div>
 			
 			<div class="mb-3">
+				<label for="tel" class="form-label">Phone</label>
+				<input type="tel" class="form-control" id="tel" name='tel'>
+			</div>
+			
+			<div class="mb-3">
 				<label for="password" class="form-label">Password</label>
 				<div class='input-group'>
 					<input type="password" class="form-control" id="password" data-show-password="password">
