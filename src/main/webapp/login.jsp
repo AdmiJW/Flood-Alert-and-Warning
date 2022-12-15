@@ -13,8 +13,6 @@
 	<jsp:param name="title" value="FAW - Login" />
 </jsp:include>
 
-<script src="public/scripts/showPassword.js"></script>
-
 <body>
 
 	<!-- Navbar -->

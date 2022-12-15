@@ -50,10 +50,15 @@
 			Obtain flood warning announcements through your email.
 			<br>
 			Receive flood forecast alerts of your registered Point of Interest (POI) locations. 
+			<br>
+
+			<a href="subscriptions.jsp" class='btn btn-info mt-3'>
+				View My Subscriptions 
+			</a>
 		</p>
 		
 		
-		<form class='bg-light rounded shadow-sm m-auto p-3 my-5' style='max-width: 500px;' method='POST' action='' >
+		<form class='bg-light rounded shadow-sm m-auto p-3 my-4' style='max-width: 500px;' method='POST' action='' >
 		
 			<div class='text-center display-6'>
 				<i class="bi bi-lightning-charge-fill"></i>

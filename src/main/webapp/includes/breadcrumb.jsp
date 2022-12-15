@@ -9,8 +9,13 @@
 	String path = request.getRequestURI();
 	if (request.getParameter("path") != null) path = request.getParameter("path");
 	
-	// Abstract tokens from URI and process it
+	// Abstract tokens from URI, slash '/' as the separator
 	String[] rawTokens = path.substring(1).split("/");
+	
+	// The tokens are processed as follows:
+	//		1. Remove occurrences of ".jsp"
+	//		2. Replace underscore '_' to space ' '
+	//		3. Change cases to Capitalized (First letter uppercase, rest lowercase)
 	String[] processedTokens = Arrays.stream( rawTokens )
 		.map(s -> s.replaceAll(".jsp", ""))
 		.map(s -> s.replace('_', ' '))
