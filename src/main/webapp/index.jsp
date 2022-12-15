@@ -25,6 +25,9 @@
 	<!-- Breadcrumb -->
 	<jsp:include page="includes/breadcrumb.jsp" />
 	
+	<!-- Alert -->
+	<jsp:include page="includes/alert.jsp" />
+	
 
 	<!-- Dummy content -->
 	<div class='container'>

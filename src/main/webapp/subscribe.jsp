@@ -1,3 +1,4 @@
+<%@page import="utils.CookieUtil"%>
 <%@page import="model.Locations"%>
 
 
@@ -11,6 +12,8 @@
 <%
 	// Obtain Locations object from Model Locations
 	Locations loc = Locations.getInstance(application);
+
+	CookieUtil.setCookie(response, "primaryAlert", "Hello");
 %>
 
 
@@ -37,6 +40,11 @@
 	
 	<!-- Breadcrumb -->
 	<jsp:include page="includes/breadcrumb.jsp" />
+	
+	<!-- Alert -->
+	<jsp:include page="includes/alert.jsp" />
+	
+	
 
 	<!-- Subscription form -->
 	<main class='container my-4'>

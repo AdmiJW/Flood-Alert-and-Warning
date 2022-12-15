@@ -1,3 +1,4 @@
+
 <%@ 
 	page language="java" 
 	contentType="text/html; charset=ISO-8859-1"
@@ -26,6 +27,10 @@
 	<jsp:include page="includes/breadcrumb.jsp">
 		<jsp:param name="path" value="/Flood_Alert_and_Warning/Subscribe/Subscriptions" />
 	</jsp:include>
+	
+	<!-- Alert -->
+	<jsp:include page="includes/alert.jsp" />
+	
 
 	<!-- Subscription form -->
 	<main class='container my-4'>

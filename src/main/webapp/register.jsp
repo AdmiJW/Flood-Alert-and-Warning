@@ -23,6 +23,9 @@
 	
 	<!-- Breadcrumb -->
 	<jsp:include page="includes/breadcrumb.jsp" />
+	
+	<!-- Alert -->
+	<jsp:include page="includes/alert.jsp" />
 
 	<!-- Login form -->
 	<div class='container my-5'>
