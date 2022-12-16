@@ -24,10 +24,22 @@
 				Retrieve the data from database 
 				1. Retrieve only index 1 to 10
 			-->
-				<td scope="row">i</td>
-				<td>evacPoint.name</td>
-				<td>evacPoint.location</td>
-				<td>evacPoint.capacity</td>
+			<% 
+				String redirectTo = "/Flood_Alert_and_Warning/evacuationPointEdit.jsp";
+				
+			%>
+				<td scope="row">
+					<a class="page-link" href=<%= redirectTo %>>i</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>evacPoint.name</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>evacPoint.location</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>evacPoint.capacity</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
