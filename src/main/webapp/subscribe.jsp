@@ -12,8 +12,6 @@
 <%
 	// Obtain Locations object from Model Locations
 	Locations loc = Locations.getInstance(application);
-
-	CookieUtil.setCookie(response, "primaryAlert", "Hello");
 %>
 
 
