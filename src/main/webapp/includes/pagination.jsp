@@ -1,5 +1,3 @@
-
-
 <%-- 
 	Please populate the parameters using <jsp:param>
 		1. totalPages - The total pages 

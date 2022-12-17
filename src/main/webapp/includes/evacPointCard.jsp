@@ -45,23 +45,11 @@
 	</table>
 </div>
 
-<!--  
-	1.Show 3 list in a scene
-	2.Each page retrieive 10 row from database
--->
 
-<ul class="pagination justify-content-center my-4">
-	<!-- If previous is not null, display previous-->
-	<% 	String previous="", next="";
-		if(!previous.equals("")){ 
-	%>
-	<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-	<%} %>
-	<li class="page-item"><a class="page-link" href="#">i</a></li>
-	<li class="page-item"><a class="page-link" href="#">i+1</a></li>
-	<li class="page-item"><a class="page-link" href="#">i+2</a></li>
-	<!-- If next is not null, display next-->
-	<% if(!next.equals("")){ %>
-	<li class="page-item"><a class="page-link" href="#">Next</a></li>
-	<%} %>
-</ul>
+<jsp:include page="pagination.jsp">
+	<jsp:param value="10" name="totalPages"/>
+	<jsp:param value="1" name="activePage"/>
+	<jsp:param value="Evacuation/EvacuationPoint" name="link"/>
+</jsp:include>
+
+

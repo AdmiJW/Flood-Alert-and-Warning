@@ -27,7 +27,7 @@
 	
 	<!-- MAP API -->
 		<div class='mb-5'>
-			MAPPP
+			<jsp:include page="includes/map.jsp"></jsp:include>
 		</div>
 	
 	<!-- Evacuation Point Detail Card  -->

@@ -46,8 +46,10 @@
 					<textarea class="form-control" id="remarks" rows="3" value="evacPoint.remarks"></textarea>
 				</div>
 				<div class="form-group mb-2">
-					<label for="maps">Maps:</label> 
-					<textarea class="form-control" id="maps" rows="3" placeholder="mapAPI"></textarea>
+					<jsp:include page="includes/map.jsp">
+						<jsp:param value="PinOneEvac" name="action"/>
+						<jsp:param value="Universiti Teknologi Malaysia" name="location"/>
+					</jsp:include>
 				</div>
 
 				<button type="submit" class="btn btn-primary mt-4">Submit</button>
