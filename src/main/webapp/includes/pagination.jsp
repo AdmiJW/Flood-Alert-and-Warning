@@ -25,6 +25,10 @@
 	int lastButtonPage = Math.min(totalPages, activePage + rightButtonCount);
 %>
 
+<%!
+	final String pagelinkCls = "page-link h-100 d-flex align-items-center";
+%>
+
 
 <!-- Pagination -->
 <nav aria-label="pagination control text-center">
@@ -33,12 +37,12 @@
 		<%-- Control for previous and first page --%>
 		<% if (activePage != 1) { %>
 			<li class="page-item">
-				<a class="page-link" href="<%= baselink %>" aria-label="First">
+				<a class="<%= pagelinkCls %>" href="<%= baselink %>" aria-label="First">
 			        <i class="bi bi-chevron-double-left"></i>
 			    </a>
 			</li>
 			<li class="page-item">
-				<a class="page-link" href="<%= baselink + "?page=" + (activePage-1) %>" aria-label="Previous">
+				<a class="<%= pagelinkCls %>" href="<%= baselink + "?page=" + (activePage-1) %>" aria-label="Previous">
 			        <i class="bi bi-chevron-left"></i>
 			    </a>
 			</li>
@@ -47,7 +51,7 @@
 		
 		<% for (int i = firstButtonPage; i <= lastButtonPage; ++i) { %>
 			<li class="page-item <%= i == activePage? "active": "" %>">
-				<a class="page-link" href="<%= baselink + "?page=" + i %>">
+				<a class="<%= pagelinkCls %>" href="<%= baselink + "?page=" + i %>">
 					<%= i %>
 				</a>
 			</li>
@@ -57,12 +61,12 @@
 		<%-- Control for next and last page --%>
 		<% if (activePage != totalPages) { %>
 			<li class="page-item">
-				<a class="page-link" href="<%= baselink + "?page=" + (activePage+1) %>" aria-label="Next">
+				<a class="<%= pagelinkCls %>" href="<%= baselink + "?page=" + (activePage+1) %>" aria-label="Next">
 			        <i class="bi bi-chevron-right"></i>
 			    </a>
 			</li>
 			<li class="page-item">
-				<a class="page-link" href="<%= baselink + "?page=" + (totalPages) %>" aria-label="Last">
+				<a class="<%= pagelinkCls %>" href="<%= baselink + "?page=" + (totalPages) %>" aria-label="Last">
 			        <i class="bi bi-chevron-double-right"></i>
 			    </a>
 			</li>
