@@ -8,8 +8,8 @@
 	pageEncoding="ISO-8859-1" 
 %>
 
-<div class="bg-dark text-center text-white py-5 px-3 mb-4">
-	<table class="table table-striped table-dark">
+<div class='table-responsive my-4 mx-auto' style='max-width: 1000px;'>
+	<table class="table table-dark table-striped table-hover">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
@@ -20,10 +20,7 @@
 		</thead>
 		<tbody>
 			<tr>
-			<!-- 
-				Retrieve the data from database 
-				1. Retrieve only index 1 to 10
-			-->
+			<!-- Page refdirection based on the EvacPoint  -->
 			<% 
 				String redirectTo = "/Flood_Alert_and_Warning/evacuationPointEdit.jsp";
 				
@@ -48,7 +45,7 @@
 
 <jsp:include page="pagination.jsp">
 	<jsp:param value="10" name="totalPages"/>
-	<jsp:param value="2" name="activePage"/>
+	<jsp:param value="1" name="activePage"/>
 	<jsp:param value="Evacuation/EvacuationPoint" name="link"/>
 </jsp:include>
 
