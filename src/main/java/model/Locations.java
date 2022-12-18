@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
+
 // Singleton model, since it should be readonly data
-public class Locations extends HashMap<String, HashMap<String, ArrayList<String>>> {
-	
+public class Locations extends HashMap<String, HashMap<String, HashMap<String, MapCoordinate>>> {
 	private static final long serialVersionUID = 1L;
 	private static Locations instance = null;
 	
@@ -48,8 +48,13 @@ public class Locations extends HashMap<String, HashMap<String, ArrayList<String>
 	}
 	
 	public List<String> getLocations(String state, String district) {
-		return this.get(state).get(district);
+		return new ArrayList<>( this.get(state).get(district).keySet() );
 	}
+	
+	public MapCoordinate getCoordinate(String state, String district, String location) {
+		return this.get(state).get(district).get(location);
+	}
+	
 	
 	public String asJSON() throws JsonProcessingException {
 		return new ObjectMapper().writeValueAsString(this);

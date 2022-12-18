@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const stateSelect = document.getElementById('state');
 	const districtSelect = document.getElementById('district');
 	const locationSelect = document.getElementById('location');
+	
+	console.log(locs);
 
 
 	// On state selected, change district and location select elements
@@ -61,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		locationSelect.appendChild(getDefaultDisabledOption('Select location'));
 
 		// Add locations to location select element
-		for (const location of locations)
+		for (const location in locations)
 			locationSelect.appendChild(getOption(location, location));
 	});
 });
