@@ -31,19 +31,53 @@
 
 	<!-- Dummy content -->
 	<div class='container'>
-		<h2 class='fw-bold py-4'>Hello IP</h2>
-
-		<div class="mb-3">
-			<label for="exampleFormControlInput1" class="form-label">Email address</label>
-			<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-		</div>
-		
-		<div class="mb-5">
-			<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-		</div>
-		
-		<button class='btn btn-primary btn-lg mb-4'>Let's go</button>
+		<h2 class='fw-bold py-4'>MAP PLACE HERE</h2>
+	</div>
+	
+	<div>
+		<h2 class='fw-bold py-4'>Dashboard</h2>
+		<input type="text" name="station"/>
+		<button class="btn" type="submit" value="search"></button>
+		<p>Table of Stations</p>
+		<table>
+		<tr>
+			<td>#</td>
+			<td>Station</td>
+			<td>Water Level (m)</td>
+			<td>Rainfall (mm)</td>
+		</tr>
+		<tr>
+			<td>#</td>
+			<td>Station</td>
+			<td>Water Level (m)</td>
+			<td>Rainfall (mm)</td>
+		</tr>
+		<tr>
+			<td>#</td>
+			<td>Station</td>
+			<td>Water Level (m)</td>
+			<td>Rainfall (mm)</td>
+		</tr>
+		<tr>
+			<td>#</td>
+			<td>Station</td>
+			<td>Water Level (m)</td>
+			<td>Rainfall (mm)</td>
+		</tr>
+		<tr>
+			<td>#</td>
+			<td>Station</td>
+			<td>Water Level (m)</td>
+			<td>Rainfall (mm)</td>
+		</tr>
+		<tr>
+			<td>#</td>
+			<td>Station</td>
+			<td>Water Level (m)</td>
+			<td>Rainfall (mm)</td>
+		</tr>
+		</table>
+	<p>Nav bar here<p>
 	</div>
 
 
