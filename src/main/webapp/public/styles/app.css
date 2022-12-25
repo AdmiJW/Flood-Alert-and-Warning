@@ -1,0 +1,7 @@
+@charset "ISO-8859-1";
+
+
+th, td {
+	padding: .75em !important;
+	vertical-align: middle;
+}
