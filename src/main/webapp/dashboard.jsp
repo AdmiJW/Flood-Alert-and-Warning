@@ -31,7 +31,6 @@
 
 	<!-- MAP API HERE -->
 	<div class='container'>
-		<h2 class='fw-bold py-4'>MAP PLACE HERE</h2>
 			<!-- MAP API -->
 		<div class='mb-5'>
 			<jsp:include page="includes/map.jsp"></jsp:include>
@@ -39,16 +38,18 @@
 	</div>
 	
 	<div>
-		<p class="text-center h1">Dashboard</p>
-		
-		<p>Table of Stations</p>
+		<p class="container	text-center h1">Dashboard</p>
+		<div class="container input-group mb-3">
+			<input type="text" class="form-control" placeholder="Search and Filter" aria-label="Search and Filter" aria-describedby="button-addon2">
+  			<button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+		</div>	
+	</div>
+
 		<div class='mb-4'>
 			<jsp:include page="includes/dashPointCard.jsp">
 				<jsp:param name="DashPoint" value="Parameter" />
 			</jsp:include>
 		</div>
-		
-	</div>
 
 
 	<!-- Footer -->

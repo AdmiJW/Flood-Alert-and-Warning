@@ -26,16 +26,44 @@
 				
 			%>
 				<td scope="row">
+					<a class="page-link" href=<%= redirectTo %>>1</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>Sg.Triang di Triang, Bera</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>33.86m, WARNING, RISING</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>0mm (26/12/2022)</a>
+				</td>
+			</tr>
+			<tr>
+				<td scope="row">
 					<a class="page-link" href=<%= redirectTo %>>i</a>
 				</td>
 				<td>
-					<a class="page-link" href=<%= redirectTo %>>dashPoint.station</a>
+					<a class="page-link" href=<%= redirectTo %>>Long Jegan, Miri</a>
 				</td>
 				<td>
-					<a class="page-link" href=<%= redirectTo %>>dashPoint.waterlevel</a>
+					<a class="page-link" href=<%= redirectTo %>>12.59m, DANGER, RISING</a>
 				</td>
 				<td>
-					<a class="page-link" href=<%= redirectTo %>>dashPoint.rainfall</a>
+					<a class="page-link" href=<%= redirectTo %>>0mm (26/12/2022)</a>
+				</td>
+			</tr>
+			<tr>
+				<td scope="row">
+					<a class="page-link" href=<%= redirectTo %>>i</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>Sebauh, Bintulu</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>1.33m, ALERT, RECEDING</a>
+				</td>
+				<td>
+					<a class="page-link" href=<%= redirectTo %>>0mm (26/12/2022)</a>
 				</td>
 			</tr>
 		</tbody>
