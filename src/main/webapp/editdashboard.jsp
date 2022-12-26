@@ -19,43 +19,56 @@
 	</jsp:include>
 	
 	<!-- Breadcrumb -->
-	<jsp:include page="includes/breadcrumb.jsp" />
+	<jsp:include page="includes/breadcrumb.jsp">
+		<jsp:param name="path" value="/Flood_Alert_and_Warning/Dashboard/Update Station" />
+	</jsp:include>
 	
-	<div class='container'>
-	<!-- Static Content -->
-		<p class="text-center h1 mb-5">Edit Dashboard</p>
 	
-		<%-- <% Object evacPoint = request.getParameter("index"); %> --%>
-	<!-- Evacuation Point Edit Form -->
-		<div class='mb-4'>
+	<main class='container my-4'>
+		
+		<!-- Title -->
+		<div class='my-4'>
+			<h1 class='text-center fw-bold'>
+				Update Station
+				<i class="bi bi-pencil-fill"></i>
+			</h1>
+		</div>
+	
+		<!-- Evacuation Point Edit Form -->
+		<div>
 			<form method="post" action="editDashboard">
-				<div class="form-group mb-2">
+				<div class="form-group mb-4">
 					<label for="station">Station:</label> 
-					<input type="text" class="form-control" id="station" value="dashPoint.station"> 
+					<input type="text" class="form-control" id="station"> 
 				</div>
-				<div class="form-group mb-2">
+				
+				<div class="form-group mb-3">
 					<label for="waterlevel">Water Level (m):</label> 
-					<input type="text" class="form-control" id="waterlevel" value="dashPoint.waterlevel">
+					<input type="text" class="form-control" id="waterlevel">
 				</div>
-				<div class="form-group mb-2">
+				
+				<div class="form-group mb-3">
 					<label for="rainfall">Rainfall (mm):</label> 
-					<input type="number" class="form-control" id="rainfall" value="dashPoint.rainfall">
+					<input type="number" class="form-control" id="rainfall">
 				</div>
-				<div class="form-group mb-2">
+				
+				<div class="form-group mb-3">
 					<label for="dashremarks">Remarks:</label> 
-					<textarea class="form-control" id="dashremarks" rows="3" value="dashPoint.remarks"></textarea>
+					<textarea class="form-control" id="dashremarks" rows="3"></textarea>
 				</div>
-				<div class="form-group mb-2">
+				
+				<div class="form-group mb-3">
 					<jsp:include page="includes/map.jsp">
 						<jsp:param value="PinOneEvac" name="action"/>
 						<jsp:param value="Universiti Teknologi Malaysia" name="location"/>
 					</jsp:include>
 				</div>
-
+	
 				<button type="submit" class="btn btn-primary mt-4">Submit</button>
 			</form>
 		</div>
-	</div>
+	</main>
+
 	
 	<!-- Footer -->
 	<jsp:include page="includes/footer.jsp">
