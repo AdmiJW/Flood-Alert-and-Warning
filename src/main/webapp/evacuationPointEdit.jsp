@@ -52,8 +52,17 @@
 						<jsp:param value="Universiti Teknologi Malaysia" name="location"/>
 					</jsp:include>
 				</div>
-
-				<button type="submit" class="btn btn-primary mt-4">Submit</button>
+				
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary mt-4 me-2">
+						Update
+						<i class="bi bi-send-fill ms-1"></i>
+					</button>
+					<button type="submit" class="btn btn-danger mt-4">
+						Delete
+						<i class="bi bi-trash3-fill"></i>
+					</button>
+				</div>
 			</form>
 		</div>
 	</div>
