@@ -24,7 +24,7 @@
 			
 	<!-- Map and search -->
 	<jsp:include page="includes/bingMap.jsp">
-		<jsp:param value="100vh" name="height"/>
+		<jsp:param value="85vh" name="height"/>
 		<jsp:param value="100%" name="width"/>
 	</jsp:include>
 	
@@ -59,7 +59,7 @@
 	  			<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
 			</div>
 		
-			<jsp:include page="includes/dashPointCard.jsp">
+			<jsp:include page="includes/dashPointTable.jsp">
 				<jsp:param name="DashPoint" value="Parameter" />
 			</jsp:include>
 		</div>

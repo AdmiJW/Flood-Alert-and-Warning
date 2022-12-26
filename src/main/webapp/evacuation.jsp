@@ -39,7 +39,7 @@
 		
 			<!-- Evacuation Point Detail Card  -->
 		<div class='mb-4'>
-			<jsp:include page="includes/evacPointCard.jsp">
+			<jsp:include page="includes/evacPointTable.jsp">
 				<jsp:param name="EvacPoint" value="Parameter" />
 			</jsp:include>
 		</div>
