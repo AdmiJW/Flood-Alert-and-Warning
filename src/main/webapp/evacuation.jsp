@@ -11,6 +11,7 @@
 	<jsp:param name="title" value="FAW" />
 </jsp:include>
 
+
 <body>
 	<!-- Navbar -->
 	<jsp:include page="includes/navbar.jsp">
@@ -26,15 +27,19 @@
 			Evacuation
 			<i class="bi bi-houses"></i>
 		</h1>
-	
-		<!-- MAP API -->
+		
+			<!-- MAP API -->
 		<div class='mb-5'>
-			<jsp:include page="includes/map.jsp"></jsp:include>
+			<jsp:include page="includes/bingMapSearch.jsp" />
+			
+			<jsp:include page="includes/bingMap.jsp">
+				<jsp:param value="500px" name="height"/>
+			</jsp:include>
 		</div>
-	
-		<!-- Evacuation Point Detail Card  -->
+		
+			<!-- Evacuation Point Detail Card  -->
 		<div class='mb-4'>
-			<jsp:include page="includes/evacPointCard.jsp">
+			<jsp:include page="includes/evacPointTable.jsp">
 				<jsp:param name="EvacPoint" value="Parameter" />
 			</jsp:include>
 		</div>

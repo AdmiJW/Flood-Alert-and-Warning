@@ -21,18 +21,20 @@
 		<jsp:param name="route" value="dashboard/reports/evacuation/subscribe" />
 		<jsp:param name="username" value="" />
 	</jsp:include>
+			
+	<!-- Map and search -->
+	<jsp:include page="includes/bingMap.jsp">
+		<jsp:param value="85vh" name="height"/>
+		<jsp:param value="100%" name="width"/>
+	</jsp:include>
+	
+	<div class='container mt-2'>
+		<jsp:include page="includes/bingMapSearch.jsp" />	
+	</div>
 	
 	<!-- Alert -->
 	<jsp:include page="includes/alert.jsp" />
 	
-
-	<!-- MAP API HERE -->
-	<div class='container'>
-		<!-- MAP API -->
-		<div class='mb-5'>
-			<jsp:include page="includes/map.jsp"></jsp:include>
-		</div>
-	</div>
 	
 	<main class='container my-4'>
 		<!-- Breadcrumb -->
@@ -57,7 +59,7 @@
 	  			<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
 			</div>
 		
-			<jsp:include page="includes/dashPointCard.jsp">
+			<jsp:include page="includes/dashPointTable.jsp">
 				<jsp:param name="DashPoint" value="Parameter" />
 			</jsp:include>
 		</div>
