@@ -18,4 +18,5 @@
 	
 	<!-- Universal JS -->
 	<script src="public/scripts/showPassword.js"></script>
+	<script src="public/scripts/bingMap.js"></script>
 </head>
