@@ -22,15 +22,17 @@
 	<jsp:include page="includes/breadcrumb.jsp" />
 	
 	<div class='container'>
-	<!-- Static Content -->
-		<p class="text-center h1">Evacuation</p>
+		<h1 class='text-center fw-bold'>
+			Evacuation
+			<i class="bi bi-houses"></i>
+		</h1>
 	
-	<!-- MAP API -->
+		<!-- MAP API -->
 		<div class='mb-5'>
 			<jsp:include page="includes/map.jsp"></jsp:include>
 		</div>
 	
-	<!-- Evacuation Point Detail Card  -->
+		<!-- Evacuation Point Detail Card  -->
 		<div class='mb-4'>
 			<jsp:include page="includes/evacPointCard.jsp">
 				<jsp:param name="EvacPoint" value="Parameter" />

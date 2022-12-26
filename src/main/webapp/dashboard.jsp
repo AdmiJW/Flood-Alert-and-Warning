@@ -22,35 +22,48 @@
 		<jsp:param name="username" value="" />
 	</jsp:include>
 	
-	<!-- Breadcrumb -->
-	<jsp:include page="includes/breadcrumb.jsp" />
-	
 	<!-- Alert -->
 	<jsp:include page="includes/alert.jsp" />
 	
 
 	<!-- MAP API HERE -->
 	<div class='container'>
-		<h2 class='fw-bold py-4'>MAP PLACE HERE</h2>
-			<!-- MAP API -->
+		<!-- MAP API -->
 		<div class='mb-5'>
 			<jsp:include page="includes/map.jsp"></jsp:include>
 		</div>
 	</div>
 	
-	<div>
-		<p class="text-center h1">Dashboard</p>
+	<main class='container my-4'>
+		<!-- Breadcrumb -->
+		<jsp:include page="includes/breadcrumb.jsp" />
 		
-		<p>Table of Stations</p>
-		<div class='mb-4'>
+		<!-- Title -->
+		<div class='my-4'>
+			<h1 class='text-center fw-bold'>
+				Dashboard
+				<i class="bi bi-house-fill"></i>
+			</h1>
+				
+			<p class='lead text-center text-muted'>
+				Get the latest flood information across the whole Malaysia here
+			</p>
+		</div>
+	
+		<!-- Table -->
+		<div class='mb-4 container'>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="Search and Filter" aria-label="Search and Filter">
+	  			<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+			</div>
+		
 			<jsp:include page="includes/dashPointCard.jsp">
 				<jsp:param name="DashPoint" value="Parameter" />
 			</jsp:include>
 		</div>
-		
-	</div>
-
-
+	</main>
+	
+	
 	<!-- Footer -->
 	<jsp:include page="includes/footer.jsp">
 		<jsp:param name="visits" value="123" />

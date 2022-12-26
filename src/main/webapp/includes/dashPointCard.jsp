@@ -8,6 +8,8 @@
 	pageEncoding="ISO-8859-1" 
 %>
 
+
+
 <div class='table-responsive my-4 mx-auto' style='max-width: 1000px;'>
 	<table class="table table-dark table-striped table-hover">
 		<thead>
@@ -16,26 +18,43 @@
 				<th scope="col">Station</th>
 				<th scope="col">Water Level (m)</th>
 				<th scope="col">Rainfall (mm)</th>
+				<th scope='col'></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-			<!-- Page redirection based on the Station  -->
-			<% 
-				String redirectTo = "/Flood_Alert_and_Warning/dashboard.jsp";
-				
-			%>
-				<td scope="row">
-					<a class="page-link" href=<%= redirectTo %>>i</a>
+				<th scope="row">1</th>
+				<td>Sg.Triang di Triang, Bera</td>
+				<td class='text-warning'>33.86m, WARNING, RISING</td>
+				<td>0mm (26/12/2022)</td>
+				<td class='text-end'>
+					<a class='btn btn-primary' href='editdashboard.jsp'>
+						<i class="bi bi-pencil-fill"></i>
+					</a>
 				</td>
-				<td>
-					<a class="page-link" href=<%= redirectTo %>>dashPoint.station</a>
+			</tr>
+			
+			<tr>
+				<th scope="row">2</th>
+				<td>Long Jegan, Miri</td>
+				<td class='text-danger'>12.59m, DANGER, RISING</td>
+				<td>0mm (26/12/2022)</td>
+				<td class='text-end'>
+					<a class='btn btn-primary' href='editdashboard.jsp'>
+						<i class="bi bi-pencil-fill"></i>
+					</a>
 				</td>
-				<td>
-					<a class="page-link" href=<%= redirectTo %>>dashPoint.waterlevel</a>
-				</td>
-				<td>
-					<a class="page-link" href=<%= redirectTo %>>dashPoint.rainfall</a>
+			</tr>
+			
+			<tr>
+				<th scope="row">3</th>
+				<td>Sebauh, Bintulu</td>
+				<td>1.33m, ALERT, RECEDING</td>
+				<td>0mm (26/12/2022)</td>
+				<td class='text-end'>
+					<a class='btn btn-primary' href='editdashboard.jsp'>
+						<i class="bi bi-pencil-fill"></i>
+					</a>
 				</td>
 			</tr>
 		</tbody>

@@ -22,28 +22,29 @@
 	<jsp:include page="includes/breadcrumb.jsp" />
 	
 	<div class='container'>
-	<!-- Static Content -->
-		<p class="text-center h1 mb-5">Edit Evacuation Point</p>
+		<h1 class='text-center fw-bold'>
+			Edit Evacuation Point
+			<i class="bi bi-pencil-square"></i>
+		</h1>
 	
-		<%-- <% Object evacPoint = request.getParameter("index"); %> --%>
 	<!-- Evacuation Point Edit Form -->
 		<div class='mb-4'>
 			<form method="post" action="editEvacPoint">
 				<div class="form-group mb-2">
 					<label for="name">Name:</label> 
-					<input type="text" class="form-control" id="name" value="evacPoint.name"> 
+					<input type="text" class="form-control" id="name" value="Universiti Teknologi Malaysia"> 
 				</div>
 				<div class="form-group mb-2">
 					<label for="location">Location:</label> 
-					<input type="text" class="form-control" id="location" value="evacPoint.location">
+					<input type="text" class="form-control" id="location" value="Skudai,Johor">
 				</div>
 				<div class="form-group mb-2">
 					<label for="capacity">Capacity:</label> 
-					<input type="number" class="form-control" id="capacity" value="evacPoint.capacity" min="1">
+					<input type="number" class="form-control" id="capacity" value="200" min="1">
 				</div>
 				<div class="form-group mb-2">
 					<label for="remarks">Remarks:</label> 
-					<textarea class="form-control" id="remarks" rows="3" value="evacPoint.remarks"></textarea>
+					<textarea class="form-control" id="remarks" rows="3">UTM evacuation point is currently looking for volunteer.</textarea>
 				</div>
 				<div class="form-group mb-2">
 					<jsp:include page="includes/map.jsp">
@@ -51,8 +52,17 @@
 						<jsp:param value="Universiti Teknologi Malaysia" name="location"/>
 					</jsp:include>
 				</div>
-
-				<button type="submit" class="btn btn-primary mt-4">Submit</button>
+				
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary mt-4 me-2">
+						Update
+						<i class="bi bi-send-fill ms-1"></i>
+					</button>
+					<button type="submit" class="btn btn-danger mt-4">
+						Delete
+						<i class="bi bi-trash3-fill"></i>
+					</button>
+				</div>
 			</form>
 		</div>
 	</div>

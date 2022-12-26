@@ -112,5 +112,5 @@
   	<input type='text' id='searchBox' class="form-control" placeholder="Search Location Here..." aria-label="Search Location Here..." aria-describedby="basic-addon2"/>
 </div>
 
-<div id='output' style="margin-left:10px;float:left;"></div>
-<div id="myMap" style="position:relative;height:600px;"></div>
+<div id='output' style="margin-left:10px;float:left;">test one</div>
+<div id="myMap" style="height:600px;"></div>
