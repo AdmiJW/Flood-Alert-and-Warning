@@ -29,21 +29,25 @@
 	<jsp:include page="includes/alert.jsp" />
 	
 
-	<!-- Dummy content -->
+	<!-- MAP API HERE -->
 	<div class='container'>
-		<h2 class='fw-bold py-4'>Hello IP</h2>
-
-		<div class="mb-3">
-			<label for="exampleFormControlInput1" class="form-label">Email address</label>
-			<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+		<h2 class='fw-bold py-4'>MAP PLACE HERE</h2>
+			<!-- MAP API -->
+		<div class='mb-5'>
+			<jsp:include page="includes/map.jsp"></jsp:include>
+		</div>
+	</div>
+	
+	<div>
+		<p class="text-center h1">Dashboard</p>
+		
+		<p>Table of Stations</p>
+		<div class='mb-4'>
+			<jsp:include page="includes/dashPointCard.jsp">
+				<jsp:param name="DashPoint" value="Parameter" />
+			</jsp:include>
 		</div>
 		
-		<div class="mb-5">
-			<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-		</div>
-		
-		<button class='btn btn-primary btn-lg mb-4'>Let's go</button>
 	</div>
 
 
