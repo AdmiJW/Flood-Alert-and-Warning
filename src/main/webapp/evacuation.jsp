@@ -23,7 +23,10 @@
 	
 	<div class='container'>
 	<!-- Static Content -->
-		<p class="text-center h1">Evacuation</p>
+		<h1 class='text-center fw-bold'>
+			Evacuation
+			<i class="bi bi-houses"></i>
+		</h1>
 	
 	<!-- MAP API -->
 		<div class='mb-5'>

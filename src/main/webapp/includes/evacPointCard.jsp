@@ -20,22 +20,25 @@
 		</thead>
 		<tbody>
 			<tr>
-			<!-- Page refdirection based on the EvacPoint  -->
+			<!-- Page redirection based on the EvacPoint  -->
 			<% 
+				String evacPoint = "Universiti Teknologi Malaysia";
+				String location = "Skudai,Johor";
+				int capacity = 200;
 				String redirectTo = "/Flood_Alert_and_Warning/evacuationPointEdit.jsp";
 				
 			%>
 				<td scope="row">
-					<a class="page-link" href=<%= redirectTo %>>i</a>
+					<a class="page-link" href=<%= redirectTo %>>1</a>
 				</td>
 				<td>
-					<a class="page-link" href=<%= redirectTo %>>evacPoint.name</a>
+					<a class="page-link" href=<%= redirectTo %>><%= evacPoint %></a>
 				</td>
 				<td>
-					<a class="page-link" href=<%= redirectTo %>>evacPoint.location</a>
+					<a class="page-link" href=<%= redirectTo %>><%= location %></a>
 				</td>
 				<td>
-					<a class="page-link" href=<%= redirectTo %>>evacPoint.capacity</a>
+					<a class="page-link" href=<%= redirectTo %>><%= capacity %></a>
 				</td>
 			</tr>
 		</tbody>

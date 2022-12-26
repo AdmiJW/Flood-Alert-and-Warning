@@ -23,7 +23,6 @@ public class Locations extends HashMap<String, HashMap<String, HashMap<String, M
 	
 	private Locations() {}
 	
-	
 	// Singleton pattern
 	// If there is an instance already, return it as it is
 	// Else read the json file and parse into one instance. This requires the ServletContext object.
