@@ -11,7 +11,7 @@
     <div class="container-fluid" style="max-width: 1296px;">
 
         <!-- Logo and Title -->
-        <a class="navbar-brand me-4" href="/Flood_Alert_and_Warning/dashboard.jsp">
+        <a class="navbar-brand me-4" href="/FAW">
             <i class="bi bi-lightning-charge-fill me-1"></i>
             <span class="fw-bold">FAW</span>
         </a>
@@ -37,7 +37,7 @@
                 <li class="nav-item">
                     <a 
                     	class="nav-link <%= (request.getParameter("route").equals("dashboard"))? "active": "" %>" 
-                    	href="/Flood_Alert_and_Warning/dashboard.jsp"
+                    	href="/FAW/Dashboard"
                     >
                     	Dashboard
                     </a>
@@ -45,7 +45,7 @@
                 <li class="nav-item">
                     <a
                     	class="nav-link <%= (request.getParameter("route").equals("reports"))? "active": "" %>" 
-                    	href="/Flood_Alert_and_Warning/reports.jsp"
+                    	href="/FAW/Reports"
                     >
                     	Reports
                     </a>
@@ -53,7 +53,7 @@
                 <li class="nav-item">
                     <a 
                     	class="nav-link <%= (request.getParameter("route").equals("subscribe"))? "active": "" %>" 
-                    	href="/Flood_Alert_and_Warning/subscribe.jsp"
+                    	href="/FAW/Subscribe"
                     >
                     	Subscribe
                     </a>
@@ -61,7 +61,7 @@
                 <li class="nav-item">
                     <a 
                     	class="nav-link <%= (request.getParameter("route").equals("evacuation"))? "active": "" %>" 
-                    	href="/Flood_Alert_and_Warning/evacuation.jsp"
+                    	href="/FAW/Evacuation"
                     >
                     	Evacuation
                     </a>
@@ -76,13 +76,13 @@
             	if (username == null || username.isEmpty()) {
 			%>
 	            <div class="d-flex">
-	                <a class="btn btn-outline-info me-2" href="/Flood_Alert_and_Warning/register.jsp">Register</a>
-	                <a class="btn btn-primary" href="/Flood_Alert_and_Warning/login.jsp">Login</a>
+	                <a class="btn btn-outline-info me-2" href="/FAW/Register">Register</a>
+	                <a class="btn btn-primary" href="/FAW/Login">Login</a>
 	            </div>
 			<% } else { %>
 	            <div class="d-flex align-items-center">
 	                <span class="text-white me-3 fs-5">Welcome, <b><%= username %></b></span>
-	                <a class="btn btn-primary" href="/Flood_Alert_and_Warning/logout.jsp">Logout</a>
+	                <a class="btn btn-primary" href="/FAW/Logout">Logout</a>
 	            </div>
 			<% } %>
 

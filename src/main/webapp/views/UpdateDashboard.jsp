@@ -7,21 +7,19 @@
 
 <html>
 
-<jsp:include page="includes/header.jsp">
+<jsp:include page="/includes/header.jsp">
 	<jsp:param name="title" value="FAW" />
 </jsp:include>
 
 <body>
 	<!-- Navbar -->
-	<jsp:include page="includes/navbar.jsp">
+	<jsp:include page="/includes/navbar.jsp">
 		<jsp:param name="route" value="dashboard/reports/evacuation/subscribe" />
 		<jsp:param name="username" value="" />
 	</jsp:include>
 	
 	<!-- Breadcrumb -->
-	<jsp:include page="includes/breadcrumb.jsp">
-		<jsp:param name="path" value="/Flood_Alert_and_Warning/Dashboard/Update Station" />
-	</jsp:include>
+	<jsp:include page="/includes/breadcrumb.jsp" />
 	
 	
 	<main class='container my-4'>
@@ -35,7 +33,7 @@
 		</div>
 	
 		<!-- Evacuation Point Edit Form -->
-		<form method="post" action="editDashboard" class='m-auto' style='max-width: 700px;'>
+		<form method="POST" action="Update" class='m-auto' style='max-width: 700px;'>
 			<div class="form-group mb-4">
 				<label for="station">Station:</label> 
 				<input type="text" class="form-control" id="station"> 
@@ -59,8 +57,8 @@
 			<div class="form-group mb-3">
 				<label for="mapLocation">Location:</label> 
 			
-				<jsp:include page="includes/bingMapSearch.jsp" />
-				<jsp:include page="includes/bingMap.jsp" />
+				<jsp:include page="/includes/bingMapSearch.jsp" />
+				<jsp:include page="/includes/bingMap.jsp" />
 			</div>
 			
 			<div class='text-center'>
@@ -78,7 +76,7 @@
 
 	
 	<!-- Footer -->
-	<jsp:include page="includes/footer.jsp">
+	<jsp:include page="/includes/footer.jsp">
 		<jsp:param name="visits" value="1232" />
 	</jsp:include>
 	

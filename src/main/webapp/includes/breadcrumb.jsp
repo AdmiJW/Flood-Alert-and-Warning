@@ -4,9 +4,10 @@
 
 
 <%
-	// By default the breadcrumb retrieves the URI path from request.getRequestURI
+	// By default the breadcrumb retrieves the URI path from request.getAttribute("breadcrumbURL").
+	// Please see interceptor.BreadCrumbInterceptor
 	// But if you provide a parameter of "path", it will prioritize that instead.
-	String path = request.getRequestURI();
+	String path = (String)request.getAttribute("breadcrumbURL");
 	if (request.getParameter("path") != null) path = request.getParameter("path");
 	
 	// Abstract tokens from URI, slash '/' as the separator

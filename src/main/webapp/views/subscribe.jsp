@@ -21,7 +21,7 @@
 <html>
 
 <!-- Header -->
-<jsp:include page="includes/header.jsp">
+<jsp:include page="/includes/header.jsp">
 	<jsp:param name="title" value="FAW - Subscribe" />
 </jsp:include>
 
@@ -31,16 +31,16 @@
 <body>
 
 	<!-- Navbar -->
-	<jsp:include page="includes/navbar.jsp">
+	<jsp:include page="/includes/navbar.jsp">
 		<jsp:param name="route" value="subscribe" />
 		<jsp:param name="username" value="" />
 	</jsp:include>
 	
 	<!-- Breadcrumb -->
-	<jsp:include page="includes/breadcrumb.jsp" />
+	<jsp:include page="/includes/breadcrumb.jsp" />
 	
 	<!-- Alert -->
-	<jsp:include page="includes/alert.jsp" />
+	<jsp:include page="/includes/alert.jsp" />
 	
 	
 
@@ -58,7 +58,7 @@
 			Receive flood forecast alerts of your registered Point of Interest (POI) locations. 
 			<br>
 
-			<a href="subscriptions.jsp" class='btn btn-info mt-3'>
+			<a href="/FAW/Subscribe/Subscriptions" class='btn btn-info mt-3'>
 				View My Subscriptions 
 			</a>
 		</p>
@@ -123,7 +123,7 @@
 	
 	
 	<!-- Footer -->
-	<jsp:include page="includes/footer.jsp">
+	<jsp:include page="/includes/footer.jsp">
 		<jsp:param name="visits" value="123" />
 	</jsp:include>
 

@@ -26,7 +26,7 @@
 				<td>Skudai, Johor</td>
 				<td>200</td>
 				<td class='text-end'>
-					<a class='btn btn-primary' href='evacuationPointEdit.jsp'>
+					<a class='btn btn-primary' href='/FAW/Evacuation/Update'>
 						<i class="bi bi-pencil-fill"></i>
 					</a>
 				</td>
@@ -38,7 +38,7 @@
 				<td>Kluang, Johor</td>
 				<td>300</td>
 				<td class='text-end'>
-					<a class='btn btn-primary' href='evacuationPointEdit.jsp'>
+					<a class='btn btn-primary' href='/FAW/Evacuation/Update'>
 						<i class="bi bi-pencil-fill"></i>
 					</a>
 				</td>
@@ -50,7 +50,7 @@
 				<td>Batu Pahat, Johor</td>
 				<td>150</td>
 				<td class='text-end'>
-					<a class='btn btn-primary' href='evacuationPointEdit.jsp'>
+					<a class='btn btn-primary' href='/FAW/Evacuation/Update'>
 						<i class="bi bi-pencil-fill"></i>
 					</a>
 				</td>

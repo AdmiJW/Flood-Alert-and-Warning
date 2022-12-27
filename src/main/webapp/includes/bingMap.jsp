@@ -18,6 +18,7 @@
 
 <div 
 	id="myMap" 
+	class='m-auto'
 	style="
 		position:relative;
 		height:<%=height%>;

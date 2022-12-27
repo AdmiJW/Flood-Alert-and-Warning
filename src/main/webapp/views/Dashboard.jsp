@@ -9,7 +9,7 @@
 <html>
 
 <!-- Header -->
-<jsp:include page="includes/header.jsp">
+<jsp:include page="/includes/header.jsp">
 	<jsp:param name="title" value="FAW" />
 </jsp:include>
 
@@ -17,28 +17,31 @@
 <body>
 
 	<!-- Navbar -->
-	<jsp:include page="includes/navbar.jsp">
-		<jsp:param name="route" value="dashboard/reports/evacuation/subscribe" />
+	<jsp:include page="/includes/navbar.jsp">
+		<jsp:param name="route" value="dashboard" />
 		<jsp:param name="username" value="" />
 	</jsp:include>
 			
 	<!-- Map and search -->
-	<jsp:include page="includes/bingMap.jsp">
-		<jsp:param value="85vh" name="height"/>
-		<jsp:param value="100%" name="width"/>
-	</jsp:include>
+	<div class='my-3'>
+		<jsp:include page="/includes/bingMap.jsp">
+			<jsp:param value="80vh" name="height"/>
+			<jsp:param value="90%" name="width"/>
+		</jsp:include>
+	</div>
+	
 	
 	<div class='container mt-2'>
-		<jsp:include page="includes/bingMapSearch.jsp" />	
+		<jsp:include page="/includes/bingMapSearch.jsp" />	
 	</div>
 	
 	<!-- Alert -->
-	<jsp:include page="includes/alert.jsp" />
+	<jsp:include page="/includes/alert.jsp" />
 	
 	
 	<main class='container my-4'>
 		<!-- Breadcrumb -->
-		<jsp:include page="includes/breadcrumb.jsp" />
+		<jsp:include page="/includes/breadcrumb.jsp" />
 		
 		<!-- Title -->
 		<div class='my-4'>
@@ -59,7 +62,7 @@
 	  			<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
 			</div>
 		
-			<jsp:include page="includes/dashPointTable.jsp">
+			<jsp:include page="/includes/dashPointTable.jsp">
 				<jsp:param name="DashPoint" value="Parameter" />
 			</jsp:include>
 		</div>
@@ -67,7 +70,7 @@
 	
 	
 	<!-- Footer -->
-	<jsp:include page="includes/footer.jsp">
+	<jsp:include page="/includes/footer.jsp">
 		<jsp:param name="visits" value="123" />
 	</jsp:include>
 

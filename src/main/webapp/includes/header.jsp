@@ -9,14 +9,14 @@
 	</title>
 	
 	<!-- Bootstrap CSS + JS -->
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="bootstrap/bootstrap-icons.css">
-	<script src="bootstrap/bootstrap.bundle.min.js" ></script>
+	<link rel="stylesheet" href="/FAW/public/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/FAW/public/bootstrap/bootstrap-icons.css">
+	<script src="/FAW/public/bootstrap/bootstrap.bundle.min.js" ></script>
 		
 	<!-- Universal CSS -->
-	<link rel='stylesheet' href='public/styles/app.css'>
+	<link rel='stylesheet' href='/FAW/public/styles/app.css'>
 	
 	<!-- Universal JS -->
-	<script src="public/scripts/showPassword.js"></script>
-	<script src="public/scripts/bingMap.js"></script>
+	<script src="/FAW/public/scripts/showPassword.js"></script>
+	<script src="/FAW/public/scripts/bingMap.js"></script>
 </head>
