@@ -9,27 +9,27 @@
 <html>
 
 <!-- Header -->
-<jsp:include page="includes/header.jsp">
+<jsp:include page="/includes/header.jsp">
 	<jsp:param name="title" value="FAW - Register" />
 </jsp:include>
 
 <body>
 
 	<!-- Navbar -->
-	<jsp:include page="includes/navbar.jsp">
+	<jsp:include page="/includes/navbar.jsp">
 		<jsp:param name="route" value="register" />
 		<jsp:param name="username" value="" />
 	</jsp:include>
 	
 	<!-- Breadcrumb -->
-	<jsp:include page="includes/breadcrumb.jsp" />
+	<jsp:include page="/includes/breadcrumb.jsp" />
 	
 	<!-- Alert -->
-	<jsp:include page="includes/alert.jsp" />
+	<jsp:include page="/includes/alert.jsp" />
 
 	<!-- Login form -->
 	<div class='container my-5'>
-		<form class='bg-light rounded shadow-sm m-auto p-3' style='max-width: 500px;'>
+		<form class='bg-light rounded shadow-sm m-auto p-3' style='max-width: 500px;' method='POST'>
 		
 			<div class='text-center display-6'>
 				<i class="bi bi-lightning-charge-fill"></i>
@@ -75,7 +75,7 @@
 	</div>
 	
 	<!-- Footer -->
-	<jsp:include page="includes/footer.jsp">
+	<jsp:include page="/includes/footer.jsp">
 		<jsp:param name="visits" value="123" />
 	</jsp:include>
 

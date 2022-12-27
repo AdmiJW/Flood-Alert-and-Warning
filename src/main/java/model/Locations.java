@@ -28,7 +28,7 @@ public class Locations extends HashMap<String, HashMap<String, HashMap<String, M
 	// Else read the json file and parse into one instance. This requires the ServletContext object.
 	public static Locations getInstance(ServletContext ctx) throws StreamReadException, DatabindException, IOException {
 		if (instance == null) {
-			String locationsPath = ctx.getRealPath("data/locations.json");
+			String locationsPath = ctx.getRealPath("public/data/locations.json");
 			File json = new File(locationsPath);
 			instance = new ObjectMapper().readValue(json, Locations.class);			
 		}

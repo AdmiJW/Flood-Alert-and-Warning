@@ -7,21 +7,19 @@
 
 <html>
 
-<jsp:include page="includes/header.jsp">
+<jsp:include page="/includes/header.jsp">
 	<jsp:param name="title" value="FAW" />
 </jsp:include>
 
 <body>
 	<!-- Navbar -->
-	<jsp:include page="includes/navbar.jsp">
+	<jsp:include page="/includes/navbar.jsp">
 		<jsp:param name="route" value="dashboard/reports/evacuation/subscribe" />
 		<jsp:param name="username" value="" />
 	</jsp:include>
 	
 	<!-- Breadcrumb -->
-	<jsp:include page="includes/breadcrumb.jsp">
-		<jsp:param name="path" value="/Flood_Alert_and_Warning/Evacuation/Update Evacuation Point" />
-	</jsp:include>
+	<jsp:include page="/includes/breadcrumb.jsp" />
 	
 	<main class='container'>
 		<h1 class='text-center fw-bold'>
@@ -54,8 +52,8 @@
 			<div class="form-group mb-2">
 				<label for="mapLocation">Location:</label> 
 				
-				<jsp:include page="includes/bingMapSearch.jsp" />
-				<jsp:include page="includes/bingMap.jsp" />
+				<jsp:include page="/includes/bingMapSearch.jsp" />
+				<jsp:include page="/includes/bingMap.jsp" />
 			</div>
 			
 			<div class="text-center">
@@ -72,7 +70,7 @@
 	</main>
 	
 	<!-- Footer -->
-	<jsp:include page="includes/footer.jsp">
+	<jsp:include page="/includes/footer.jsp">
 		<jsp:param name="visits" value="1232" />
 	</jsp:include>
 	

@@ -28,7 +28,7 @@
 				<td class='text-warning'>33.86m, WARNING, RISING</td>
 				<td>0mm (26/12/2022)</td>
 				<td class='text-end'>
-					<a class='btn btn-primary' href='editdashboard.jsp'>
+					<a class='btn btn-primary' href='/FAW/Dashboard/Update'>
 						<i class="bi bi-pencil-fill"></i>
 					</a>
 				</td>
@@ -40,7 +40,7 @@
 				<td class='text-danger'>12.59m, DANGER, RISING</td>
 				<td>0mm (26/12/2022)</td>
 				<td class='text-end'>
-					<a class='btn btn-primary' href='editdashboard.jsp'>
+					<a class='btn btn-primary' href='/FAW/Dashboard/Update'>
 						<i class="bi bi-pencil-fill"></i>
 					</a>
 				</td>
@@ -52,7 +52,7 @@
 				<td>1.33m, ALERT, RECEDING</td>
 				<td>0mm (26/12/2022)</td>
 				<td class='text-end'>
-					<a class='btn btn-primary' href='editdashboard.jsp'>
+					<a class='btn btn-primary' href='/FAW/Dashboard/Update'>
 						<i class="bi bi-pencil-fill"></i>
 					</a>
 				</td>

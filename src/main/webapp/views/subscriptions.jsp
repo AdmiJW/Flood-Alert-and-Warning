@@ -11,25 +11,21 @@
 <html>
 
 <!-- Header -->
-<jsp:include page="includes/header.jsp">
-	<jsp:param name="title" value="FAW - Subscribe/Subscriptions" />
-</jsp:include>
+<jsp:include page="/includes/header.jsp" />
 
 <body>
 
 	<!-- Navbar -->
-	<jsp:include page="includes/navbar.jsp">
+	<jsp:include page="/includes/navbar.jsp">
 		<jsp:param name="route" value="subscribe" />
 		<jsp:param name="username" value="" />
 	</jsp:include>
 	
 	<!-- Breadcrumb -->
-	<jsp:include page="includes/breadcrumb.jsp">
-		<jsp:param name="path" value="/Flood_Alert_and_Warning/Subscribe/Subscriptions" />
-	</jsp:include>
+	<jsp:include page="/includes/breadcrumb.jsp" />
 	
 	<!-- Alert -->
-	<jsp:include page="includes/alert.jsp" />
+	<jsp:include page="/includes/alert.jsp" />
 	
 
 	<!-- Subscription form -->
@@ -138,7 +134,7 @@
 		</div>
 
 		<!-- Pagination -->
-		<jsp:include page="includes/pagination.jsp">
+		<jsp:include page="/includes/pagination.jsp">
 			<jsp:param name="totalPages" value="5" />
 			<jsp:param name="activePage" value="2" />
 			<jsp:param name="link" value="Subscribe/Subscriptions" />
@@ -156,7 +152,7 @@
 	
 	
 	<!-- Footer -->
-	<jsp:include page="includes/footer.jsp">
+	<jsp:include page="/includes/footer.jsp">
 		<jsp:param name="visits" value="123" />
 	</jsp:include>
 
