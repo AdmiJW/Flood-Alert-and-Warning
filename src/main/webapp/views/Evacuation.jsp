@@ -17,8 +17,7 @@
 <body>
 	<!-- Navbar -->
 	<c:import url="/includes/navbar.jsp">
-		<c:param name="route" value="dashboard/reports/evacuation/subscribe" />
-		<c:param name="username" value="" />
+		<c:param name="active" value="evacuation" />
 	</c:import>
 
 	<!-- Breadcrumb -->

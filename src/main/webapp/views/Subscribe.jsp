@@ -32,8 +32,7 @@
 
 	<!-- Navbar -->
 	<c:import url="/includes/navbar.jsp">
-		<c:param name="route" value="subscribe" />
-		<c:param name="username" value="" />
+		<c:param name="active" value="subscribe" />
 	</c:import>
 
 	<!-- Breadcrumb -->

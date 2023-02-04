@@ -19,8 +19,7 @@
 <body>
 	<!-- Navbar -->
 	<c:import url="/includes/navbar.jsp">
-		<c:param name="route" value="dashboard" />
-		<c:param name="username" value="" />
+		<c:param name="active" value="dashboard" />
 	</c:import>
 			
 	<!-- Map and search -->

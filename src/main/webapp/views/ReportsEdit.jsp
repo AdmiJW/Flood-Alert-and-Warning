@@ -14,10 +14,7 @@
 </c:import>
 <body>
 	<!-- Navbar -->
-	<c:import url="/includes/navbar.jsp">
-		<c:param name="route" value="reports" />
-		<c:param name="username" value="" />
-	</c:import>
+	<c:import url="/includes/navbar.jsp" />
 
 	<!-- Breadcrumb -->
 	<c:import url="/includes/breadcrumb.jsp">
