@@ -24,7 +24,7 @@
 
     <!-- Register interceptors that intercept request lifecycles -->
     <mvc:interceptors>
-        <bean id="breadcrumbInterceptor" class="interceptor.BreadCrumbInterceptor"/>
+        <bean id="totalVisitedInterceptor" class="interceptor.TotalVisitedInterceptor"/>
     </mvc:interceptors>
 
     <!-- ModelAndView will search for JSP pages inside /webapp/views/***.jsp. You define the *** part inside Controllers -->

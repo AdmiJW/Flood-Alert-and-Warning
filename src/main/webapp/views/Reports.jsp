@@ -118,8 +118,6 @@
 	</c:import>
 
 	<!-- Footer -->
-	<c:import url="/includes/footer.jsp">
-		<c:param name="visits" value="123" />
-	</c:import>
+	<c:import url="/includes/footer.jsp"/>
 </body>
 </html>

@@ -75,11 +75,9 @@
 		</form>
 	</main>
 
-	
+
 	<!-- Footer -->
-	<c:import url="/includes/footer.jsp">
-		<c:param name="visits" value="1232" />
-	</c:import>
+	<c:import url="/includes/footer.jsp"/>
 	
 </body>
 </html>

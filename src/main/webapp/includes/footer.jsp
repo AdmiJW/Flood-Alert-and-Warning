@@ -10,7 +10,8 @@
 
     <p class="">
     	<i class="bi bi-people-fill me-1"></i>
-        Visitors: <%= request.getParameter("visits") %>
+        Visitors:
+        <c:out value="${totalVisited}"/>
     </p>
 
     <ul class="nav justify-content-center my-4 text-white">
