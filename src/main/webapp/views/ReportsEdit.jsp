@@ -1,24 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@page
+	language="java"
+	contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 <!-- Header -->
-<jsp:include page="/includes/header.jsp">
-	<jsp:param name="title" value="FAW - Reports" />
-</jsp:include>
+<c:import url="/includes/header.jsp">
+	<c:param name="title" value="FAW - Reports" />
+</c:import>
 <body>
 	<!-- Navbar -->
-	<jsp:include page="/includes/navbar.jsp">
-		<jsp:param name="route" value="reports" />
-		<jsp:param name="username" value="" />
-	</jsp:include>
+	<c:import url="/includes/navbar.jsp">
+		<c:param name="route" value="reports" />
+		<c:param name="username" value="" />
+	</c:import>
 
 	<!-- Breadcrumb -->
-	<jsp:include page="/includes/breadcrumb.jsp" />
+	<c:import url="/includes/breadcrumb.jsp" />
 	
 	
 	<!-- Alert -->
-	<jsp:include page="/includes/alert.jsp" />
+	<c:import url="/includes/alert.jsp" />
 
 	<div class='container'>
 	
@@ -133,15 +139,15 @@
 	</div>
 
 	<!-- Pagination -->
-	<jsp:include page="/includes/pagination.jsp">
-		<jsp:param name="totalPages" value="5" />
-		<jsp:param name="activePage" value="2" />
-		<jsp:param name="link" value="Subscribe/Subscriptions" />
-	</jsp:include>
+	<c:import url="/includes/pagination.jsp">
+		<c:param name="totalPages" value="5" />
+		<c:param name="activePage" value="2" />
+		<c:param name="link" value="Subscribe/Subscriptions" />
+	</c:import>
 
 	<!-- Footer -->
-	<jsp:include page="/includes/footer.jsp">
-		<jsp:param name="visits" value="123" />
-	</jsp:include>
+	<c:import url="/includes/footer.jsp">
+		<c:param name="visits" value="123" />
+	</c:import>
 </body>
 </html>

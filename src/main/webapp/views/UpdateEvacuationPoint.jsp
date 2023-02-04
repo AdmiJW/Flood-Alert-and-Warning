@@ -1,25 +1,27 @@
-<%@ 
-	page language="java" 
+<%@page
+	language="java"
 	contentType="text/html; 
 	charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1" 
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <html>
 
-<jsp:include page="/includes/header.jsp">
-	<jsp:param name="title" value="FAW" />
-</jsp:include>
+<c:import url="/includes/header.jsp">
+	<c:param name="title" value="FAW" />
+</c:import>
 
 <body>
 	<!-- Navbar -->
-	<jsp:include page="/includes/navbar.jsp">
-		<jsp:param name="route" value="dashboard/reports/evacuation/subscribe" />
-		<jsp:param name="username" value="" />
-	</jsp:include>
+	<c:import url="/includes/navbar.jsp">
+		<c:param name="route" value="dashboard/reports/evacuation/subscribe" />
+		<c:param name="username" value="" />
+	</c:import>
 	
 	<!-- Breadcrumb -->
-	<jsp:include page="/includes/breadcrumb.jsp" />
+	<c:import url="/includes/breadcrumb.jsp" />
 	
 	<main class='container'>
 		<h1 class='text-center fw-bold'>
@@ -52,8 +54,8 @@
 			<div class="form-group mb-2">
 				<label for="mapLocation">Location:</label> 
 				
-				<jsp:include page="/includes/bingMapSearch.jsp" />
-				<jsp:include page="/includes/bingMap.jsp" />
+				<c:import url="/includes/bingMapSearch.jsp" />
+				<c:import url="/includes/bingMap.jsp" />
 			</div>
 			
 			<div class="text-center">
@@ -70,9 +72,9 @@
 	</main>
 	
 	<!-- Footer -->
-	<jsp:include page="/includes/footer.jsp">
-		<jsp:param name="visits" value="1232" />
-	</jsp:include>
+	<c:import url="/includes/footer.jsp">
+		<c:param name="visits" value="1232" />
+	</c:import>
 	
 </body>
 </html>

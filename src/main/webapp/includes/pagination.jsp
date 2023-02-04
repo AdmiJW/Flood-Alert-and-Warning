@@ -1,4 +1,6 @@
-<%-- 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%--
 	Please populate the parameters using <jsp:param>
 		1. totalPages - The total pages 
 		2. activePage - Currently active page

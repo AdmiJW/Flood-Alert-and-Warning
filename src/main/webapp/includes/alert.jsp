@@ -1,6 +1,6 @@
 <%@page import="utils.AlertUtil"%>
 <%@page import="enums.AlertType"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <div class='container py-2 my-3'>

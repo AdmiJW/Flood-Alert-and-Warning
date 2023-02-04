@@ -1,6 +1,8 @@
-<!-- 
-	Params: 
-		visits - Number of visitors on the site		
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!--
+    Params:
+    visits - Number of visitors on the site
 -->
 
 

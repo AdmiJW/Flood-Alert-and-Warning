@@ -1,6 +1,7 @@
 <%@page 
 	import="java.util.Arrays"
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <%
@@ -9,7 +10,7 @@
 	// But if you provide a parameter of "path", it will prioritize that instead.
 	String path = (String)request.getAttribute("breadcrumbURL");
 	if (request.getParameter("path") != null) path = request.getParameter("path");
-	
+
 	// Abstract tokens from URI, slash '/' as the separator
 	String[] rawTokens = path.substring(1).split("/");
 	

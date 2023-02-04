@@ -4,45 +4,46 @@
 	charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1" 
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE html>
 <html>
 
 <!-- Header -->
-<jsp:include page="/includes/header.jsp">
-	<jsp:param name="title" value="FAW" />
-</jsp:include>
+<c:import url="/includes/header.jsp">
+	<c:param name="title" value="FAW" />
+</c:import>
 
 
 <body>
-
 	<!-- Navbar -->
-	<jsp:include page="/includes/navbar.jsp">
-		<jsp:param name="route" value="dashboard" />
-		<jsp:param name="username" value="" />
-	</jsp:include>
+	<c:import url="/includes/navbar.jsp">
+		<c:param name="route" value="dashboard" />
+		<c:param name="username" value="" />
+	</c:import>
 			
 	<!-- Map and search -->
 	<div class='my-3'>
-		<jsp:include page="/includes/bingMap.jsp">
-			<jsp:param value="80vh" name="height"/>
-			<jsp:param value="90%" name="width"/>
-			<jsp:param value="pinAllFlood" name="action"/>
-		</jsp:include>
+		<c:import url="/includes/bingMap.jsp">
+			<c:param value="80vh" name="height"/>
+			<c:param value="90%" name="width"/>
+			<c:param value="pinAllFlood" name="action"/>
+		</c:import>
 	</div>
 	
 	
 	<div class='container mt-2'>
-		<jsp:include page="/includes/bingMapSearch.jsp" />	
+		<c:import url="/includes/bingMapSearch.jsp" />
 	</div>
 	
 	<!-- Alert -->
-	<jsp:include page="/includes/alert.jsp" />
+	<c:import url="/includes/alert.jsp" />
 	
 	
 	<main class='container my-4'>
 		<!-- Breadcrumb -->
-		<jsp:include page="/includes/breadcrumb.jsp" />
+		<c:import url="/includes/breadcrumb.jsp" />
 		
 		<!-- Title -->
 		<div class='my-4'>
@@ -63,17 +64,17 @@
 	  			<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
 			</div>
 		
-			<jsp:include page="/includes/dashPointTable.jsp">
-				<jsp:param name="DashPoint" value="Parameter" />
-			</jsp:include>
+			<c:import url="/includes/dashPointTable.jsp">
+				<c:param name="DashPoint" value="Parameter" />
+			</c:import>
 		</div>
 	</main>
 	
 	
 	<!-- Footer -->
-	<jsp:include page="/includes/footer.jsp">
-		<jsp:param name="visits" value="123" />
-	</jsp:include>
+	<c:import url="/includes/footer.jsp">
+		<c:param name="visits" value="123" />
+	</c:import>
 
 
 </body>
