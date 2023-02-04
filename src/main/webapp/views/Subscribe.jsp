@@ -35,9 +35,11 @@
 		<c:param name="route" value="subscribe" />
 		<c:param name="username" value="" />
 	</c:import>
-	
+
 	<!-- Breadcrumb -->
-	<c:import url="/includes/breadcrumb.jsp" />
+	<c:import url="/includes/breadcrumb.jsp">
+		<c:param name="path" value="Subscribe" />
+	</c:import>
 	
 	<!-- Alert -->
 	<c:import url="/includes/alert.jsp" />

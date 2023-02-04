@@ -20,7 +20,9 @@
 	</c:import>
 
 	<!-- Breadcrumb -->
-	<c:import url="/includes/breadcrumb.jsp" />
+	<c:import url="/includes/breadcrumb.jsp">
+		<c:param name="path" value="Dashboard/Edit" />
+	</c:import>
 	
 	
 	<!-- Alert -->

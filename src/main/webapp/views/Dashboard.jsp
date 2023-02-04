@@ -42,8 +42,11 @@
 	
 	
 	<main class='container my-4'>
+
 		<!-- Breadcrumb -->
-		<c:import url="/includes/breadcrumb.jsp" />
+		<c:import url="/includes/breadcrumb.jsp">
+			<c:param name="path" value="Dashboard" />
+		</c:import>
 		
 		<!-- Title -->
 		<div class='my-4'>

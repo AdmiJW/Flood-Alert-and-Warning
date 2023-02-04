@@ -22,7 +22,9 @@
 	</c:import>
 
 	<!-- Breadcrumb -->
-	<c:import url="/includes/breadcrumb.jsp" />
+	<c:import url="/includes/breadcrumb.jsp">
+		<c:param name="path" value="Reports" />
+	</c:import>
 
 	<!-- Alert -->
 	<c:import url="/includes/alert.jsp" />

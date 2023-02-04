@@ -19,9 +19,11 @@
 		<c:param name="route" value="dashboard/reports/evacuation/subscribe" />
 		<c:param name="username" value="" />
 	</c:import>
-	
+
 	<!-- Breadcrumb -->
-	<c:import url="/includes/breadcrumb.jsp" />
+	<c:import url="/includes/breadcrumb.jsp">
+		<c:param name="path" value="Evacuation/Update" />
+	</c:import>
 	
 	<main class='container'>
 		<h1 class='text-center fw-bold'>
