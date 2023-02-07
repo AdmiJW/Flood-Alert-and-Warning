@@ -142,7 +142,7 @@
 		
 		<!-- Back button -->
 		<div class='d-flex justify-content-center gap my-4'>
-			<a class='btn btn-info' href='subscribe.jsp'>
+			<a class='btn btn-info' href='<c:url value="/Subscribe" />'>
 				Back
 			</a>
 		</div>

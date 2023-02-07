@@ -5,8 +5,10 @@ import dataAccess.UserDA;
 import entity.User;
 import enums.UserType;
 import org.springframework.stereotype.Component;
+import utils.FileUtil;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 
 
 // Not an interceptor, but rather a bean responsible for initializing the application
@@ -14,10 +16,15 @@ import javax.annotation.PostConstruct;
 public class ApplicationInit {
 
     @PostConstruct
-    public void init() {
+    public void init() throws IOException {
         initAdmin();
+        initializeFileService();
     }
 
+
+    private void initializeFileService() throws IOException {
+        FileUtil.init();
+    }
 
 
     private void initAdmin() {
