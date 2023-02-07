@@ -40,6 +40,20 @@ public class UserDA {
         return user;
     }
 
+    public static User getByEmail(String email) {
+        Session session = FAWHibernate.getSessionWithTransaction();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> criteria = builder.createQuery(User.class);
+        Root<User> root = criteria.from(User.class);
+
+        criteria.select(root).where(builder.equal(root.get("email"), email));
+        User user = session.createQuery(criteria).getResultList().stream().findFirst().orElse(null);
+
+        FAWHibernate.commitAndCloseSession(session);
+        return user;
+    }
+
 
     // U - Update
     public static void update(User user) {

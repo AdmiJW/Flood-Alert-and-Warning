@@ -16,7 +16,7 @@
 	request.setAttribute("urlArray", url.split("/"));
 %>
 
-<nav class='container py-2 my-3 bg-light rounded-3' aria-label="breadcrumb">
+<nav class='container py-2 my-3 bg-white rounded-3' aria-label="breadcrumb">
 	<ol class="breadcrumb m-0">
 
 		<%-- Root --%>

@@ -79,14 +79,16 @@
             <c:choose>
                 <c:when test="${not empty user}">
                     <div class="d-flex align-items-center">
-                        <span class="text-white me-3 fs-5">Welcome</span>
-                        <a class="btn btn-primary" href="/FAW/Logout">Logout</a>
+                        <span class="text-white me-3 fs-6">
+                            Welcome, <c:out value="${user.username}"/>
+                        </span>
+                        <a class="btn btn-primary" href="<c:url value="/Logout" />">Logout</a>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="d-flex">
-                        <a class="btn btn-outline-info me-2" href="/FAW/Register">Register</a>
-                        <a class="btn btn-primary" href="/FAW/Login">Login</a>
+                        <a class="btn btn-outline-info me-2" href="<c:url value="/Register"/>">Register</a>
+                        <a class="btn btn-primary" href="<c:url value="/Login" />">Login</a>
                     </div>
                 </c:otherwise>
             </c:choose>

@@ -29,7 +29,12 @@
 
 	<!-- Login form -->
 	<div class='container my-5'>
-		<form class='bg-light rounded shadow-sm m-auto p-3' style='max-width: 500px;' method='POST'>
+		<form
+			class='bg-light rounded shadow-sm m-auto p-3'
+			style='max-width: 500px;'
+			method='POST'
+			action='<c:url value="/Login" />'
+		>
 		
 			<div class='text-center display-6'>
 				<i class="bi bi-lightning-charge-fill"></i>
@@ -64,7 +69,7 @@
 			
 			<p class='text-muted mt-4'>
 				Don't have an account yet?
-				<a href='/Flood_Alert_and_Warning/register.jsp'>Register</a>
+				<a href='<c:url value="/Register" />'>Register</a>
 			</p>
 		</form>
 	</div>

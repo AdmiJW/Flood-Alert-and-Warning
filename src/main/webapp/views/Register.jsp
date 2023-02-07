@@ -29,7 +29,12 @@
 
 	<!-- Login form -->
 	<div class='container my-5'>
-		<form class='bg-light rounded shadow-sm m-auto p-3' style='max-width: 500px;' method='POST'>
+		<form
+			class='bg-light rounded shadow-sm m-auto p-3'
+			style='max-width: 500px;'
+			method='POST'
+			action='<c:url value="/Register" />'
+		>
 		
 			<div class='text-center display-6'>
 				<i class="bi bi-lightning-charge-fill"></i>
@@ -51,14 +56,14 @@
 			</div>
 			
 			<div class="mb-3">
-				<label for="tel" class="form-label">Phone</label>
-				<input type="tel" class="form-control" id="tel" name='tel'>
+				<label for="phone" class="form-label">Phone</label>
+				<input type="tel" class="form-control" id="phone" name='phone'>
 			</div>
 			
 			<div class="mb-3">
 				<label for="password" class="form-label">Password</label>
 				<div class='input-group'>
-					<input type="password" class="form-control" id="password" data-show-password="password">
+					<input type="password" class="form-control" id="password" data-show-password="password" name="password">
 					<button class="btn btn-primary" type="button" data-show-password="password">
 						<i class="bi bi-eye-fill"></i>
 					</button>
@@ -69,7 +74,7 @@
 			
 			<p class='text-muted mt-4'>
 				Already have an account?
-				<a href='/Flood_Alert_and_Warning/login.jsp'>Login</a>
+				<a href='<c:url value="/Login" />'>Login</a>
 			</p>
 		</form>
 	</div>
