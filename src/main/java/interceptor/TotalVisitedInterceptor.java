@@ -22,7 +22,6 @@ public class TotalVisitedInterceptor implements HandlerInterceptor {
 
     private static int totalVisited = 0;
 
-
     @Override
     public boolean preHandle(
         HttpServletRequest request,
