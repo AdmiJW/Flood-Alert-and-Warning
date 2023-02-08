@@ -18,7 +18,7 @@ public class UserDA {
     }
 
     // R - Read
-    public static List<User> getAll(Long id) {
+    public static List<User> getAll() {
         return FAWHibernate.getAll(User.class);
     }
 

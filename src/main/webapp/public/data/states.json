@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Johor"
+  },
+  {
+    "id": 2,
+    "name": "Kedah"
+  },
+  {
+    "id": 3,
+    "name": "Kelantan"
+  },
+  {
+    "id": 4,
+    "name": "Sg. Muda"
+  },
+  {
+    "id": 5,
+    "name": "MADA"
+  },
+  {
+    "id": 6,
+    "name": "Melaka"
+  },
+  {
+    "id": 7,
+    "name": "Negeri Sembilan"
+  },
+  {
+    "id": 8,
+    "name": "Pahang"
+  },
+  {
+    "id": 9,
+    "name": "Perlis"
+  },
+  {
+    "id": 10,
+    "name": "Pulau Pinang"
+  },
+  {
+    "id": 11,
+    "name": "Perak"
+  },
+  {
+    "id": 12,
+    "name": "Wilayah Persekutuan Putrajaya"
+  },
+  {
+    "id": 13,
+    "name": "Sabah"
+  },
+  {
+    "id": 14,
+    "name": "Selangor"
+  },
+  {
+    "id": 15,
+    "name": "Sarawak"
+  },
+  {
+    "id": 16,
+    "name": "Terengganu"
+  },
+  {
+    "id": 17,
+    "name": "Wilayah Persekutuan Kuala Lumpur"
+  },
+  {
+    "id": 18,
+    "name": "Wilayah Persekutuan Labuan"
+  }
+]

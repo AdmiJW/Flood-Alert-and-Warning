@@ -1,18 +1,11 @@
-<%@page import="utils.CookieUtil"%>
-<%@page import="model.Locations"%>
 <%@page
 	language="java"
 	contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
 %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<%
-	// Obtain Locations object from Model Locations
-	Locations loc = Locations.getInstance(application);
-%>
 
 
 
@@ -25,8 +18,12 @@
 	<c:param name="title" value="FAW - Subscribe" />
 </c:import>
 
-<script> const locs = JSON.parse(`<%= loc.asJSON() %>`); </script>
-<script src="public/scripts/subscribePage.js"></script>
+<script>
+	const districts = JSON.parse(`${districts}`);
+	const locations = JSON.parse(`${locations}`);
+</script>
+<script src="<c:url value="/public/scripts/subscribePage.js" />"></script>
+
 
 <body>
 
@@ -59,13 +56,18 @@
 			Receive flood forecast alerts of your registered Point of Interest (POI) locations. 
 			<br>
 
-			<a href="/FAW/Subscribe/Subscriptions" class='btn btn-info mt-3'>
+			<a href="<c:url value="/Subscribe/Subscriptions" />" class='btn btn-info mt-3'>
 				View My Subscriptions 
 			</a>
 		</p>
 		
 		
-		<form class='bg-light rounded shadow-sm m-auto p-3 my-4' style='max-width: 500px;' method='POST' action='' >
+		<form
+			class='bg-light rounded shadow-sm m-auto p-3 my-4'
+			style='max-width: 500px;'
+			method='POST'
+			action='<c:url value="/Subscribe" />'
+		>
 		
 			<div class='text-center display-6'>
 				<i class="bi bi-lightning-charge-fill"></i>
@@ -82,10 +84,10 @@
 				
 				<select class="form-select" name='state' id='state' required aria-label="Select state">
 				    <option selected disabled value=''>Select state</option>
-				    
-				    <% for (String state: loc.getStates()) { %>
-				    	<option value='<%= state %>'><%= state %></option>
-				    <% } %>
+
+					<c:forEach items="${states}" var="state">
+						<option value="${state.id}">${state.name}</option>
+					</c:forEach>
 				</select>
 			</div>
 			

@@ -1,6 +1,9 @@
 package dataAccess;
 
 
+import entity.District;
+import entity.Location;
+import entity.State;
 import entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,7 +18,10 @@ public class FAWHibernate {
 
     // Please add the entity/model classes here
     private static final Class[] ENTITY_CLASSES = {
-        User.class
+        User.class,
+        State.class,
+        District.class,
+        Location.class
     };
 
     // Singleton SessionFactory
@@ -48,9 +54,15 @@ public class FAWHibernate {
 
 
     // C - Create
-    public static void add(Object object) {
+    public static <T> void add(T object) {
         Session session = getSessionWithTransaction();
         session.save(object);
+        commitAndCloseSession(session);
+    }
+
+    public static <T> void addMany(List<T> objects) {
+        Session session = getSessionWithTransaction();
+        for (Object object : objects) session.save(object);
         commitAndCloseSession(session);
     }
 
@@ -73,14 +85,14 @@ public class FAWHibernate {
     }
 
     // U - Update
-    public static void update(Object object) {
+    public static <T> void update(T object) {
         Session session = getSessionWithTransaction();
         session.update(object);
         commitAndCloseSession(session);
     }
 
     // D - Delete
-    public static void delete(Object object) {
+    public static <T> void delete(T object) {
         Session session = getSessionWithTransaction();
         session.delete(object);
         commitAndCloseSession(session);
