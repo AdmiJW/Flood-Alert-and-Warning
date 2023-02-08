@@ -17,6 +17,7 @@
 
 
 <body>
+<div class="min-vh-100">
 	<!-- Navbar -->
 	<c:import url="/includes/navbar.jsp">
 		<c:param name="active" value="dashboard" />
@@ -71,11 +72,10 @@
 			</c:import>
 		</div>
 	</main>
-	
-	
-	<!-- Footer -->
-	<c:import url="/includes/footer.jsp"/>
+</div>
 
+<!-- Footer -->
+<c:import url="/includes/footer.jsp"/>
 
 </body>
 </html>

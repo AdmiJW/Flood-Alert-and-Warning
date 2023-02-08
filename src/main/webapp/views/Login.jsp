@@ -15,7 +15,7 @@
 </c:import>
 
 <body>
-
+<div class="min-vh-100">
 	<!-- Navbar -->
 	<c:import url="/includes/navbar.jsp" />
 
@@ -73,9 +73,10 @@
 			</p>
 		</form>
 	</div>
+</div>
 
-	<!-- Footer -->
-	<c:import url="/includes/footer.jsp"/>
+<!-- Footer -->
+<c:import url="/includes/footer.jsp"/>
 
 </body>
 </html>

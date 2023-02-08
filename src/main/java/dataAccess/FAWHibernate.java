@@ -1,10 +1,7 @@
 package dataAccess;
 
 
-import entity.District;
-import entity.Location;
-import entity.State;
-import entity.User;
+import entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -21,7 +18,8 @@ public class FAWHibernate {
         User.class,
         State.class,
         District.class,
-        Location.class
+        Location.class,
+        Subscription.class,
     };
 
     // Singleton SessionFactory

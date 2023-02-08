@@ -8,11 +8,15 @@
 
 <!DOCTYPE html>
 <html>
+
 <!-- Header -->
 <c:import url="/includes/header.jsp">
 	<c:param name="title" value="FAW - Reports" />
 </c:import>
+
 <body>
+<div class="min-vh-100">
+
 	<!-- Navbar -->
 	<c:import url="/includes/navbar.jsp" />
 
@@ -144,7 +148,10 @@
 		<c:param name="link" value="Subscribe/Subscriptions" />
 	</c:import>
 
-	<!-- Footer -->
-	<c:import url="/includes/footer.jsp"/>
+</div>
+
+<!-- Footer -->
+<c:import url="/includes/footer.jsp"/>
+
 </body>
 </html>

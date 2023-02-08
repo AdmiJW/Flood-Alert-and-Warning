@@ -20,11 +20,11 @@ public class Location {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "state", referencedColumnName = "id")
     private State state;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "district", referencedColumnName = "id")
     private District district;
 

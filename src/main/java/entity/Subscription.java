@@ -12,15 +12,21 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class District {
+public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "location", referencedColumnName = "id")
+    private Location location;
 
     @ManyToOne
-    @JoinColumn(name = "state", referencedColumnName = "id")
-    private State state;
+    @JoinColumn(name = "user", referencedColumnName = "id")
+    private User user;
+
+    @Column(nullable = false)
+    private Boolean isEmailSubscription;
+    @Column(nullable = false)
+    private Boolean isSmsSubscription;
 }

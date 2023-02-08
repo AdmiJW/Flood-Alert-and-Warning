@@ -26,6 +26,7 @@
 
 
 <body>
+<div class="min-vh-100">
 
 	<!-- Navbar -->
 	<c:import url="/includes/navbar.jsp">
@@ -123,10 +124,10 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</main>
+</div>
 
-
-	<!-- Footer -->
-	<c:import url="/includes/footer.jsp"/>
+<!-- Footer -->
+<c:import url="/includes/footer.jsp"/>
 
 </body>
 </html>

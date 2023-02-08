@@ -15,6 +15,7 @@
 </c:import>
 
 <body>
+<div class="min-vh-100">
 	<!-- Navbar -->
 	<c:import url="/includes/navbar.jsp">
 		<c:param name="active" value="reports" />
@@ -117,8 +118,10 @@
 		<c:param name="activePage" value="1" />
 		<c:param name="link" value="Subscribe/Subscriptions" />
 	</c:import>
+</div>
 
-	<!-- Footer -->
-	<c:import url="/includes/footer.jsp"/>
+<!-- Footer -->
+<c:import url="/includes/footer.jsp"/>
+
 </body>
 </html>
