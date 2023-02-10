@@ -1,12 +1,14 @@
 <!--
 	Parameter: EvacPoint model
 -->
+
 <%@ 
 	page language="java" 
 	contentType="text/html; 
 	charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1" 
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
@@ -62,10 +64,5 @@
 </div>
 
 
-<jsp:include page="pagination.jsp">
-	<jsp:param value="10" name="totalPages"/>
-	<jsp:param value="1" name="activePage"/>
-	<jsp:param value="Evacuation/EvacuationPoint" name="link"/>
-</jsp:include>
-
+<jsp:include page="pagination.jsp" />
 

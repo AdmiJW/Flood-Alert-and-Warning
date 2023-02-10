@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <head>
 	<meta charset="ISO-8859-1">
@@ -5,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<title>
-		<%= request.getParameter("title") %>
+		<c:out value="${param.title}"/>
 	</title>
 	
 	<!-- Bootstrap CSS + JS -->

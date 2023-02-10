@@ -1,5 +1,8 @@
 package enums;
 
+import lombok.Getter;
+
+@Getter
 public enum AlertType {
 	PRIMARY("alert-primary"),
 	SECONDARY("alert-secondary"),
@@ -10,7 +13,7 @@ public enum AlertType {
 	LIGHT("alert-light"),
 	DARK("alert-dark");
 	
-	public final String name;
+	private final String name;
 	
 	private AlertType(String name) {
 		this.name = name;

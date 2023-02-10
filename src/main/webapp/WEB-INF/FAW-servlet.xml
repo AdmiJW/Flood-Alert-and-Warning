@@ -2,35 +2,39 @@
 
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
- 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
- 		http://www.springframework.org/schema/mvc
- 		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
- 		http://www.springframework.org/schema/context
- 		http://www.springframework.org/schema/context/spring-context-3.0.xsd"
- >
-	<!-- Tell Spring MVC that the application will be annotation driven -->
-	<mvc:annotation-driven></mvc:annotation-driven>
-	
-	<!-- Controllers will be scanned inside the /src/main/java/controller package -->
-	<context:component-scan base-package="controller" />
-	
-	<!-- Serve static contents under webapp/public folder -->
-	<mvc:resources location="/public/" mapping="/public/**"/>
-	
-	<!-- Register interceptors that intercept request lifecycles -->
-	<mvc:interceptors>
-	    <bean id="breadcrumbInterceptor" class="interceptor.BreadCrumbInterceptor"/>
-	</mvc:interceptors>
-	
-	<!-- ModelAndView will search for JSP pages inside /webapp/views/***.jsp. You define the *** part inside Controllers -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
-		<property name="prefix" value="/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-	
-	
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+>
+
+    <!-- Tell Spring MVC that the application will be annotation driven -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!-- Controllers will be scanned inside the /src/main/java/controller package -->
+    <context:component-scan base-package="controller" />
+
+    <!-- Serve static contents under webapp/public folder -->
+    <mvc:resources location="/public/" mapping="/public/**"/>
+
+    <!-- Register interceptors that intercept request lifecycles -->
+    <mvc:interceptors>
+        <bean id="totalVisitedInterceptor" class="interceptor.TotalVisitedInterceptor"/>
+    </mvc:interceptors>
+
+
+    <!-- ModelAndView will search for JSP pages inside /webapp/views/***.jsp. You define the *** part inside Controllers -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix" value="/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- Other beans define here -->
+    <bean id="initializer" name="initializer" class="interceptor.ApplicationInit" scope="singleton" ></bean>
+
 </beans>

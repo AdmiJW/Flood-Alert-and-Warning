@@ -1,17 +1,18 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!-- 
 	Params: 
-		route - put either (dashboard/reports/evacuation/subscribe) or leave blank if none of above
-		username - put if user is logged in.
+		active - Sets one of the nav link to be brighter.
+                 value should be one of [ dashboard, reports, subscribe, evacuation ]. Left blank if none are active
 -->
 
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
-
-    <div class="container-fluid" style="max-width: 1296px;">
+    <div class="container">
 
         <!-- Logo and Title -->
-        <a class="navbar-brand me-4" href="/FAW">
+        <a class="navbar-brand me-4" href="<c:url value="/" />">
             <i class="bi bi-lightning-charge-fill me-1"></i>
             <span class="fw-bold">FAW</span>
         </a>
@@ -34,36 +35,40 @@
         <!-- Navigation menu (Left) -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a 
-                    	class="nav-link <%= (request.getParameter("route").equals("dashboard"))? "active": "" %>" 
-                    	href="/FAW/Dashboard"
-                    >
-                    	Dashboard
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a
-                    	class="nav-link <%= (request.getParameter("route").equals("reports"))? "active": "" %>" 
-                    	href="/FAW/Reports"
+                        class="nav-link ${param.active == 'dashboard' ? 'active' : ''}"
+                        href="<c:url value="/Dashboard" />"
                     >
-                    	Reports
+                        Dashboard
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a 
-                    	class="nav-link <%= (request.getParameter("route").equals("subscribe"))? "active": "" %>" 
-                    	href="/FAW/Subscribe"
+                    <a
+                        class="nav-link ${param.active == 'reports' ? 'active' : ''}"
+                        href="<c:url value="/Reports" />"
                     >
-                    	Subscribe
+                        Reports
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a 
-                    	class="nav-link <%= (request.getParameter("route").equals("evacuation"))? "active": "" %>" 
-                    	href="/FAW/Evacuation"
+                    <a
+                        class="nav-link ${param.active == 'subscribe' ? 'active' : ''}"
+                        href="<c:url value="/Subscribe" />"
                     >
-                    	Evacuation
+                        Subscribe
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link ${param.active == 'evacuation' ? 'active' : ''}"
+                        href="<c:url value="/Evacuation" />"
+                    >
+                        Evacuation
                     </a>
                 </li>
             </ul>
@@ -71,20 +76,22 @@
 
             <!-- Controls (Right) -->
             <!-- Show login/register if not logged in, else show logout button -->
-            <%
-				String username = request.getParameter("username");
-            	if (username == null || username.isEmpty()) {
-			%>
-	            <div class="d-flex">
-	                <a class="btn btn-outline-info me-2" href="/FAW/Register">Register</a>
-	                <a class="btn btn-primary" href="/FAW/Login">Login</a>
-	            </div>
-			<% } else { %>
-	            <div class="d-flex align-items-center">
-	                <span class="text-white me-3 fs-5">Welcome, <b><%= username %></b></span>
-	                <a class="btn btn-primary" href="/FAW/Logout">Logout</a>
-	            </div>
-			<% } %>
+            <c:choose>
+                <c:when test="${not empty user}">
+                    <div class="d-flex align-items-center">
+                        <span class="text-white me-3 fs-6">
+                            Welcome, <c:out value="${user.username}"/>
+                        </span>
+                        <a class="btn btn-primary" href="<c:url value="/Logout" />">Logout</a>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="d-flex">
+                        <a class="btn btn-outline-info me-2" href="<c:url value="/Register"/>">Register</a>
+                        <a class="btn btn-primary" href="<c:url value="/Login" />">Login</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
 
         </div>
     </div>

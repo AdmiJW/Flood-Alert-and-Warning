@@ -5,17 +5,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 @RequestMapping("/Dashboard")
 public class DashboardController {
 
 	@GetMapping("")
-	protected ModelAndView getDashboard() {
-		return new ModelAndView("Dashboard");
+	protected String getDashboard() {
+		return "Dashboard";
 	}
 	
 	@GetMapping("Update")
-	protected ModelAndView getUpdateDashboard() {
-		return new ModelAndView("UpdateDashboard");
+	protected String getUpdateDashboard() {
+		return "UpdateDashboard";
 	}
 }

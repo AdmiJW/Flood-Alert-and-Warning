@@ -1,6 +1,8 @@
-<!-- 
-	Params: 
-		visits - Number of visitors on the site		
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!--
+    Params:
+    visits - Number of visitors on the site
 -->
 
 
@@ -8,7 +10,8 @@
 
     <p class="">
     	<i class="bi bi-people-fill me-1"></i>
-        Visitors: <%= request.getParameter("visits") %>
+        Visitors:
+        <c:out value="${totalVisited}"/>
     </p>
 
     <ul class="nav justify-content-center my-4 text-white">
