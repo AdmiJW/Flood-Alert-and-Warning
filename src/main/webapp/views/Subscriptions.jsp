@@ -51,7 +51,7 @@
 
 				<tbody>
 
-					<c:forEach items="${subscriptions}" var="subscription" varStatus="loop">
+					<c:forEach items="${paginator.getPage(currentPage)}" var="subscription" varStatus="loop">
 						<tr>
 							<th scope="row">${loop.index + 1}</th>
 							<td>
@@ -97,6 +97,8 @@
 			</table>
 		</div>
 
+		<%-- Pagination --%>
+		<c:import url="/includes/pagination.jsp" />
 
 		<!-- Back button -->
 		<div class='d-flex justify-content-center gap my-4'>

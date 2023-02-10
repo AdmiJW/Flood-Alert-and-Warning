@@ -113,11 +113,7 @@
 	</div>
 
 	<!-- Pagination -->
-	<c:import url="/includes/pagination.jsp">
-		<c:param name="totalPages" value="5" />
-		<c:param name="activePage" value="1" />
-		<c:param name="link" value="Subscribe/Subscriptions" />
-	</c:import>
+	<c:import url="/includes/pagination.jsp" />
 </div>
 
 <!-- Footer -->

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import utils.AlertUtil;
 import utils.AuthUtil;
+import utils.pagination.Paginator;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -80,7 +81,8 @@ public class SubscribeController {
 	@GetMapping("Subscriptions")
 	protected String getSubscriptionsPage(
 		HttpServletRequest request,
-		RedirectAttributes redirectAttributes
+		RedirectAttributes redirectAttributes,
+		@RequestParam(value = "page", required = false, defaultValue = "1") Integer page
 	) {
 		if (AuthUtil.getCurrentUser(request) == null) {
 			AlertUtil.setWarningAlert(redirectAttributes, "You must be logged in to subscribe to a location.");
@@ -88,7 +90,10 @@ public class SubscribeController {
 		}
 
 		List<Subscription> subscriptions = SubscriptionDA.getByUser( AuthUtil.getCurrentUser(request) );
-		request.setAttribute("subscriptions", subscriptions);
+		Paginator<Subscription> paginator = new Paginator<>(subscriptions, 10);
+
+		request.setAttribute("paginator", paginator);
+		request.setAttribute("currentPage", page);
 
 		if (subscriptions == null || subscriptions.size() == 0)
 			AlertUtil.setWarningAlert(request, "You have not subscribed to any locations yet.");

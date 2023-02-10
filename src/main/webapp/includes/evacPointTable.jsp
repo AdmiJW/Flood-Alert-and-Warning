@@ -61,10 +61,6 @@
 </div>
 
 
-<jsp:include page="pagination.jsp">
-	<jsp:param value="10" name="totalPages"/>
-	<jsp:param value="1" name="activePage"/>
-	<jsp:param value="Evacuation/EvacuationPoint" name="link"/>
-</jsp:include>
+<jsp:include page="pagination.jsp" />
 
 
