@@ -12,5 +12,16 @@ D:/IntelliJProjects/Flood Alert and Warning/src/main/resources/hibernate.cfg.xml
       <jdbc-url>jdbc:mysql://localhost:3306/faw</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="77b906a7-7853-4ec5-bd88-3d0af1dce461">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+D:/IntelliJProjects/Flood Alert and Warning/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/faw</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

@@ -87,7 +87,12 @@ public class SubscribeController {
 			return "redirect:/Login";
 		}
 
-		request.setAttribute("subscriptions", SubscriptionDA.getByUser( AuthUtil.getCurrentUser(request) ) );
+		List<Subscription> subscriptions = SubscriptionDA.getByUser( AuthUtil.getCurrentUser(request) );
+		request.setAttribute("subscriptions", subscriptions);
+
+		if (subscriptions == null || subscriptions.size() == 0)
+			AlertUtil.setWarningAlert(request, "You have not subscribed to any locations yet.");
+
 		return "Subscriptions";
 	}
 
