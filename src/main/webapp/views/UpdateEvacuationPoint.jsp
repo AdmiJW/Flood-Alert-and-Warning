@@ -19,36 +19,85 @@
 	<c:import url="/includes/navbar.jsp" />
 
 	<!-- Breadcrumb -->
-	<c:import url="/includes/breadcrumb.jsp">
-		<c:param name="path" value="Evacuation/Update" />
-	</c:import>
+	<c:choose>
+		<c:when test="${isAdmin}">
+			<c:import url="/includes/breadcrumb.jsp">
+			<c:param name="path" value="Evacuation/Update" />
+			</c:import>
+		</c:when>
+		<c:otherwise>
+			<c:import url="/includes/breadcrumb.jsp">
+			<c:param name="path" value="Evacuation/View" />
+			</c:import>
+		</c:otherwise>
+	</c:choose>
+
 	
 	<main class='container'>
 		<h1 class='text-center fw-bold'>
 			Edit Evacuation Point
 			<i class="bi bi-pencil-square"></i>
 		</h1>
+
+		<c:import url="/includes/alert.jsp" />
 	
 		<!-- Evacuation Point Edit Form -->
-		<form method="post" action="editEvacPoint" class='mb-4 m-auto' style='max-width: 700px;'>
+		<form method="post" action='<c:url value="/Evacuation"/> ' class='mb-4 m-auto' style='max-width: 700px;'>
+			<input type="hidden" name="pointId" value="${evacPoint.id}">
 			<div class="form-group mb-2">
 				<label for="name">Name:</label> 
-				<input type="text" class="form-control" id="name" value="Universiti Teknologi Malaysia"> 
+				<input
+					type="text"
+					class="form-control"
+					id="name"
+					disabled
+					value="${evacPoint.pointName}"
+				>
 			</div>
 			
 			<div class="form-group mb-2">
 				<label for="location">Location:</label> 
-				<input type="text" class="form-control" id="location" value="Skudai,Johor">
+				<input
+					type="text"
+					class="form-control"
+					id="location"
+					disabled
+					value="${evacPoint.location.district.name},${evacPoint.location.district.state.name}">
+			</div>
+
+			<div class="form-group mb-2">
+				<label for="currentOccupancy">Current Occupancy:</label>
+				<input
+					type="number"
+					class="form-control"
+					id="currentOccupancy"
+					name="currentOccupancy"
+					${isAdmin ? 'enabled' : 'disabled'}
+					value="${evacPoint.currentOccupancy}"
+				>
 			</div>
 			
 			<div class="form-group mb-2">
 				<label for="capacity">Capacity:</label> 
-				<input type="number" class="form-control" id="capacity" value="200" min="1">
+				<input
+					type="number"
+					class="form-control"
+					id="capacity"
+					name="capacity"
+					${isAdmin ? 'enabled' : 'disabled'}
+					value="${evacPoint.capacity}"
+				>
 			</div>
 			
 			<div class="form-group mb-4">
 				<label for="remarks">Remarks:</label> 
-				<textarea class="form-control" id="remarks" rows="3">UTM evacuation point is currently looking for volunteer.</textarea>
+				<textarea
+					class="form-control"
+					id="remarks"
+					name="remarks"
+					rows="3"
+					${isAdmin ? 'enabled' : 'disabled'}
+				>${evacPoint.remarks}</textarea>
 			</div>
 			
 			<div class="form-group mb-2">
@@ -57,18 +106,36 @@
 				<c:import url="/includes/bingMapSearch.jsp" />
 				<c:import url="/includes/bingMap.jsp" />
 			</div>
-			
-			<div class="text-center">
-				<button type="submit" class="btn btn-primary mt-4 me-2">
-					Update
-					<i class="bi bi-send-fill ms-1"></i>
-				</button>
-				<button type="submit" class="btn btn-danger mt-4">
-					Delete
-					<i class="bi bi-trash3-fill"></i>
-				</button>
-			</div>
+
+			<c:if test="${isAdmin}">
+				<div class="text-center">
+					<button
+						type="submit"
+						class="btn btn-primary mt-4 me-2"
+					>
+						Update
+						<i class="bi bi-send-fill ms-1"></i>
+					</button>
+					<a
+							class="btn btn-danger mt-4"
+							href="
+				<c:url value="/Evacuation/Delete" >
+					<c:param name="id" value="${evacPoint.id}" />
+				</c:url>
+				"
+					>
+						Delete
+						<i class="bi bi-trash3-fill"></i>
+					</a>
+				</div>
+			</c:if>
 		</form>
+
+		<div class='d-flex justify-content-center gap my-4'>
+			<a class='btn btn-info' href='<c:url value="/Evacuation" />'>
+				Back
+			</a>
+		</div>
 	</main>
 </div>
 

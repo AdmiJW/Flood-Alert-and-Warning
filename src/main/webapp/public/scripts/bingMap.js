@@ -11,7 +11,7 @@ let searchManager, infobox;
 // Init function that is called by BingMap script to load the map into a specified div.
 function GetMap() {
 	// Load Bing Map
-	alert(queryOption);
+	// alert(queryOption);
 	console.log("test");
 	map = new Microsoft.Maps.Map('#myMap', {
 		credentials: API_KEY,
@@ -29,7 +29,7 @@ function GetMap() {
 
 function GetAllPin() {
 	// Load Bing Map
-	alert(queryOption);
+	// alert(queryOption);
 	console.log("test");
 	map = new Microsoft.Maps.Map('#myMap', {
 		credentials: API_KEY,
