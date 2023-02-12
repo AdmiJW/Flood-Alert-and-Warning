@@ -2,6 +2,7 @@ package dataAccess;
 
 import entity.Report;
 import entity.State;
+import entity.User;
 import enums.ReviewType;
 import entity.District;
 import entity.Location;
@@ -33,6 +34,20 @@ public class ReportsDA {
 
 	public static Report getReportById(Long id) {
 		return FAWHibernate.getById(Report.class, id);
+	}
+
+	public static List<Report> getReportsByUserId(User user) {
+		Session session = FAWHibernate.getSessionWithTransaction();
+
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Report> criteria = builder.createQuery(Report.class);
+		Root<Report> root = criteria.from(Report.class);
+
+		criteria.select(root).where(builder.equal(root.get("user"), user));
+		List<Report> reports = session.createQuery(criteria).getResultList();
+
+		FAWHibernate.commitAndCloseSession(session);
+		return reports;
 	}
 
 	public static List<Report> getReportsByDate(String start_date, String end_date) {

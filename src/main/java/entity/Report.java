@@ -16,8 +16,9 @@ public class Report {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
-	private String reporter_name;
+	@ManyToOne
+	@JoinColumn(name="user", referencedColumnName = "id")
+	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "state", referencedColumnName = "id")

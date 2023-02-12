@@ -65,22 +65,6 @@
 							Report Form
 						</p>
 
-						<!-- Enter name -->
-						<div class="mb-2">
-							<label for="reporter_name" class="form-label fw-bold">Name:</label>
-							<br>
-							<input type="text" class="form-control" name="reporter_name" id="reporter_name"
-								placeholder="Enter name here" required>
-						</div>
-
-						<!-- Enter phone number -->
-						<div class="mb-2">
-							<label for="phone_number" class="form-label fw-bold">Phone Number:</label>
-							<br>
-							<input type="tel" class="form-control" name="phone_number" id="phone_number"
-								placeholder="012-34567890" required>
-						</div>
-
 
 						<!-- Select state -->
 						<div class="mb-2">

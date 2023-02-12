@@ -5,6 +5,22 @@
     <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <friendly-headers value="false" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <file-name value="" />
+      <file-location value="" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+      <charset value="GBK" />
+      <charset value="GBK" />
+    </export-instructions>
+  </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
@@ -23,7 +39,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/dashboard" />
+      <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/user" />
       <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/location" />
       <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/report" />
       <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/evacpoint" />
@@ -33,6 +49,7 @@
     <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.evacpoint" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.report" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.dashboard" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.user" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.location" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">

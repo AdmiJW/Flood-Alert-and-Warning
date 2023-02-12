@@ -71,8 +71,6 @@ public class ReportsController {
 	protected String postAddReports(
 			HttpServletRequest request,
 			RedirectAttributes redirectAttributes,
-			@RequestParam(value = "reporter_name") String reporter_name,
-			@RequestParam(value = "phone_number") String phone_number,
 			@RequestParam(value = "state") Long state,
 			@RequestParam(value = "district") Long district,
 			@RequestParam(value = "location") Long location,
@@ -81,16 +79,15 @@ public class ReportsController {
 			throws JsonProcessingException {
 		System.out.println(request.getParameter("phone_number"));
 		Report rep = new Report();
-		rep.setReporter_name(reporter_name);
+		rep.setUser(AuthUtil.getCurrentUser(request));
 		rep.setDetail(report_detail);
 		rep.setDistrict(GeoDA.getDistrictById(district));
 		rep.setLocation(GeoDA.getLocationById(location));
 		rep.setState(GeoDA.getStateById(state));
 		rep.setSubmission_date(LocalDate.now().toString());
-		rep.setPhone_no(phone_number);
 		rep.setReview_status(ReviewType.Pending);
 		try {
-			rep.setMedia_path(FileUtil.store(report_media, reporter_name + "/" +rep.getId()+"_" + rep.getSubmission_date()).toString());
+			rep.setMedia_path(FileUtil.store(report_media, rep.getUser().getUsername() + "/" +rep.getId()+"_" + rep.getSubmission_date()).toString());
 		} catch (IOException e) {
 			System.out.println("Error occur when reading image files!\n" + e.getStackTrace());
 		}
@@ -109,6 +106,15 @@ public class ReportsController {
 	// session.setAttribute("noredirect","true");
 	// response.setContentType("text/plain");
 	// }
+
+	@GetMapping("/Reports/Search")
+	protected void searchReport(@RequestParam String search_key, HttpServletRequest request,HttpServletResponse response){
+		HttpSession session=request.getSession(true);
+		session.setMaxInactiveInterval(60*60*24);
+		List<Report> reports=ReportsDA.getReportsBySubString(search_key);
+		session.setAttribute("reports",reports);
+		response.setContentType("text/plain");
+	}
 
 	@GetMapping("Admin")
 	protected ModelAndView getEditDashboard() {

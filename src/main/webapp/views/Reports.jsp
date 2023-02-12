@@ -44,9 +44,9 @@
 
 
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Search and Filter"
+						<input type="text" class="form-control" placeholder="Search and Filter" id="searchbar"
 							aria-label="Search and Filter">
-						<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+						//<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
 					</div>
 
 
@@ -83,16 +83,15 @@
 				<div class="sticky-bottom" style="margin-left: 90%;"><a href="<c:url value="/Reports/Add" />"/><i
 						class="bi bi-plus-circle-fill" style="font-size:80px"></i></a></div>
 
-				<!--<div id="ajaxGetUserServletResponse"></div>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"
-    	type="text/javascript"></script>
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
-        $("#button-addon2").click(function() {
-
+        $("#searchbar").keyup(function() {
         		$.ajax({
-        			url : '/FAW/Reports/session',
+					type:"GET",
+        			url : '/FAW/Reports/Search',
+					data: $("#searchbar").val(),
          			success : function(responseText) {
-        				alert(${sessionScope.noredirect});
+						console.log("AJAX Call is successfully established!");
         			}
         		});
         	});
