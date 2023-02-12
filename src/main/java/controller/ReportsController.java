@@ -42,25 +42,25 @@ public class ReportsController {
 		// Pass districts and locations as JSON, as they will be used in the frontend
 		ObjectMapper mapper = new ObjectMapper();
 		request.setAttribute("states", GeoDA.getAllStates());
-		request.setAttribu	te("districts", mapper.writeValueAsString(GeoDA.getAllDistricts()));
+		request.setAttribute("districts", mapper.writeValueAsString(GeoDA.getAllDistricts()));
 		request.setAttribute("locations", mapper.writeValueAsString(GeoDA.getAllLocations()));
 
 		return "ReportsAdd";
 	}
 
-	@PostMapping("/Add")
+	@PostMapping("/Reports/Add")
 	protected String postAddReports(
 			HttpServletRequest request,
 			RedirectAttributes redirectAttributes,
-			@RequestParam("reporter_name") String reporter_name,
-			@RequestParam("phone_number") String phone_number,
-			@RequestParam("state") Long state,
-			@RequestParam("district") Long district,
-			@RequestParam("location") Long location,
-			@RequestParam("report_media") MultipartFile report_media,
-			@RequestParam("report_detail") String report_detail,
-			@RequestParam("submission_date") String submission_date) throws JsonProcessingException {
-
+			@RequestParam(value = "reporter_name", required = false) String reporter_name,
+			@RequestParam(value = "phone_number", required = false) String phone_number,
+			@RequestParam(value = "state", required = false) Long state,
+			@RequestParam(value = "district", required = false) Long district,
+			@RequestParam(value = "location", required = false) Long location,
+			@RequestParam(value = "report_media", required = false) MultipartFile report_media,
+			@RequestParam(value = "report_detail", required = false) String report_detail,
+			@RequestParam(value = "submission_date", required = false) String submission_date)
+			throws JsonProcessingException {
 		Report rep = new Report();
 		rep.setReporter_name(reporter_name);
 		rep.setDetail(report_detail);
@@ -71,7 +71,7 @@ public class ReportsController {
 		rep.setPhone_no(phone_number);
 		rep.setReview_status(ReviewType.Pending);
 		try {
-			FileUtil.store(report_media,reporter_name+"/"+rep.getId()+"_"+rep.getSubmission_date()); 
+			FileUtil.store(report_media, reporter_name + "/" + "_" + rep.getSubmission_date());
 		} catch (IOException e) {
 			System.out.println("Error occur when reading image files!\n" + e.getStackTrace());
 		}

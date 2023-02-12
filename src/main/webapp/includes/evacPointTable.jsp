@@ -1,11 +1,11 @@
 <!--
 	Parameter: EvacPoint model
 -->
-<%@ 
-	page language="java" 
-	contentType="text/html; 
-	charset=ISO-8859-1" 
-	pageEncoding="ISO-8859-1" 
+<%@
+	page language="java"
+	contentType="text/html;
+	charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -16,46 +16,37 @@
 				<th scope="col">#</th>
 				<th scope="col">Evacuation Point</th>
 				<th scope="col">Location</th>
-				<th scope="col">Capacity</th>
+				<th scope="col">Current Occupancy</th>
+				<th scope="col">Max Capacity</th>
 				<th scope='col'></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td>Universiti Teknologi Malaysia</td>
-				<td>Skudai, Johor</td>
-				<td>200</td>
-				<td class='text-end'>
-					<a class='btn btn-primary' href='/FAW/Evacuation/Update'>
-						<i class="bi bi-pencil-fill"></i>
-					</a>
-				</td>
-			</tr>
-			
-			<tr>
-				<th scope="row">1</th>
-				<td>SK Sri Kencana</td>
-				<td>Kluang, Johor</td>
-				<td>300</td>
-				<td class='text-end'>
-					<a class='btn btn-primary' href='/FAW/Evacuation/Update'>
-						<i class="bi bi-pencil-fill"></i>
-					</a>
-				</td>
-			</tr>
-			
-			<tr>
-				<th scope="row">1</th>
-				<td>DEWAN SERBAGUNA KG. PARIT SENTANG BATU</td>
-				<td>Batu Pahat, Johor</td>
-				<td>150</td>
-				<td class='text-end'>
-					<a class='btn btn-primary' href='/FAW/Evacuation/Update'>
-						<i class="bi bi-pencil-fill"></i>
-					</a>
-				</td>
-			</tr>
+			<c:forEach items="${paginator.getPage(currentPage)}" var="evacPoint" varStatus="loop">
+				<tr>
+					<th scope="row">${evacPoint.id}</th>
+					<td>${evacPoint.pointName}</td>
+					<td>${evacPoint.location.district.name},${evacPoint.location.district.state.name}</td>
+					<td>${evacPoint.currentOccupancy}</td>
+					<td>${evacPoint.capacity}</td>
+					<c:choose>
+						<c:when test="${isAdmin}">
+							<td class='text-end'>
+								<a class='btn btn-primary' href='/FAW/Evacuation/View?id=${evacPoint.id}'>
+									<i class="bi bi-pencil-fill"></i>
+								</a>
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td class='text-end'>
+								<a class='btn btn-primary' href='/FAW/Evacuation/View?id=${evacPoint.id}'>
+									<i class="bi bi-binoculars"></i>
+								</a>
+							</td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>

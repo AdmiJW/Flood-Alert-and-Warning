@@ -1,3 +1,4 @@
+<%@ page import="entity.Dashboard" %>
 <%@page
 	language="java"
 	contentType="text/html; 
@@ -12,6 +13,12 @@
 	<c:param name="title" value="FAW" />
 </c:import>
 
+<script>
+	const districts = JSON.parse(`${districts}`);
+	const locations = JSON.parse(`${locations}`);
+</script>
+<script src="<c:url value="/public/scripts/geoSelectInput.js" />"></script>
+
 <body>
 <div class="min-vh-100">
 	<!-- Navbar -->
@@ -21,7 +28,9 @@
 	<c:import url="/includes/breadcrumb.jsp">
 		<c:param name="path" value="Dashboard/Update" />
 	</c:import>
-	
+
+	<!-- Alert -->
+	<c:import url="/includes/alert.jsp" />
 	
 	<main class='container my-4'>
 		
@@ -33,44 +42,50 @@
 			</h1>
 		</div>
 	
-		<!-- Evacuation Point Edit Form -->
-		<form method="POST" action="Update" class='m-auto' style='max-width: 700px;'>
+		<!-- Dashboard Station Edit Form -->
+		<form method='POST' class='bg-light rounded shadow-sm m-auto p-3 my-4' action='<c:url value="/Dashboard/Update" />' style='max-width: 500px;'>
 			<div class="form-group mb-4">
-				<label for="station">Station:</label> 
-				<input type="text" class="form-control" id="station"> 
+				<label class="form-label fw-bold">Station: <c:out value="${dashboard.location.name}"/></label>
+				<input type="hidden" name="id" value="<c:out value="${dashboard.id}"/>">
 			</div>
-			
+
 			<div class="form-group mb-3">
-				<label for="waterlevel">Water Level (m):</label> 
-				<input type="text" class="form-control" id="waterlevel">
+				<label for="water">Water Level (m):</label>
+				<input type="number" step="0.01" class="form-control" id="water" name="water" value="<c:out value="${dashboard.water}"/>">
 			</div>
-			
+
 			<div class="form-group mb-3">
-				<label for="rainfall">Rainfall (mm):</label> 
-				<input type="number" class="form-control" id="rainfall">
+				<label>Status:</label>
+				<div>
+				<input type="radio" id="rising" name="status" value="RISING" ${dashboard.status=="RISING"?'checked':''}>
+				<label>Rising</label>
+				</div>
+				<div>
+				<input type="radio" id="receding" name="status" value="RECEDING" ${dashboard.status=="RECEDING"?'checked':''}>
+				<label>Receding</label>
+				</div>
+				<div>
+				<input type="radio" id="nochange" name="status" value="NOCHANGE" ${dashboard.status=="NOCHANGE"?'checked':''}>
+				<label>No Change</label>
+				</div>
 			</div>
-			
-			<div class="form-group mb-5">
-				<label for="dashremarks">Remarks:</label> 
-				<textarea class="form-control" id="dashremarks" rows="3"></textarea>
-			</div>
-			
+
 			<div class="form-group mb-3">
-				<label for="mapLocation">Location:</label> 
-			
-				<c:import url="/includes/bingMapSearch.jsp" />
-				<c:import url="/includes/bingMap.jsp" />
+				<label for="rainfall">Rainfall (mm):</label>
+				<input type="number" class="form-control" id="rainfall" name="rainfall" value="<c:out value="${dashboard.rainfall}"/>">
 			</div>
-			
+
+			<div class="form-group mb-3">
+				<label for="date">Date:</label>
+				<input type="date" class="form-control" id="date" name="date" value="<c:out value="${dashboard.date}"/>">
+			</div>
+
 			<div class='text-center'>
 				<button type="submit" class="btn btn-primary mt-4 me-2">
 					Update
 					<i class="bi bi-send-fill ms-1"></i>
 				</button>
-				<button type="submit" class="btn btn-danger mt-4">
-					Delete
-					<i class="bi bi-trash3-fill"></i>
-				</button>
+				<a href="<c:url value="/Dashboard" />" class='btn btn-danger mt-4 me-2'> Back <i class="bi bi-arrow-left-square-fill"></i></a>
 			</div>
 		</form>
 	</main>

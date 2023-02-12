@@ -1,5 +1,4 @@
 
-
 // Gets <option selected disabled value=''> {text} </option>
 function getDefaultDisabledOption(text) {
 	const option = document.createElement('option');
@@ -30,28 +29,28 @@ document.addEventListener('DOMContentLoaded', () => {
 	const districtsOptions = {};
 	const locationsOptions = {};
 
-	districts.forEach(district => {
+	districts?.forEach(district => {
 		if (districtsOptions[district.state.id] === undefined) districtsOptions[district.state.id] = [];
 		districtsOptions[district.state.id].push(getOption(district.id, district.name));
 	});
 
-	locations.forEach(location => {
+	locations?.forEach(location => {
 		if (locationsOptions[location.district.id] === undefined) locationsOptions[location.district.id] = [];
 		locationsOptions[location.district.id].push(getOption(location.id, location.name));
 	});
 
 
 	// On state selected, change district and location select elements
-	stateSelect.addEventListener('change', (event) => {
+	stateSelect?.addEventListener('change', (event) => {
 		const state = event.target.value;
 
 		// Clear district and location select elements
-		districtSelect.innerHTML = '';
-		locationSelect.innerHTML = '';
+		if (districtSelect) districtSelect.innerHTML = '';
+		if (locationSelect) locationSelect.innerHTML = '';
 
 		// Add default disabled option
-		districtSelect.appendChild(getDefaultDisabledOption('Select district'));
-		locationSelect.appendChild(getDefaultDisabledOption('Select location'));
+		districtSelect?.appendChild(getDefaultDisabledOption('Select district'));
+		locationSelect?.appendChild(getDefaultDisabledOption('Select location'));
 
 		// Add districts to district select element
 		if (districtsOptions[state] === undefined) return;
@@ -60,14 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	// On district selected, change location select element
-	districtSelect.addEventListener('change', (event) => {
+	districtSelect?.addEventListener('change', (event) => {
 		const district = event.target.value;
 
 		// Clear location select element
-		locationSelect.innerHTML = '';
+		if (locationSelect) locationSelect.innerHTML = '';
 
 		// Add default disabled option
-		locationSelect.appendChild(getDefaultDisabledOption('Select location'));
+		locationSelect?.appendChild(getDefaultDisabledOption('Select location'));
 
 		// Add locations to location select element
 		if (locationsOptions[district] === undefined) return;

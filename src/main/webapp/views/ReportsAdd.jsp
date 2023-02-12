@@ -19,7 +19,7 @@
 				const districts = JSON.parse(`${districts}`);
 				const locations = JSON.parse(`${locations}`);
 			</script>
-			<script src="<c:url value=" /public/scripts/subscribePage.js" />"></script>
+			<script src="<c:url value="/public/scripts/geoSelectInput.js"/>"></script>
 
 
 			<body>
@@ -54,7 +54,7 @@
 
 
 						<form class='bg-light rounded shadow-sm m-auto p-3 my-4' style='max-width: 500px;' method='POST'
-							action='<c:url value="/Reports/Add"/>'>
+							action='<c:url value="/Reports/Add"/>' enctype="multipart/form-data">
 
 							<div class='text-center display-6'>
 								<i class="bi bi-lightning-charge-fill"></i>

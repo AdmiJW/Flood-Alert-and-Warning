@@ -2,14 +2,9 @@ package interceptor;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dataAccess.GeoDA;
-import dataAccess.ReportsDA;
-import dataAccess.UserDA;
-import entity.District;
-import entity.Location;
-import entity.Report;
-import entity.State;
-import entity.User;
+import dataAccess.*;
+import entity.*;
+import enums.StationStatusType;
 import enums.UserType;
 import org.springframework.stereotype.Component;
 import utils.FileUtil;
@@ -18,10 +13,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 
 // Not an interceptor, but rather a bean responsible for initializing the application
@@ -40,8 +33,11 @@ public class ApplicationInit {
     @PostConstruct
     public void init() throws IOException {
         initAdmin();
+        initUser();
         initGeoDB();
         initReports();
+        initDashboards();
+        initEvacPoint();
         initializeFileService();
     }
 
@@ -60,6 +56,19 @@ public class ApplicationInit {
         u.setPassword("admin");
         u.setUserType(UserType.ADMIN);
         u.setEmail("admin@email.com");
+        u.setPhone("1234567890");
+
+        UserDA.add(u);
+    }
+    private void initUser() {
+        User u = UserDA.getByUsername("user");
+        if (u != null) return;
+
+        u = new User();
+        u.setUsername("user");
+        u.setPassword("user");
+        u.setUserType(UserType.USER);
+        u.setEmail("user@email.com");
         u.setPhone("1234567890");
 
         UserDA.add(u);
@@ -101,6 +110,44 @@ public class ApplicationInit {
         }
         // Save the Location[] to the database
         GeoDA.addLocations(locationsList);
+        // Map the saved locations to a map
+
+    }
+
+
+    private void initDashboards() {
+        Map<Long, Location> locationsMap = new HashMap<>();
+        List<Location> locationsList = GeoDA.getAllLocations();
+        List<Dashboard> dashboardList = new ArrayList<>();
+
+        for (Location l : locationsList) locationsMap.put(l.getId(), l);
+
+        // Create Dashboard Stations
+        for (Location l: locationsList) {
+            Dashboard dashboard = new Dashboard();
+            dashboard.setLocation(l);
+            dashboard.setDate( LocalDate.now().toString() );
+            dashboard.setRainfall( (int) (Math.random() * 100) );
+            dashboard.setWater( (float) (Math.random() * 21) );
+            dashboard.setStatus( StationStatusType.values()[(int) (Math.random() * StationStatusType.values().length)] );
+            dashboardList.add(dashboard);
+        }
+
+        DashboardDA.addDashboard(dashboardList);
+    }
+
+    private void initEvacPoint(){
+        EvacPoint evacPoint = EvacPointDA.getById(1L);
+        if (evacPoint != null) return;
+        evacPoint = new EvacPoint();
+        evacPoint.setPointName("Universiti Teknologi Malaysia");
+        Location location = LocationDA.getById(1L);
+        evacPoint.setLocation(location);
+        evacPoint.setCapacity(30);
+        evacPoint.setCapacity(100);
+        evacPoint.setRemarks("This is a test evac point");
+        EvacPointDA.add(evacPoint);
+
     }
 
     private void initReports()throws IOException{
