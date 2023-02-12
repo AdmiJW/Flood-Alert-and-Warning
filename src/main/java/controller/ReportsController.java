@@ -4,19 +4,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataAccess.GeoDA;
 import dataAccess.ReportsDA;
+import dataAccess.SubscriptionDA;
 import entity.Report;
 import entity.State;
+import entity.Subscription;
 import enums.ReviewType;
+import enums.UserType;
+import org.springframework.web.bind.annotation.*;
 import utils.AlertUtil;
 import utils.AuthUtil;
 import utils.FileUtil;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -99,13 +99,6 @@ public class ReportsController {
 		return "redirect:/Reports";
 	}
 
-	// @RequestMapping("/session")
-	// public void trySession(HttpServletRequest request, HttpServletResponse
-	// response){
-	// HttpSession session=request.getSession(true);
-	// session.setAttribute("noredirect","true");
-	// response.setContentType("text/plain");
-	// }
 
 	@GetMapping("/Reports/Search")
 	protected void searchReport(@RequestParam String search_key	, HttpServletRequest request,HttpServletResponse response){
@@ -115,6 +108,55 @@ public class ReportsController {
 		session.setAttribute("reports",reports);
 		response.setContentType("text/plain");
 	}
+
+
+	@GetMapping("/Reports/Delete/{reportId}")
+	protected String deleteReport(
+		HttpServletRequest request,
+		RedirectAttributes redirectAttributes,
+		@PathVariable("reportId") Long reportId
+	) {
+		if (AuthUtil.getCurrentUser(request) == null) {
+			AlertUtil.setDangerAlert(redirectAttributes, "You are not authorized to perform this action.");
+			return "redirect:/Login";
+		}
+
+		Report report = ReportsDA.getReportById(reportId);
+
+		if (report == null) {
+			AlertUtil.setWarningAlert(redirectAttributes, "Report not found.");
+			return "redirect:/Reports";
+		}
+
+		if ( !report.getUser().getId().equals( AuthUtil.getCurrentUser(request).getId() ) && AuthUtil.getCurrentUser(request).getUserType() != UserType.ADMIN ) {
+			AlertUtil.setWarningAlert(redirectAttributes, "You do not have permission to delete this report.");
+			return "redirect:/Reports";
+		}
+
+		ReportsDA.delete(report);
+		AlertUtil.setSuccessAlert(redirectAttributes, "You have successfully deleted the report.");
+		return "redirect:/Reports";
+	}
+
+
+
+	@GetMapping("/Reports/{reportId}")
+	protected String getReport(
+		HttpServletRequest request,
+		RedirectAttributes redirectAttributes,
+		@PathVariable("reportId") Long reportId
+	) throws JsonProcessingException {
+		Report report = ReportsDA.getReportById(reportId);
+		request.setAttribute("report", report);
+
+		ObjectMapper mapper = new ObjectMapper();
+		request.setAttribute("states", GeoDA.getAllStates());
+		request.setAttribute("districts", mapper.writeValueAsString(GeoDA.getAllDistricts()));
+		request.setAttribute("locations", mapper.writeValueAsString(GeoDA.getAllLocations()));
+
+		return "ReportsView";
+	}
+
 
 	@GetMapping("Admin")
 	protected ModelAndView getEditDashboard() {

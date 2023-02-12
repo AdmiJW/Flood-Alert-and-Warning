@@ -161,10 +161,23 @@ public class ApplicationInit {
 
     }
 
-    private void initReports()throws IOException{
-        File statesJSONFile = new File( ctx.getRealPath("public/data/reports.json") );
+    private void initReports() throws IOException {
+        File reportsJsonFile = new File( ctx.getRealPath("public/data/reports.json") );
         ObjectMapper mapper = new ObjectMapper();
-        List<Report> reportList = Arrays.asList( mapper.readValue(statesJSONFile, Report[].class ) );
+        List<Report> reportList = Arrays.asList( mapper.readValue(reportsJsonFile, Report[].class ) );
+
+        for (Report r: reportList) {
+            User u = UserDA.getById( r.getUser().getId() );
+            Location l = GeoDA.getLocationById( r.getLocation().getId() );
+            District d = GeoDA.getDistrictById( l.getDistrict().getId() );
+            State s = GeoDA.getStateById( d.getState().getId() );
+
+            r.setUser(u);
+            r.setLocation(l);
+            r.setDistrict(d);
+            r.setState(s);
+        }
+
         ReportsDA.addAll(reportList);
     };
 }
