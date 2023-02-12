@@ -65,13 +65,13 @@ public class EvacuationController {
 	@PostMapping("/AddEvacPoint")
 	protected String postAddEvacPoint(
 		HttpServletRequest request,
-		RedirectAttributes redirectAttributes
+		RedirectAttributes redirectAttributes,
+		@RequestParam("pointName") String name,
+		@RequestParam("location") Long locationId,
+		@RequestParam("currentOccupancy") int currentOccupancy,
+		@RequestParam("capacity") int capacity,
+		@RequestParam("remarks") String remarks
 	){
-		String name = request.getParameter("pointName");
-		Long locationId = Long.valueOf(request.getParameter("location"));
-		int currentOccupancy = Integer.parseInt(request.getParameter("currentOccupancy"));
-		int capacity = Integer.parseInt(request.getParameter("capacity"));
-		String remarks = request.getParameter("remarks");
 		if (currentOccupancy > capacity){
 			AlertUtil.setDangerAlert(request, "Current occupancy cannot be greater than capacity. Please try again.");
 			return "redirect:/Evacuation";
