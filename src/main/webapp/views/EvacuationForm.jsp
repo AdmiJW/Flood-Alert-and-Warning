@@ -25,7 +25,7 @@
     const districts = JSON.parse(`${districts}`);
     const locations = JSON.parse(`${locations}`);
 </script>
-<script src="<c:url value="/public/scripts/subscribePage.js" />"></script>
+<script src="<c:url value="/public/scripts/geoSelectInput.js" />"></script>
 
 
 <body>
@@ -99,21 +99,14 @@
                 </select>
             </div>
 
-            <!-- Select POI -->
-            <div class="mb-2">
-                <label for="location" class="form-label fw-bold">Location:</label>
-
-                <select class="form-select" name='location' id='location' required aria-label="Select location">
-                    <option selected disabled value=''>Select location</option>
-                </select>
-            </div>
-
             <%-- Current Occupancy --%>
             <div class="mb-2">
                 <label for="currentOccupancy" class="form-label fw-bold">Current Occupancy:</label>
                 <input type="number" class="form-control" name='currentOccupancy' id="currentOccupancy" placeholder="0"
                        required aria-label="Current Occupancy">
             </div>
+
+
             <%-- Capacity--%>
             <div class="mb-2">
                 <label for="capacity" class="form-label fw-bold">Capacity:</label>

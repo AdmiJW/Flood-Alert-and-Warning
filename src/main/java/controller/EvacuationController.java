@@ -1,5 +1,7 @@
 package controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dataAccess.GeoDA;
 import entity.Location;
 import enums.UserType;
@@ -50,7 +52,13 @@ public class EvacuationController {
 	@GetMapping("/AddEvacPoint")
 	protected String getAddEvacPoint(
 			HttpServletRequest request
-	) {
+	) throws JsonProcessingException {
+
+		ObjectMapper mapper = new ObjectMapper();
+		request.setAttribute("states", GeoDA.getAllStates());
+		request.setAttribute("districts", mapper.writeValueAsString(GeoDA.getAllDistricts()));
+		request.setAttribute("locations", mapper.writeValueAsString(GeoDA.getAllLocations()));
+
 		return "EvacuationForm";
 	}
 

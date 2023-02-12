@@ -17,7 +17,7 @@
 	const districts = JSON.parse(`${districts}`);
 	const locations = JSON.parse(`${locations}`);
 </script>
-<script src="<c:url value="/public/scripts/subscribePage.js" />"></script>
+<script src="<c:url value="/public/scripts/geoSelectInput.js" />"></script>
 
 <body>
 <div class="min-vh-100">
