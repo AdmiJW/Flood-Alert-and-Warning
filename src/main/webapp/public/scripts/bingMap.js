@@ -20,11 +20,24 @@ let searchManager;
 let infobox;
 
 
+/** @type {Microsoft.Maps.Pushpin[]} */
+let searchPins = [];
+
+
 // Bing Map SDK initialize function
 function GetMap() {
 	initializeMap();
 	initializeSearchAndAutoSuggest();
+	initializeBingPins();
 }
+
+
+function GetAllPin() {
+	GetMap();
+}
+
+
+
 
 function initializeMap() {
 	map = new Microsoft.Maps.Map('#myMap', {
@@ -43,49 +56,29 @@ function initializeSearchAndAutoSuggest() {
 }
 
 
-
-
-function GetAllPin() {
-	map = new Microsoft.Maps.Map('#myMap', {
-		credentials: API_KEY,
-		mapTypeId: Microsoft.Maps.MapTypeId.road,
-		zoom: 7
-	});
-
-	// Load searching functionality module
-	Microsoft.Maps.loadModule(['Microsoft.Maps.AutoSuggest', 'Microsoft.Maps.Search'], () => {
-		autoSuggestManager = new Microsoft.Maps.AutosuggestManager({ map: map });
-		autoSuggestManager.attachAutosuggest('#searchBox', '#searchBoxSuggestions', suggestionSelected);
-		searchManager = new Microsoft.Maps.Search.SearchManager(map);
-	});
-
-	infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
-		visible: false
-	});
+function initializeBingPins() {
+	infobox = new Microsoft.Maps.Infobox(map.getCenter(), { visible: false });
 	infobox.setMap(map);
 
-	for (var i = 0; i < 5; i++) {
-		//query database lat and long based on row
-		var loc = new Microsoft.Maps.Location(
-			1.5333312,103.8166634
-		);
+	bingPins?.forEach((pin) => {
+		const loc = new Microsoft.Maps.Location(pin.latitude, pin.longitude);
+		const pushpin = new Microsoft.Maps.Pushpin(loc);
 
-		var pin = new Microsoft.Maps.Pushpin(loc);
-
-		//Store some metadata with the pushpin.
-		pin.metadata = {
-			title: "title" + i,
-			description: 'Remarks: ' + i
+		pushpin.metadata = {
+			title: pin.name,
+			description: pin.description
 		};
 
-		//Add a click event handler to the pushpin.
-		Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
-		Microsoft.Maps.Events.addHandler(map, 'click', closeInfoBox);
+		Microsoft.Maps.Events.addHandler(pushpin, 'click', pushpinClicked);
+		map.entities.push(pushpin);
+	});
 
-		//Add pushpin to the map.
-		map.entities.push(pin);
-	}
+	Microsoft.Maps.Events.addHandler(map, 'click', closeInfoBox);
 }
+
+
+
+
 
 //Display infobox of pinned location
 function pushpinClicked(e) {
@@ -109,17 +102,23 @@ function closeInfoBox(e) {
 }
 
 
+function removeSearchPins() {
+	searchPins.forEach((pin) => map.entities.remove(pin));
+	searchPins = [];
+}
+
+
 
 //Event listener that is fired when a place suggestion is selected.
 /**
  * @param result {Microsoft.Maps.ISuggestionResult}
  */
 function suggestionSelected( result ) {
-	//Remove previously suggestions from the map.
-	map.entities.clear();
+	removeSearchPins();
 
 	//Show the suggestion as a pushpin and center map over it.
-	let pin = new Microsoft.Maps.Pushpin(result.location);
+	const pin = new Microsoft.Maps.Pushpin(result.location);
+	searchPins.push(pin);
 	map.entities.push(pin);
 	map.setView({ bounds: result.bestView });
 }
@@ -131,7 +130,7 @@ function suggestionSelected( result ) {
 // Event listener that is fired when user types into the search box and press search.
 // This function will search for the place that the user typed in by geocoding.
 function onBingMapSearch() {
-	map.entities.clear();
+	removeSearchPins();
 
 	//Make the geocode request.
 	searchManager.geocode({
@@ -140,15 +139,22 @@ function onBingMapSearch() {
 			// No results. Early return
 			if (!r || !r.results || !r.results.length) return;
 
-			let pins = [], locs = [];
+			let locs = [];
 
 			//Add a pushpin for each result to the map and create a list to display.
 			r.results.forEach((result) => {
-				let pin = new Microsoft.Maps.Pushpin(result.location);
-				pins.push(pin);
+				const pin = new Microsoft.Maps.Pushpin(result.location);
+				pin.metadata = {
+					title: result.name,
+					description: result.address.formattedAddress
+				}
+				searchPins.push(pin);
+				Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+
+
 				locs.push(result.location);
 
-				// If the current page has a input element 'lat', fill in the values
+				// If the current page has a input element 'lat', fill in the values (for form use)
 				const latInput = document.getElementById('lat');
 				const lngInput = document.getElementById('lng');
 				const locationNameInput = document.getElementById('location');
@@ -159,7 +165,7 @@ function onBingMapSearch() {
 			});
 
 			//Add the pins to the map
-			map.entities.push(pins);
+			map.entities.push(searchPins);
 
 			//Determine a bounding box to best view the results.
 			let bounds;

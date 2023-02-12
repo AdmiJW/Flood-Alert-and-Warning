@@ -2,11 +2,9 @@ package interceptor;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dataAccess.EvacPointDA;
-import dataAccess.GeoDA;
-import dataAccess.LocationDA;
-import dataAccess.UserDA;
+import dataAccess.*;
 import entity.*;
+import enums.StationStatusType;
 import enums.UserType;
 import org.springframework.stereotype.Component;
 import utils.FileUtil;
@@ -15,10 +13,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 
 // Not an interceptor, but rather a bean responsible for initializing the application
@@ -39,6 +35,7 @@ public class ApplicationInit {
         initAdmin();
         initUser();
         initGeoDB();
+        initDashboards();
         initEvacPoint();
         initializeFileService();
     }
@@ -112,6 +109,30 @@ public class ApplicationInit {
         }
         // Save the Location[] to the database
         GeoDA.addLocations(locationsList);
+        // Map the saved locations to a map
+
+    }
+
+
+    private void initDashboards() {
+        Map<Long, Location> locationsMap = new HashMap<>();
+        List<Location> locationsList = GeoDA.getAllLocations();
+        List<Dashboard> dashboardList = new ArrayList<>();
+
+        for (Location l : locationsList) locationsMap.put(l.getId(), l);
+
+        // Create Dashboard Stations
+        for (Location l: locationsList) {
+            Dashboard dashboard = new Dashboard();
+            dashboard.setLocation(l);
+            dashboard.setDate( LocalDate.now().toString() );
+            dashboard.setRainfall( (int) (Math.random() * 100) );
+            dashboard.setWater( (float) (Math.random() * 21) );
+            dashboard.setStatus( StationStatusType.values()[(int) (Math.random() * StationStatusType.values().length)] );
+            dashboardList.add(dashboard);
+        }
+
+        DashboardDA.addDashboard(dashboardList);
     }
 
     private void initEvacPoint(){

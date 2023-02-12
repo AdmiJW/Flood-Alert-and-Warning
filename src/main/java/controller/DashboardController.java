@@ -6,13 +6,13 @@ import dataAccess.GeoDA;
 import entity.District;
 import entity.Location;
 import enums.StationStatusType;
+import model.BingPin;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import dataAccess.DashboardDA;
 import entity.Dashboard;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import utils.AlertUtil;
@@ -20,7 +20,7 @@ import utils.AuthUtil;
 import utils.pagination.Paginator;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import static enums.UserType.ADMIN;
@@ -39,12 +39,30 @@ public class DashboardController {
 			HttpServletRequest request,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
 			@RequestParam(value = "search", required = false, defaultValue = "") String search
-	)  {
+	) throws JsonProcessingException {
  		List<Dashboard> dashboard = DashboardDA.getByName(search);
 		Paginator<Dashboard> paginator = new Paginator<>(dashboard, 5);
 
+		List<BingPin> pins = new ArrayList<>();
+		for (Dashboard d : dashboard) {
+			if (d.getWater() <= 20) continue;
+
+			Location l = d.getLocation();
+			String desc = String.format(
+				"District: %s\\nState: %s\\nWater Level: %s\\nStatus: %s\\nRainfall: %s",
+				l.getDistrict().getName(),
+				l.getDistrict().getState().getName(),
+				d.getWater() + "m",
+				d.getStatus().getName(),
+				d.getRainfall() + "mm"
+			);
+			pins.add( new BingPin( l.getLat(), l.getLng(), l.getName(), desc ) );
+		}
+
+
 		request.setAttribute("paginator", paginator);
 		request.setAttribute("currentPage", page);
+		request.setAttribute("bingPins", new ObjectMapper().writeValueAsString(pins) );
 
 		if (dashboard == null || dashboard.size() == 0)
 			AlertUtil.setWarningAlert(request, "No reports yet");
