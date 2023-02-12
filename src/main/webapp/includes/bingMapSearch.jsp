@@ -12,7 +12,7 @@
     />
     
     <div class="input-group-append">
-       <button class="btn btn-primary d-flex align-items-center gap-1" type="button" onclick='geocode()'>
+       <button class="btn btn-primary d-flex align-items-center gap-1" type="button" onclick='onBingMapSearch()'>
        		Search 
        		<span class="bi bi-search"></span>
        </button>

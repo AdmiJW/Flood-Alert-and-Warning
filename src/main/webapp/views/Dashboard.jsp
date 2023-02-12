@@ -32,7 +32,6 @@
 		</c:import>
 	</div>
 	
-	
 	<div class='container mt-2'>
 		<c:import url="/includes/bingMapSearch.jsp" />
 	</div>

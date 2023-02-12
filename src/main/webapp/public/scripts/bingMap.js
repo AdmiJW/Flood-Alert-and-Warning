@@ -1,36 +1,51 @@
-// To use bingMap, include <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
-// into your page. The callback GetMap() will be called here.
+// To use bingMap, include
+// <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+// into your page. The callback GetMap() will be called here to initialize the Bing Map SDK.
+
+/**
+ * @typedef { import('../types/MicrosoftMaps/Microsoft.Maps.All').Microsoft } Microsoft
+ */
 
 
 const API_KEY = 'AhlOoTZD9wvrqFrXITpeEmWuPjBNF4NgEVw3GJmtCjUhK6QKb-CXcwbPWT_wFewr';
 
+
+/** @type {Microsoft.Maps.Map} */
 let map;
-let searchManager, infobox;
+/** @type {Microsoft.Maps.AutosuggestManager} */
+let autoSuggestManager;
+/** @type {Microsoft.Maps.Search.SearchManager} */
+let searchManager;
+/** @type {Microsoft.Maps.Infobox} */
+let infobox;
 
 
-// Init function that is called by BingMap script to load the map into a specified div.
+// Bing Map SDK initialize function
 function GetMap() {
-	// Load Bing Map
-	// alert(queryOption);
-	console.log("test");
+	initializeMap();
+	initializeSearchAndAutoSuggest();
+}
+
+function initializeMap() {
 	map = new Microsoft.Maps.Map('#myMap', {
 		credentials: API_KEY,
 		mapTypeId: Microsoft.Maps.MapTypeId.road,
 		zoom: 10
 	});
+}
 
-	// Load searching functionality module
+function initializeSearchAndAutoSuggest() {
 	Microsoft.Maps.loadModule(['Microsoft.Maps.AutoSuggest', 'Microsoft.Maps.Search'], () => {
-		let manager = new Microsoft.Maps.AutosuggestManager({ map: map });
-		manager.attachAutosuggest('#searchBox', '#searchBoxSuggestions', suggestionSelected);
+		autoSuggestManager = new Microsoft.Maps.AutosuggestManager({ map: map });
+		autoSuggestManager.attachAutosuggest('#searchBox', '#searchBoxSuggestions', suggestionSelected);
 		searchManager = new Microsoft.Maps.Search.SearchManager(map);
 	});
 }
 
+
+
+
 function GetAllPin() {
-	// Load Bing Map
-	// alert(queryOption);
-	console.log("test");
 	map = new Microsoft.Maps.Map('#myMap', {
 		credentials: API_KEY,
 		mapTypeId: Microsoft.Maps.MapTypeId.road,
@@ -39,8 +54,8 @@ function GetAllPin() {
 
 	// Load searching functionality module
 	Microsoft.Maps.loadModule(['Microsoft.Maps.AutoSuggest', 'Microsoft.Maps.Search'], () => {
-		let manager = new Microsoft.Maps.AutosuggestManager({ map: map });
-		manager.attachAutosuggest('#searchBox', '#searchBoxSuggestions', suggestionSelected);
+		autoSuggestManager = new Microsoft.Maps.AutosuggestManager({ map: map });
+		autoSuggestManager.attachAutosuggest('#searchBox', '#searchBoxSuggestions', suggestionSelected);
 		searchManager = new Microsoft.Maps.Search.SearchManager(map);
 	});
 
@@ -86,67 +101,79 @@ function pushpinClicked(e) {
 	}
 }
 
-//Close infobox my clicking anywhere in map
+// Close infobox my clicking anywhere in map
 function closeInfoBox(e) {
 	infobox.setOptions({
 		visible: false
 	});
 }
 
+
+
 //Event listener that is fired when a place suggestion is selected.
-function suggestionSelected(result) {
+/**
+ * @param result {Microsoft.Maps.ISuggestionResult}
+ */
+function suggestionSelected( result ) {
 	//Remove previously suggestions from the map.
 	map.entities.clear();
 
 	//Show the suggestion as a pushpin and center map over it.
-	var pin = new Microsoft.Maps.Pushpin(result.location);
+	let pin = new Microsoft.Maps.Pushpin(result.location);
 	map.entities.push(pin);
 	map.setView({ bounds: result.bestView });
 }
 
 
+
+
+
 // Event listener that is fired when user types into the search box and press search.
 // This function will search for the place that the user typed in by geocoding.
-function geocode() {
-	//Remove previously results from the map.
+function onBingMapSearch() {
 	map.entities.clear();
 
-	let searchRequest = {
+	//Make the geocode request.
+	searchManager.geocode({
 		where: document.getElementById('searchBox').value,
 		callback: (r) => {
-			// No results. Return
+			// No results. Early return
 			if (!r || !r.results || !r.results.length) return;
 
-			let pin, pins = [], locs = [];
+			let pins = [], locs = [];
 
 			//Add a pushpin for each result to the map and create a list to display.
-			for (let i = 0; i < r.results.length; i++) {
-				//Create a pushpin for each result.
-				pin = new Microsoft.Maps.Pushpin(r.results[i].location);
-
+			r.results.forEach((result) => {
+				let pin = new Microsoft.Maps.Pushpin(result.location);
 				pins.push(pin);
-				locs.push(r.results[i].location);
-			}
+				locs.push(result.location);
+
+				// If the current page has a input element 'lat', fill in the values
+				const latInput = document.getElementById('lat');
+				const lngInput = document.getElementById('lng');
+				const locationNameInput = document.getElementById('location');
+
+				if (latInput) latInput.value = result.location.latitude;
+				if (lngInput) lngInput.value = result.location.longitude;
+				if (locationNameInput) locationNameInput.value = result.name;
+			});
 
 			//Add the pins to the map
 			map.entities.push(pins);
 
 			//Determine a bounding box to best view the results.
-			var bounds;
+			let bounds;
 
-			if (r.results.length == 1)
-				bounds = r.results[0].bestView;
-			else
-				//Use the locations from the results to calculate a bounding box.
-				bounds = Microsoft.Maps.LocationRect.fromLocations(locs);
+			// Search returns only one result, get the best bounding box
+			if (r.results.length == 1) bounds = r.results[0].bestView;
+			// Otherwise get the best bounding box that show all results
+			else bounds = Microsoft.Maps.LocationRect.fromLocations(locs);
 
 			map.setView({ bounds: bounds, padding: 30 });
 		},
 		errorCallback: (e) => {
-			console.log('Error: No search results found');
+			console.error(e);
+			window.alert('Failed searching for location: ' + e.where);
 		}
-	};
-
-	//Make the geocode request.
-	searchManager.geocode(searchRequest);
+	});
 }

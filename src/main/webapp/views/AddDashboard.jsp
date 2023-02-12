@@ -70,15 +70,40 @@
         </select>
       </div>
 
-      <!-- Select POI -->
-      <div class="mb-5">
-        <label for="location" class="form-label fw-bold">Location:</label>
-
-        <select class="form-select" name='location' id='location' required aria-label="Select location">
-          <option selected disabled value=''>Select location</option>
-        </select>
+      <!-- Map and search -->
+      <div class='my-3'>
+        <c:import url="/includes/bingMap.jsp">
+          <c:param value="400px" name="height"/>
+          <c:param value="pinAllFlood" name="action"/>
+        </c:import>
       </div>
 
+      <div class='container mt-2'>
+        <c:import url="/includes/bingMapSearch.jsp" />
+      </div>
+
+
+      <!-- Location (from Map) -->
+      <div class="mb-2">
+        <label for="location" class="form-label fw-bold">Location:</label>
+        <input type="text" class="form-control" id="location" name="location" required />
+      </div>
+
+      <!-- Latitude (from Map) -->
+      <div class="mb-2">
+        <label for="lat" class="form-label fw-bold">Latitude:</label>
+        <input type="text" class="form-control" id="lat" name="lat" required />
+      </div>
+
+      <!-- Longitude (from Map) -->
+      <div class="mb-5">
+        <label for="lng" class="form-label fw-bold">Longitude:</label>
+        <input type="text" class="form-control" id="lng" name="lng" required />
+      </div>
+
+
+
+    <%-- Select water level --%>
       <div class="form-group mb-3">
         <label for="water" class="form-label fw-bold">Water Level (m):</label>
         <input type="number" step="0.01" class="form-control" id="water" name="water">

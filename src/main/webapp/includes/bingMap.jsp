@@ -12,6 +12,7 @@ QueryAllLocation, QueryLocation
 
 <% 
 	String mapCallBack = "GetMap", floodOrEvac = "test";
+
 	if (request.getParameter("action") != null){
 		String action = request.getParameter("action");
 		mapCallBack = "GetAllPin";
@@ -33,16 +34,12 @@ QueryAllLocation, QueryLocation
 	if(FloodOrEvac == "Flood") queryOption = "Flood location querying...";
 	else if (FloodOrEvac== "Evac") queryOption = "Evac location querying...";
 </script>
-<script  src="public/scripts/subscribePage.js"></script>
+
 <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=<%= mapCallBack %>' async defer></script>
 
 <div 
 	id="myMap" 
 	class='m-auto'
-	style="
-		position:relative;
-		height:<%=height%>;
-		width:<%=width%>;
-	"
+	style="position:relative; height:<%=height%>; width:<%=width%>;"
 >
 </div>

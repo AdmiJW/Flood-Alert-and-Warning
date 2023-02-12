@@ -1,5 +1,4 @@
 
-
 // Gets <option selected disabled value=''> {text} </option>
 function getDefaultDisabledOption(text) {
 	const option = document.createElement('option');
