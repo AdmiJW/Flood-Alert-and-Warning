@@ -85,6 +85,7 @@
 					Update
 					<i class="bi bi-send-fill ms-1"></i>
 				</button>
+				<a href="<c:url value="/Dashboard" />" class='btn btn-danger mt-4 me-2'> Back <i class="bi bi-arrow-left-square-fill"></i></a>
 			</div>
 		</form>
 	</main>

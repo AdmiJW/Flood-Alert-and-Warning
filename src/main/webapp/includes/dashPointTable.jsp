@@ -62,8 +62,16 @@
 <%--		</tbody>--%>
 <%--	</table>--%>
 <%--</div>--%>
-
+<div class='my-4 mx-auto' style ='max-width: 1000px;'>
+	<c:if test="${user.userType=='ADMIN'}">
+		<a class='btn btn-primary' href='/FAW/Dashboard/AddDashboard'>
+			Add Station Point
+			<i class="bi bi-clipboard-plus"></i>
+		</a>
+	</c:if>
+</div>
 <div class='table-responsive my-4 mx-auto' style='max-width: 1000px;'>
+
 	<table class="table table-dark table-striped table-hover">
 		<thead>
 		<tr>
@@ -73,13 +81,7 @@
 			<th scope="col">Status</th>
 			<th scope="col">Rainfall (mm)</th>
 			<th scope="col">Date</th>
-			<th>
-				<c:if test="${user.userType=='ADMIN'}">
-				<a class='btn btn-primary' href='/FAW/Dashboard/AddDashboard'>
-					<i class="bi bi-clipboard-plus"></i>
-				</a>
-				</c:if>
-			</th>
+			<th></th>
 			<th></th>
 		</tr>
 		</thead>
@@ -93,13 +95,33 @@
 					<c:out value="${dashboard.location.state.name}" />
 				</td>
 				<td>
-					<c:out value="${dashboard.water}"/>
+					<c:choose>
+						<c:when test="${dashboard.water>20}">
+							<label class="text-danger"><c:out value="${dashboard.water}"/> m (DANGER)</label>
+						</c:when>
+						<c:when test="${dashboard.water>10}">
+							<label class="text-warning"><c:out value="${dashboard.water}"/> m (WARNING)</label>
+						</c:when>
+						<c:otherwise>
+							<label><c:out value="${dashboard.water}"/> m (NORMAL)</label>
+						</c:otherwise>
+					</c:choose>
 				</td>
 				<td>
-				<c:out value="${dashboard.status}" />
+				<c:choose>
+					<c:when test="${dashboard.status=='RISING'}">
+						<label class="fw-bold text-danger">Rising</label>
+					</c:when>
+					<c:when test="${dashboard.status=='RECEDING'}">
+						<label class="fw-bold text-warning">Receding</label>
+					</c:when>
+					<c:when test="${dashboard.status=='RISING'}">
+						<label class="fw-bold">No Change</label>
+					</c:when>
+				</c:choose>
 				</td>
 				<td>
-					<c:out value="${dashboard.rainfall}" />
+					<c:out value="${dashboard.rainfall}"/> mm
 				</td>
 				<td>
 					<c:out value="${dashboard.date}" />

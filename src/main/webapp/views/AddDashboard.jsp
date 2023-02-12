@@ -25,7 +25,7 @@
 
   <!-- Breadcrumb -->
   <c:import url="/includes/breadcrumb.jsp">
-    <c:param name="path" value="Dashboard/Update" />
+    <c:param name="path" value="Dashboard/Add" />
   </c:import>
 
   <!-- Alert -->
@@ -38,7 +38,7 @@
     <div class='my-4'>
       <h1 class='text-center fw-bold'>
         Add Station
-        <i class="bi bi-pencil-fill"></i>
+        <i class="bi bi-clipboard-plus"></i>
       </h1>
     </div>
 
@@ -140,6 +140,7 @@
           Add
           <i class="bi bi-send-fill ms-1"></i>
         </button>
+        <a href="<c:url value="/Dashboard" />" class='btn btn-danger mt-4 me-2'> Back <i class="bi bi-arrow-left-square-fill"></i></a>
       </div>
     </form>
   </main>

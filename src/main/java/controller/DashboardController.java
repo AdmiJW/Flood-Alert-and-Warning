@@ -3,6 +3,8 @@ package controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataAccess.GeoDA;
+import entity.District;
+import entity.Location;
 import enums.StationStatusType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,15 +105,27 @@ public class DashboardController {
 	protected String addDashboard(
 			HttpServletRequest request,
 			RedirectAttributes redirectAttributes,
-			@RequestParam("location") Long location,
-			@RequestParam(value = "water", required = false) float water,
-			@RequestParam(value = "rainfall", required = false) int rainfall,
-			@RequestParam(value = "date", required = false) String date,
-			@RequestParam(value = "status", required = false) StationStatusType status
+			@RequestParam("location") String location,
+			@RequestParam("district") Long district,
+			@RequestParam("lat") double lat,
+			@RequestParam("lng") double lng,
+			@RequestParam(value = "water") float water,
+			@RequestParam(value = "rainfall") int rainfall,
+			@RequestParam(value = "date") String date,
+			@RequestParam(value = "status") StationStatusType status
 	)  {
 
+		Location l = new Location();
+		District dis = GeoDA.getDistrictById(district);
+		l.setDistrict(dis);
+		l.setLat(lat);
+		l.setLng(lng);
+		l.setState(dis.getState());
+		l.setName(location);
+		GeoDA.addLocation(l);
+
 		Dashboard d = new Dashboard();
-		d.setLocation(GeoDA.getLocationById(location));
+		d.setLocation(l);
 		d.setWater(water);
 		d.setRainfall(rainfall);
 		d.setDate(date);
