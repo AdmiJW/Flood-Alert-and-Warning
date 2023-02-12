@@ -99,7 +99,39 @@
                 </select>
             </div>
 
-            <%-- Current Occupancy --%>
+
+            <!-- Map and search -->
+            <div class='my-3'>
+                <c:import url="/includes/bingMap.jsp">
+                    <c:param value="400px" name="height"/>
+                    <c:param value="pinAllFlood" name="action"/>
+                </c:import>
+            </div>
+            <h5 class="text-center fw-bold">Please provide the address of the location</h5>
+            <div class='container mt-2'>
+                <c:import url="/includes/bingMapSearch.jsp" />
+            </div>
+
+
+            <!-- Location (from Map) -->
+            <div class="mb-2">
+                <label for="location" class="form-label fw-bold">Location:</label>
+                <input type="text" class="form-control" id="location" name="location" required />
+            </div>
+
+            <!-- Latitude (from Map) -->
+            <div class="mb-2">
+                <label for="lat" class="form-label fw-bold">Latitude:</label>
+                <input type="text" class="form-control" id="lat" name="lat" required />
+            </div>
+
+            <!-- Longitude (from Map) -->
+            <div class="mb-5">
+                <label for="lng" class="form-label fw-bold">Longitude:</label>
+                <input type="text" class="form-control" id="lng" name="lng" required />
+            </div>
+
+        <%-- Current Occupancy --%>
             <div class="mb-2">
                 <label for="currentOccupancy" class="form-label fw-bold">Current Occupancy:</label>
                 <input type="number" class="form-control" name='currentOccupancy' id="currentOccupancy" placeholder="0"

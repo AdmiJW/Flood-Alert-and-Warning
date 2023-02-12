@@ -24,7 +24,7 @@
 		<tbody>
 			<c:forEach items="${paginator.getPage(currentPage)}" var="evacPoint" varStatus="loop">
 				<tr>
-					<th scope="row">${evacPoint.id}</th>
+					<th scope="row">${loop.index + 1}</th>
 					<td>${evacPoint.pointName}</td>
 					<td>${evacPoint.location.district.name},${evacPoint.location.district.state.name}</td>
 					<td>${evacPoint.currentOccupancy}</td>

@@ -138,13 +138,24 @@ public class ApplicationInit {
     private void initEvacPoint(){
         EvacPoint evacPoint = EvacPointDA.getById(1L);
         if (evacPoint != null) return;
+
+        Location l = new Location();
+        District d = GeoDA.getDistrictById(2L);
+        l.setName("Universiti Teknologi Malaysia, Johore");
+        l.setDistrict(d);
+        l.setState(d.getState());
+        l.setLat(1.55201);
+        l.setLng(103.6328);
+        GeoDA.addLocation(l);
+
         evacPoint = new EvacPoint();
         evacPoint.setPointName("Universiti Teknologi Malaysia");
-        Location location = LocationDA.getById(1L);
-        evacPoint.setLocation(location);
-        evacPoint.setCapacity(30);
+        evacPoint.setLocation(l);
+        evacPoint.setCurrentOccupancy(10);
         evacPoint.setCapacity(100);
         evacPoint.setRemarks("This is a test evac point");
+        evacPoint.setLat(1.55201);
+        evacPoint.setLng(103.6328);
         EvacPointDA.add(evacPoint);
 
     }

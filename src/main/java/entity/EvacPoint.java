@@ -29,4 +29,7 @@ public class EvacPoint {
     @Column(nullable = true)
     private String remarks;
 
+    private Double lat;
+    private Double lng;
+
 }

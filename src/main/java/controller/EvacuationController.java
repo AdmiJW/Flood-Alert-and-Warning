@@ -3,8 +3,10 @@ package controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataAccess.GeoDA;
+import entity.District;
 import entity.Location;
 import enums.UserType;
+import model.BingPin;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import utils.AlertUtil;
 import utils.AuthUtil;
 import utils.pagination.Paginator;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import dataAccess.EvacPointDA;
@@ -29,7 +33,8 @@ public class EvacuationController {
 	protected String getEvacuation(
 			HttpServletRequest request,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page
-	) {
+	) throws JsonProcessingException{
+
 		if(AuthUtil.getCurrentUser(request) == null){
 			AlertUtil.setPrimaryAlert(request, "You are Anonymous.");
 		} else if (AuthUtil.getCurrentUser(request).getUserType().equals(UserType.ADMIN)){
@@ -37,11 +42,27 @@ public class EvacuationController {
 		} else {
 			AlertUtil.setPrimaryAlert(request, "Hi, " + AuthUtil.getCurrentUser(request).getUsername() + ". Subscribe us to get latest updates.");
 		}
-
 		List<EvacPoint> evacPoints = EvacPointDA.getAll();
+
 		Paginator<EvacPoint> paginator = new Paginator<>(evacPoints, 10);;
+		List<BingPin> pins = new ArrayList<>();
+		for(EvacPoint evacPoint : evacPoints){
+			Location location = evacPoint.getLocation();
+			String desc = String.format(
+					"Evacuation Point: %s \\nDistrict: %s \\nState: %s \\nCurrent Occupancy: %d \\nCapacity: %d \\nRemarks: %s",
+					evacPoint.getPointName(),
+					location.getDistrict().getName(),
+					location.getDistrict().getState().getName(),
+					evacPoint.getCurrentOccupancy(),
+					evacPoint.getCapacity(),
+					evacPoint.getRemarks()
+			);
+			pins.add(new BingPin(evacPoint.getLat(), evacPoint.getLng(),evacPoint.getPointName(), desc));
+		}
+
 		request.setAttribute("paginator", paginator);
 		request.setAttribute("currentPage", page);
+		request.setAttribute("bingPins", new ObjectMapper().writeValueAsString(pins));
 
 		if(evacPoints.size() == 0 || evacPoints == null)
 			AlertUtil.setWarningAlert(request, "No evacuation points found.");
@@ -67,23 +88,37 @@ public class EvacuationController {
 		HttpServletRequest request,
 		RedirectAttributes redirectAttributes,
 		@RequestParam("pointName") String name,
-		@RequestParam("location") Long locationId,
+		@RequestParam("location") String location,
+		@RequestParam("district") Long district,
 		@RequestParam("currentOccupancy") int currentOccupancy,
 		@RequestParam("capacity") int capacity,
-		@RequestParam("remarks") String remarks
+		@RequestParam("remarks") String remarks,
+		@RequestParam("lat") double lat,
+		@RequestParam("lng") double lng
 	){
 		if (currentOccupancy > capacity){
 			AlertUtil.setDangerAlert(request, "Current occupancy cannot be greater than capacity. Please try again.");
 			return "redirect:/Evacuation";
 		}
+		Location l = new Location();
+		District dis = GeoDA.getDistrictById(district);
+		l.setDistrict(dis);
+		l.setLat(lat);
+		l.setLng(lng);
+		l.setState(dis.getState());
+		l.setName(location);
+		GeoDA.addLocation(l);
+
 		EvacPoint evacPoint = new EvacPoint();
 		evacPoint.setPointName(name);
-		evacPoint.setLocation(GeoDA.getLocationById(locationId));
+		evacPoint.setLocation(l);
 		evacPoint.setCurrentOccupancy(currentOccupancy);
 		evacPoint.setCapacity(capacity);
 		evacPoint.setRemarks(remarks);
+		evacPoint.setLat(lat);
+		evacPoint.setLng(lng);
 		EvacPointDA.add(evacPoint);
-		AlertUtil.setSuccessAlert(request, "Evacuation point added successfully.");
+		AlertUtil.setSuccessAlert(redirectAttributes, "Evacuation point added successfully.");
 
 		return "redirect:/Evacuation";
 	}
