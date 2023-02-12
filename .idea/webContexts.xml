@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/AddDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/StationEdit.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Subscribe.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Subscriptions.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/UpdateDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views" />
+      </map>
+    </option>
+  </component>
+</project>

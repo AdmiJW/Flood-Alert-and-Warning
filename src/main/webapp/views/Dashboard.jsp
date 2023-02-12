@@ -61,16 +61,16 @@
 		</div>
 	
 		<!-- Table -->
-		<div class='mb-4 container'>
+		<form method="GET" action="<c:url value="/Dashboard"/>" class='mb-4 container'>
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Search and Filter" aria-label="Search and Filter">
-	  			<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+				<input type="text" class="form-control" placeholder="Search and Filter" aria-label="Search and Filter" name="search">
+	  			<button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
 			</div>
 		
 			<c:import url="/includes/dashPointTable.jsp">
 				<c:param name="DashPoint" value="Parameter" />
 			</c:import>
-		</div>
+		</form>
 	</main>
 </div>
 
