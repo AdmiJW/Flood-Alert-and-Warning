@@ -39,10 +39,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/user" />
-      <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/location" />
       <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/report" />
-      <object connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" object-ref="schemas/faw/tables/evacpoint" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
@@ -51,6 +48,7 @@
     <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.dashboard" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.user" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.location" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="2e749287-d5e6-4e2b-8de6-fe66e9f21f54" dataset="faw.state" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />

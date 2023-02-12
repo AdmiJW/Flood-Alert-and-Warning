@@ -61,7 +61,7 @@
 
 							<div class="card-body">
 								<div class="card-title">
-									<h3>${report.getReporter_name()}</h3>
+									<h3>${report.getUser().getUsername()}</h3>
 								</div>
 
 								<div class="card-desc text-muted">
@@ -89,7 +89,7 @@
         		$.ajax({
 					type:"GET",
         			url : '/FAW/Reports/Search',
-					data: $("#searchbar").val(),
+					data: {search_key:$("#searchbar").val()},
          			success : function(responseText) {
 						console.log("AJAX Call is successfully established!");
         			}

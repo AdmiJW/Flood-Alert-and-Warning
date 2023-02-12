@@ -35,9 +35,6 @@ public class Report {
 	@Column(nullable = false)
 	private String submission_date;
 
-	@Column(nullable = false)
-	private String phone_no;
-
 	@Column
 	private String media_path;
 

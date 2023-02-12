@@ -84,7 +84,7 @@ public class ReportsDA {
 			criteria.select(root)
 				.where(
 						builder.or(
-								builder.like(root.get("reporter_name"), "%" + substr + "%"),
+								builder.like(root.get("user").get("username"), "%" + substr + "%"),
 								builder.like(root.get("detail"), "%" + substr + "%"),
 								builder.like(root.get("phone_no"), "%" + substr + "%"),
 								builder.like(root.get("district"), "%" + substr + "%"),

@@ -108,7 +108,7 @@ public class ReportsController {
 	// }
 
 	@GetMapping("/Reports/Search")
-	protected void searchReport(@RequestParam String search_key, HttpServletRequest request,HttpServletResponse response){
+	protected void searchReport(@RequestParam String search_key	, HttpServletRequest request,HttpServletResponse response){
 		HttpSession session=request.getSession(true);
 		session.setMaxInactiveInterval(60*60*24);
 		List<Report> reports=ReportsDA.getReportsBySubString(search_key);
