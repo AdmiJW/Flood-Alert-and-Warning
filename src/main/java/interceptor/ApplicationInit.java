@@ -38,6 +38,7 @@ public class ApplicationInit {
         initDashboards();
         initEvacPoint();
         initializeFileService();
+        initReports();
     }
 
 
@@ -148,4 +149,11 @@ public class ApplicationInit {
         EvacPointDA.add(evacPoint);
 
     }
+
+    private void initReports()throws IOException{
+        File statesJSONFile = new File( ctx.getRealPath("public/data/reports.json") );
+        ObjectMapper mapper = new ObjectMapper();
+        List<Report> reportList = Arrays.asList( mapper.readValue(statesJSONFile, Report[].class ) );
+        ReportsDA.addAll(reportList);
+    };
 }

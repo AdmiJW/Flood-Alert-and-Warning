@@ -1,0 +1,101 @@
+[
+	{
+		"id": 1,
+		"reporter_name": "Tester Name",
+		"location": {
+			"id":1,
+			"name": "Kg. Baru Sri Gading",
+			"district": {
+				"id": 1,
+				"name": "Batu Pahat",
+				"state": {
+					"id": 1,
+					"name": "Johor"
+				}
+			}
+		},
+		"district": {
+			"id": 1,
+			"name": "Batu Pahat",
+			"state": {
+				"id": 1,
+				"name": "Johor"
+			}
+		},
+		"state": {
+			"id": 1,
+			"name": "Johor"
+		},
+		"submission_date":"12-02-2023",
+		"phone_no":"012-34567890",
+		"media_path":"https://images.unsplash.com/photo-1604275689235-fdc521556c16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+		"detail":"Lorem Ipsum",
+		"review_status":"Pending"
+	},
+	{
+		"id": 2,
+		"reporter_name": "Tester Name",
+		"location": {
+			"id":1,
+			"name": "Kg. Baru Sri Gading",
+			"district": {
+				"id": 1,
+				"name": "Batu Pahat",
+				"state": {
+					"id": 1,
+					"name": "Johor"
+				}
+			}
+		},
+		"district": {
+			"id": 1,
+			"name": "Batu Pahat",
+			"state": {
+				"id": 1,
+				"name": "Johor"
+			}
+		},
+		"state": {
+			"id": 1,
+			"name": "Johor"
+		},
+		"submission_date":"12-02-2023",
+		"phone_no":"012-34567890",
+		"media_path":"https://images.unsplash.com/photo-1604275689235-fdc521556c16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+		"detail":"Lorem Ipsum",
+		"review_status":"Pending"
+	},
+	{
+		"id": 3,
+		"reporter_name": "Tester Name",
+		"location": {
+			"id":1,
+			"name": "Kg. Baru Sri Gading",
+			"district": {
+				"id": 1,
+				"name": "Batu Pahat",
+				"state": {
+					"id": 1,
+					"name": "Johor"
+				}
+			}
+		},
+		"district": {
+			"id": 1,
+			"name": "Batu Pahat",
+			"state": {
+				"id": 1,
+				"name": "Johor"
+			}
+		},
+		"state": {
+			"id": 1,
+			"name": "Johor"
+		},
+		"submission_date":"12-02-2023",
+		"phone_no":"012-34567890",
+		"media_path":"https://images.unsplash.com/photo-1604275689235-fdc521556c16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+		"detail":"Lorem Ipsum",
+		"review_status":"Pending"
+	}
+]

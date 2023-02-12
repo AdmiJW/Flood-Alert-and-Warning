@@ -22,6 +22,7 @@ public class FAWHibernate {
         Subscription.class,
         EvacPoint.class,
         Dashboard.class,
+        Report.class,
     };
 
     // Singleton SessionFactory
