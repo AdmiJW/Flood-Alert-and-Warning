@@ -97,7 +97,7 @@ public class EvacuationController {
 		@RequestParam("lng") double lng
 	){
 		if (currentOccupancy > capacity){
-			AlertUtil.setDangerAlert(request, "Current occupancy cannot be greater than capacity. Please try again.");
+			AlertUtil.setDangerAlert(redirectAttributes, "Current occupancy cannot be greater than capacity. Please try again.");
 			return "redirect:/Evacuation";
 		}
 		Location l = new Location();
@@ -162,7 +162,7 @@ public class EvacuationController {
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
 		String remarks = request.getParameter("remarks");
 		if (currentOccupancy > capacity){
-			AlertUtil.setDangerAlert(request, "Current occupancy cannot be greater than capacity. Please try again.");
+			AlertUtil.setDangerAlert(redirectAttributes, "Current occupancy cannot be greater than capacity. Please try again.");
 			return "redirect:/Evacuation";
 		}
 		evacPoint.setCurrentOccupancy(currentOccupancy);

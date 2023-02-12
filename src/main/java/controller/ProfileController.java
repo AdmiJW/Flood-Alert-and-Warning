@@ -22,14 +22,25 @@ import javax.servlet.http.HttpServletRequest;
 public class ProfileController {
     @GetMapping("")
     protected String getProfile(
-        HttpServletRequest request
+        HttpServletRequest request,
+        RedirectAttributes redirect
     ) {
+        if(AuthUtil.getCurrentUser(request) == null){
+            AlertUtil.setDangerAlert(redirect, "Please login to continue!");
+            return "redirect:/Dashboard";
+        }
+
         return "Profile";
     }
     @GetMapping("UpdateForm")
     protected String getUpdateProfile(
-        HttpServletRequest request
+        HttpServletRequest request,
+        RedirectAttributes redirect
     ) {
+        if(AuthUtil.getCurrentUser(request) == null){
+            AlertUtil.setDangerAlert(redirect, "Please login to continue!");
+            return "redirect:/Dashboard";
+        }
         return "UpdateProfile";
     }
     @PostMapping("UpdateProfile")
@@ -40,6 +51,10 @@ public class ProfileController {
         @RequestParam("email") String email,
         @RequestParam("phone") String phone
     ) {
+        if(AuthUtil.getCurrentUser(request) == null){
+            AlertUtil.setDangerAlert(redirect, "Please login to continue!");
+            return "redirect:/Dashboard";
+        }
         User user = AuthUtil.getCurrentUser(request);
         user.setUsername(username);
         user.setEmail(email);
