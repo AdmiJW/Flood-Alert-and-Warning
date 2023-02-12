@@ -99,13 +99,6 @@
 					${isAdmin ? 'enabled' : 'disabled'}
 				>${evacPoint.remarks}</textarea>
 			</div>
-			
-			<div class="form-group mb-2">
-				<label for="mapLocation">Location:</label> 
-				
-				<c:import url="/includes/bingMapSearch.jsp" />
-				<c:import url="/includes/bingMap.jsp" />
-			</div>
 
 			<c:if test="${isAdmin}">
 				<div class="text-center">

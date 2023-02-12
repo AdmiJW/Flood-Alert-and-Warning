@@ -146,7 +146,8 @@ function onBingMapSearch() {
 				const pin = new Microsoft.Maps.Pushpin(result.location);
 				pin.metadata = {
 					title: result.name,
-					description: result.address.formattedAddress
+					description: result.address.formattedAddress + '<br/>' + result.location.latitude + ', ' + result.location.longitude
+
 				}
 				searchPins.push(pin);
 				Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);

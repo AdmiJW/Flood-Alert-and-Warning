@@ -6,6 +6,10 @@
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+	const bingPins = JSON.parse(`${bingPins}`);
+</script>
+
 <!DOCTYPE html>
 <html>
 
@@ -40,7 +44,7 @@
 			
 			<c:import url="/includes/bingMap.jsp">
 				<c:param value="500px" name="height"/>
-				<c:param value="pinAllEvac" name="action"/>
+				<c:param value="pinAllFlood" name="action"/>
 			</c:import>
 		</div>
 
