@@ -86,7 +86,7 @@ public class ReportsDA {
 						builder.or(
 								builder.like(root.get("user").get("username"), "%" + substr + "%"),
 								builder.like(root.get("detail"), "%" + substr + "%"),
-								builder.like(root.get("phone_no"), "%" + substr + "%"),
+								builder.like(root.get("phone").get("phone"), "%" + substr + "%"),
 								builder.like(root.get("district"), "%" + substr + "%"),
 								builder.like(root.get("location"), "%" + substr + "%")));
 		}
