@@ -9,7 +9,7 @@ function getDefaultDisabledOption(text) {
 	return option;
 }
 
-//TEsting
+
 // Gets <option value='value'> {text} </option>
 function getOption(value, text) {
 	const option = document.createElement('option');
