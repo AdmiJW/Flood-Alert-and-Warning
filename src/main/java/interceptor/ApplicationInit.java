@@ -2,12 +2,11 @@ package interceptor;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dataAccess.EvacPointDA;
 import dataAccess.GeoDA;
+import dataAccess.LocationDA;
 import dataAccess.UserDA;
-import entity.District;
-import entity.Location;
-import entity.State;
-import entity.User;
+import entity.*;
 import enums.UserType;
 import org.springframework.stereotype.Component;
 import utils.FileUtil;
@@ -38,7 +37,9 @@ public class ApplicationInit {
     @PostConstruct
     public void init() throws IOException {
         initAdmin();
+        initUser();
         initGeoDB();
+        initEvacPoint();
         initializeFileService();
     }
 
@@ -57,6 +58,19 @@ public class ApplicationInit {
         u.setPassword("admin");
         u.setUserType(UserType.ADMIN);
         u.setEmail("admin@email.com");
+        u.setPhone("1234567890");
+
+        UserDA.add(u);
+    }
+    private void initUser() {
+        User u = UserDA.getByUsername("user");
+        if (u != null) return;
+
+        u = new User();
+        u.setUsername("user");
+        u.setPassword("user");
+        u.setUserType(UserType.USER);
+        u.setEmail("user@email.com");
         u.setPhone("1234567890");
 
         UserDA.add(u);
@@ -98,5 +112,19 @@ public class ApplicationInit {
         }
         // Save the Location[] to the database
         GeoDA.addLocations(locationsList);
+    }
+
+    private void initEvacPoint(){
+        EvacPoint evacPoint = EvacPointDA.getById(1L);
+        if (evacPoint != null) return;
+        evacPoint = new EvacPoint();
+        evacPoint.setPointName("Universiti Teknologi Malaysia");
+        Location location = LocationDA.getById(1L);
+        evacPoint.setLocation(location);
+        evacPoint.setCapacity(30);
+        evacPoint.setCapacity(100);
+        evacPoint.setRemarks("This is a test evac point");
+        EvacPointDA.add(evacPoint);
+
     }
 }
