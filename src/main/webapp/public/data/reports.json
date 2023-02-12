@@ -1,0 +1,35 @@
+[
+	{
+		"id": 1,
+		"reporter_name": "Tester Name",
+		"location": {
+			"id":1,
+			"name": "Kg. Baru Sri Gading",
+			"district": {
+				"id": 1,
+				"name": "Batu Pahat",
+				"state": {
+					"id": 1,
+					"name": "Johor"
+				}
+			}
+		},
+		"district": {
+			"id": 1,
+			"name": "Batu Pahat",
+			"state": {
+				"id": 1,
+				"name": "Johor"
+			}
+		},
+		"state": {
+			"id": 1,
+			"name": "Johor"
+		},
+		"submission_date":"12-02-2023",
+		"phone_no":"012-34567890",
+		"media_path":"includes",
+		"detail":"Lorem Ipsum",
+		"review_status":"Pending"
+	}
+]

@@ -3,9 +3,11 @@ package interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataAccess.GeoDA;
+import dataAccess.ReportsDA;
 import dataAccess.UserDA;
 import entity.District;
 import entity.Location;
+import entity.Report;
 import entity.State;
 import entity.User;
 import enums.UserType;
@@ -39,6 +41,7 @@ public class ApplicationInit {
     public void init() throws IOException {
         initAdmin();
         initGeoDB();
+        initReports();
         initializeFileService();
     }
 
@@ -99,4 +102,11 @@ public class ApplicationInit {
         // Save the Location[] to the database
         GeoDA.addLocations(locationsList);
     }
+
+    private void initReports()throws IOException{
+        File statesJSONFile = new File( ctx.getRealPath("public/data/reports.json") );
+        ObjectMapper mapper = new ObjectMapper();
+        List<Report> reportList = Arrays.asList( mapper.readValue(statesJSONFile, Report[].class ) );
+        ReportsDA.add(reportList.get(0));
+    };
 }

@@ -6,9 +6,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+
 <!DOCTYPE html>
 <html>
-
 <!-- Header -->
 <c:import url="/includes/header.jsp">
 	<c:param name="title" value="FAW - Reports" />
@@ -16,26 +16,29 @@
 
 <body>
 <div class="min-vh-100">
-
 	<!-- Navbar -->
-	<c:import url="/includes/navbar.jsp" />
+	<c:import url="/includes/navbar.jsp">
+		<c:param name="active" value="reports" />
+	</c:import>
 
 	<!-- Breadcrumb -->
 	<c:import url="/includes/breadcrumb.jsp">
-		<c:param name="path" value="Reports/Edit" />
+		<c:param name="path" value="Reports" />
 	</c:import>
-	
-	
+
 	<!-- Alert -->
 	<c:import url="/includes/alert.jsp" />
 
 	<div class='container'>
-	
 		<div class='my-4'>
 			<h1 class='text-center fw-bold'>
-				Report Control Center <i class="bi bi-chat-square-text-fill"></i>
+				Report <i class="bi bi-chat-square-text-fill"></i>
 			</h1>
+
+			<p class='lead text-center text-muted'>Report a flood or possible
+				cause of flooding</p>
 		</div>
+
 
 
 		<div class="input-group mb-3">
@@ -44,50 +47,28 @@
 			<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
 		</div>
 
-		<div class='d-flex justify-content-end'>
-			<div class="input-group mb-3" style='max-width: 300px;'>
-				<input type="text" class="form-control"
-					aria-label="Text input with dropdown button">
-					
-				<button class="btn btn-outline-primary"
-					type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-chevron-down"></i></button>
-					
-				<ul class="dropdown-menu dropdown-menu-end">
-					<li><a class="dropdown-item" href="#">Approved</a></li>
-					<li><a class="dropdown-item" href="#">Pending</a></li>
-					<li><a class="dropdown-item" href="#">Declined</a></li>
-				</ul>
-			</div>
-		</div>
-		
 
 
-		<!-- Contents -->
 		<div class="d-grid py-4 gap-4 justify-content-center" style='grid-template-columns: repeat( auto-fit, minmax(250px, 350px) );'>
-			
+
 			<div class="card rounded-4 overflow-hidden">
 				<img
 					src="https://assets.nst.com.my/images/articles/FLOODS_TERENGGANU1812_1671351158.jpg"
 					class="card-img-top" alt="flood" />
-					
+
 				<div class="card-body">
 					<div class="card-title">
 						<h3>Jonathan</h3>
 					</div>
-					
+
 					<div class="card-desc text-muted">
-						<span class="card-date">16th November 2022</span> <br> 
+						<span class="card-date">16th November 2022</span> <br>
 						<span class="card-location">Klang Valley</span>
 					</div>
 
 					<p class="card-text mt-4">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</p>
-					
-					<div class='mt-4'>
-						<a href="#!" class="btn btn-success">Approve</a> 
-						<a href="#!" class="btn btn-danger">Decline</a>
-					</div>
 				</div>
 			</div>
 
@@ -100,18 +81,13 @@
 						<h3>Alex</h3>
 					</div>
 					<div class="card-desc text-muted">
-						<span class="card-date">16th November 2022</span> <br> 
+						<span class="card-date">16th November 2022</span> <br>
 						<span class="card-location">Klang Valley</span>
 					</div>
 
 					<p class="card-text mt-4">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</p>
-					
-					<div class='mt-4'>
-						<a href="#!" class="btn btn-success">Approve</a> 
-						<a href="#!" class="btn btn-danger">Decline</a>
-					</div>
 				</div>
 			</div>
 
@@ -124,30 +100,38 @@
 						<h3>Billy Wong</h3>
 					</div>
 					<div class="card-desc text-muted">
-						<span class="card-date">16th November 2022</span> <br> 
+						<span class="card-date">16th November 2022</span> <br>
 						<span class="card-location">Klang Valley</span>
 					</div>
 
 					<p class="card-text mt-4">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</p>
-					
-					<div class='mt-4'>
-						<a href="#!" class="btn btn-success">Approve</a> 
-						<a href="#!" class="btn btn-danger">Decline</a>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Pagination -->
-	<c:import url="/includes/pagination.jsp">
-		<c:param name="totalPages" value="5" />
-		<c:param name="activePage" value="2" />
-		<c:param name="link" value="Subscribe/Subscriptions" />
-	</c:import>
+	<div class="sticky-bottom" style="margin-left: 90%;"><a href="<c:url value="/Reports/Add"/>"/><i class="bi bi-plus-circle-fill" style="font-size:80px"></i></a></div>
 
+    <!--<div id="ajaxGetUserServletResponse"></div>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"
+    	type="text/javascript"></script>
+    <script>
+        $("#button-addon2").click(function() {
+
+        		$.ajax({
+        			url : '/FAW/Reports/session',
+         			success : function(responseText) {
+        				alert(${sessionScope.noredirect});
+        			}
+        		});
+        	});
+    </script>-->
+
+
+	<!-- Pagination -->
+	<c:import url="/includes/pagination.jsp" />
 </div>
 
 <!-- Footer -->

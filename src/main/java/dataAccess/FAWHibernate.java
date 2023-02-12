@@ -20,6 +20,7 @@ public class FAWHibernate {
         District.class,
         Location.class,
         Subscription.class,
+        Report.class,
     };
 
     // Singleton SessionFactory
