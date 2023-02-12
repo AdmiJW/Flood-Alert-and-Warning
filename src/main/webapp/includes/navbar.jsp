@@ -80,8 +80,13 @@
                 <c:when test="${not empty user}">
                     <div class="d-flex align-items-center">
                         <span class="text-white me-3 fs-6">
-                            Welcome, <c:out value="${user.username}"/>
+                            Welcome,
+                            <a class="text-decoration-none w-50" href="<c:url value="/Profile" />">
+                                <c:out value="${user.username}"/>
+                                <i class="bi bi-person-circle"></i>
+                            </a>
                         </span>
+
                         <a class="btn btn-primary" href="<c:url value="/Logout" />">Logout</a>
                     </div>
                 </c:when>

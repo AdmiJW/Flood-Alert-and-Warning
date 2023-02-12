@@ -43,7 +43,7 @@
     </div>
 
     <!-- Dashboard Station Edit Form -->
-    <form method='POST' action='<c:url value="/Dashboard/AddDashboard" />' class='m-auto' style='max-width: 500px;'>
+    <form method='POST' action='<c:url value="/Dashboard/AddDashboard" />' class='bg-light rounded shadow-sm m-auto p-3 my-4' style='max-width: 500px;'>
       <div class="form-group mb-4">
         <label class="form-label fw-bold">Station:</label>
       </div>

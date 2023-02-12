@@ -123,6 +123,11 @@
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <div class="mx-auto d-flex justify-content-center w-25">
+            <a href="<c:url value="/Evacuation" />" class="btn btn-danger d-block m-auto"
+               style="max-width: 600px;">Back
+            </a>
+        </div>
     </main>
 </div>
 
