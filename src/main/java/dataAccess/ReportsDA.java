@@ -86,23 +86,23 @@ public class ReportsDA {
 						builder.or(
 								builder.like(root.get("user").get("username"), "%" + substr + "%"),
 								builder.like(root.get("detail"), "%" + substr + "%"),
-								builder.like(root.get("phone").get("phone"), "%" + substr + "%"),
-								builder.like(root.get("district"), "%" + substr + "%"),
-								builder.like(root.get("location"), "%" + substr + "%")));
+								builder.like(root.get("user").get("phone"), "%" + substr + "%"),
+								builder.like(root.get("district").get("name"), "%" + substr + "%"),
+								builder.like(root.get("location").get("name"), "%" + substr + "%")));
 		}
 		List<Report> reports = session.createQuery(criteria).getResultList();
 		FAWHibernate.commitAndCloseSession(session);
 		return reports;
 	}
 
-	public static List<Report> getReportsByReviewStatus(ReviewType review_status) {
+	public static List<Report> getReportsByReviewStatus(String review_status) {
 		Session session = FAWHibernate.getSessionWithTransaction();
 
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Report> criteria = builder.createQuery(Report.class);
 		Root<Report> root = criteria.from(Report.class);
 
-		criteria.select(root).where(builder.equal(root.get("review_status"), review_status));
+		criteria.select(root).where(builder.equal(root.get("review_status").get("name"), review_status));
 		List<Report> reports = session.createQuery(criteria).getResultList();
 
 		FAWHibernate.commitAndCloseSession(session);

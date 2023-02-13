@@ -11,7 +11,7 @@
   const districts = JSON.parse(`${districts}`);
   const locations = JSON.parse(`${locations}`);
 </script>
-<script src="<c:url value="/public/scripts/geoSelectInput.js" />"></script>
+<script src="<c:url value='/public/scripts/geoSelectInput.js'/>"></script>
 
 
 
@@ -43,12 +43,12 @@
     <!-- Report Details -->
     <form method="post" action='<c:url value="/Evacuation"/> ' class='mb-4 m-auto' style='max-width: 700px;'>
 
-      <%-- Image --%>
+      <!-- Image -->
       <div class="mb-2">
         <img src="${report.media_path}" alt="Report Image" class="img-fluid">
       </div>
 
-      <%-- Status --%>
+      <!-- Status -->
       <div class="mb-2">
           <label class="form-label fw-bold">Status:</label>
           <c:out value="${report.review_status}" />
@@ -96,6 +96,73 @@
           >${report.detail}</textarea>
       </div>
     </form>
+
+    <form class='bg-light rounded shadow-sm m-auto p-3 my-4' style='max-width: 500px;' method='POST'
+							action="<c:url value='/Reports/Add'/>" enctype="multipart/form-data">
+
+						<div class='text-center display-6'>
+							<i class="bi bi-lightning-charge-fill"></i>
+							<span class="fw-bold">FAW</span>
+						</div>
+
+						<p class='text-center fs-3 fw-light'>
+							Report Form
+						</p>
+
+
+						<!-- Select state -->
+						<div class="mb-2">
+							<label for="state" class="form-label fw-bold">State:</label>
+
+							<select class="form-select" name='state' id='state' required aria-label="Select state">
+								<option selected disabled value=''>Select state</option>
+
+								<c:forEach items="${states}" var="state">
+									<option value="${state.id}">${state.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<!-- Select district -->
+						<div class="mb-2">
+							<label for="district" class="form-label fw-bold">District:</label>
+
+							<select class="form-select" name='district' id='district' required
+								aria-label="Select district">
+								<option selected disabled value=''>Select district</option>
+							</select>
+						</div>
+
+						<!-- Select POI -->
+						<div class="mb-2">
+							<label for="location" class="form-label fw-bold">Location:</label>
+
+							<select class="form-select" name='location' id='location' required
+								aria-label="Select location">
+								<option selected disabled value=''>Select location</option>
+							</select>
+						</div>
+
+						<!-- Upload Picture -->
+						<div class="form-upload-file mb-2">
+							<label for="report_media" class="form-label fw-bold">Video/Photo:</label>
+							<input class="form-control" name="report_media" type="file" id="report_media" required>
+						</div>
+
+						<!-- Addtional Description -->
+						<div class="mb-4">
+							<label for="report_detail" class="form label fw-bold">Details:</label>
+							<textarea class="form-control" name="report_detail" id="report_detail" cols="30"
+								rows="5"></textarea>
+						</div>
+
+
+						//<!-- Submission DateTime -->
+						//<c:set var="now" value="<%=new java.util.Date()%>" />
+						//<fmt:formatDate type="date" pattern="dd-MM-yyyy" value="${now}"/>
+
+						<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
 
     <div class='d-flex justify-content-center gap-2 my-4'>
         <a class='btn btn-primary' href='<c:url value="/Reports" />'>

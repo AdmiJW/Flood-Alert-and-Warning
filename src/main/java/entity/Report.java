@@ -42,5 +42,5 @@ public class Report {
 	private String detail;
 
 	@Column
-	private ReviewType review_status;
+	private String review_status;
 }

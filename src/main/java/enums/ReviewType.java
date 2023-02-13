@@ -4,8 +4,14 @@ import lombok.Getter;
 
 @Getter
 public enum ReviewType {
-	Approved,
-    Pending,
-	Denied,
-	Expired
+	Approved("Approved"),
+    Pending("Pending"),
+	Denied("Denied"),
+	Expired("Expired");
+
+	private final String name;
+
+    private ReviewType(String name) {
+        this.name = name;
+    }
 }
