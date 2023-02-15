@@ -66,10 +66,10 @@
 								aria-expanded="false"><i class="bi bi-chevron-down"></i></button>
 
 							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" href="/Reports/ReviewType/Approved">Approved</a></li>
-								<li><a class="dropdown-item" href="/Reports/ReviewType/Pending">Pending</a></li>
-								<li><a class="dropdown-item" href="/Reports/ReviewType/Rejected">Rejected</a></li>
-								<li><a class="dropdown-item" href="/Reports/ReviewType/Expired">Expired</a></li>
+								<li><a class="dropdown-item" href="<c:url value='/Reports/ReviewType/Approved'/>">Approved</a></li>
+								<li><a class="dropdown-item" href="<c:url value='/Reports/ReviewType/Pending'/>">Pending</a></li>
+								<li><a class="dropdown-item" href="<c:url value='/Reports/ReviewType/Rejected'/>">Rejected</a></li>
+								<li><a class="dropdown-item" href="<c:url value='/Reports/ReviewType/Expired'/>">Expired</a></li>
 							</ul>
 						</div>
 					</div>
@@ -104,10 +104,17 @@
 									<c:choose>
 										<c:when test="${report.review_status=='Pending'}">
 											<div class='mt-4'>
-												<a href="<c:url value='/Reports/Review?ReviewType=Approved'/>"
+												<a href=
+												"<c:url value='/Reports/Review'>
+													<c:param name='review_type' value='Approved'/>
+													<c:param name='reportID' value='${report.id}'/>
+												</c:url>"
 													class="btn btn-success">Approve</a>
-												<a href="<c:url value='/Reports/Review?ReviewType=Rejected'/>"
-													class="btn btn-danger">Decline</a>
+												<a href="<c:url value='/Reports/Review'>
+													<c:param name='review_type' value='Rejected'/>
+													<c:param name='reportID' value='${report.id}'/>
+												</c:url>"
+													class="btn btn-danger">Reject</a>
 											</div>
 										</c:when>
 										<c:when test="${report.review_status=='Approved'}">
@@ -144,5 +151,69 @@
 			<c:import url="/includes/footer.jsp" />
 
 		</body>
+
+		<script>
+			let date1 = $("#datepicker1");
+			let date2 = $("#datepicker2");
+
+			date1.on("change", function () {
+				if (date1.val() != "") {
+					date2.attr("min", date1.val());
+				}
+				else {
+					date2.removeAttr("min");
+				}
+			});
+			date2.on("change", function () {
+				if (date2.val() != "") {
+					date1.attr("max", date2.val());
+				}
+				else {
+					date1.removeAttr("max");
+				}
+			});
+
+			$("#searchbar").on("keyup", function () {
+				var start_date=null;
+				var end_date=null;
+				$.ajax({
+					url: "/FAW/Reports/Search",
+					data: {
+						search_key: $("#searchbar").val(),
+						start_date: start_date,
+						end_date: end_date
+					},
+					success: function (response) {
+						$("#ReportsItems").html(response);
+					}
+				});
+			});
+
+			$("#datepicker1, #datepicker2").on("change", function () {
+				var date_segments=null;
+				var start_date=null;
+				var end_date=null;
+				if (date1.val()!="") {
+					date_segments = date1.val().split("-");
+					start_date = date_segments[2] + "-" + date_segments[1] + "-" + date_segments[0];
+				}
+				if(date2.val()!=""){
+					date_segments = "";
+					date_segments = date2.val().split("-");
+					end_date = date_segments[2] + "-" + date_segments[1] + "-" + date_segments[0];
+				}
+				$.ajax({
+					url: "/FAW/Reports/Search",
+					data: {
+						search_key: $("#searchbar").val(),
+						start_date: start_date,
+						end_date: end_date
+					},
+					success: function (response) {
+						$("#ReportsItems").html(response);
+					}
+				});
+			})
+		</script>
 
 		</html>

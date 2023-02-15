@@ -55,6 +55,12 @@
                 <p class="" id="phone"><c:out value="${user.phone}"/></p>
             </div>
         </div>
+        <div class="bg-dark rounded shadow-sm mx-auto p-3 my-4" style="max-width: 600px;text-align: center;">
+            <button class="bg-dark" style="width:100%;border-width: 0px;">
+                <a class="fw-bold link-light" href="<c:url value='/Reports/History'/>">Report History</a>
+            </button>
+        </div>
+        
 
         <div class="mx-auto d-flex justify-content-center w-25">
             <a href="<c:url value="/Profile/UpdateForm" />" class="btn btn-primary d-block m-auto"

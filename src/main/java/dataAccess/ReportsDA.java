@@ -36,7 +36,7 @@ public class ReportsDA {
 		return FAWHibernate.getById(Report.class, id);
 	}
 
-	public static List<Report> getReportsByUserId(User user) {
+	public static List<Report> getReportsByUser(User user) {
 		Session session = FAWHibernate.getSessionWithTransaction();
 
 		CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -57,13 +57,13 @@ public class ReportsDA {
 		CriteriaQuery<Report> criteria = builder.createQuery(Report.class);
 		Root<Report> root = criteria.from(Report.class);
 
-		if (!start_date.isEmpty() && !end_date.isEmpty()) {
+		if (start_date!="" && end_date!="") {
 			criteria.select(root).where(builder.between(root.get("submission_date"), start_date, end_date));
 		}
-		else if(!start_date.isEmpty()){
+		else if(start_date!=""){
 			criteria.select(root).where(builder.greaterThanOrEqualTo(root.get("submission_date"), start_date));
 		}
-		else if(!end_date.isEmpty()){
+		else if(end_date!=""){
 			criteria.select(root).where(builder.lessThanOrEqualTo(root.get("submission_date"), end_date));
 		}
 
@@ -102,7 +102,7 @@ public class ReportsDA {
 		CriteriaQuery<Report> criteria = builder.createQuery(Report.class);
 		Root<Report> root = criteria.from(Report.class);
 
-		criteria.select(root).where(builder.equal(root.get("review_status").get("name"), review_status));
+		criteria.select(root).where(builder.equal(root.get("review_status"), review_status));
 		List<Report> reports = session.createQuery(criteria).getResultList();
 
 		FAWHibernate.commitAndCloseSession(session);

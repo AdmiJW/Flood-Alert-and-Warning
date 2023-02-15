@@ -8,6 +8,11 @@
 		</c:import>
 
 		<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+		<script>
+			const districts = JSON.parse(`${districts}`);
+			const locations = JSON.parse(`${locations}`);
+		</script>
+		<script src="<c:url value="/public/scripts/geoSelectInput.js"/>"></script>
 
 		<body>
 			<div class="min-vh-100">
@@ -42,11 +47,12 @@
 
 
 						<!-- Select state -->
+					<div id="dis_loc">
 						<div class="mb-2">
 							<label for="state" class="form-label fw-bold">State:</label>
 
 							<select class="form-select" name='state' id='state' required aria-label="Select state">
-								<option selected disabled value='${report.state.id}'>${report.state.name}</option>
+								<option selected value='${report.state.id}'>${report.state.name}</option>
 
 								<c:forEach items="${states}" var="state">
 									<c:if test="${state.id!=report.state.id}">
@@ -57,43 +63,29 @@
 							<input type="hidden" id="report_origina_state" value="${report.state.id}">
 						</div>
 
-						<!-- Select district -->
-						<div class="mb-2">
-							<label for="district" class="form-label fw-bold">District:</label>
-
-							<select class="form-select" name='district' id='district' required
-								aria-label="Select district">
-								<option selected disabled value='${report.district.id}'>${report.district.name}</option>
-
-								<c:forEach items="${districts}" var="district">
-									<c:if test="${district.id != report.district.id}">
-										<option value="${disctrict.id}">${district.name}</option>
-									</c:if>
-								</c:forEach>
-							</select>
-						</div>
-
-						<!-- Select POI -->
-						<div class="mb-2">
-							<label for="location" class="form-label fw-bold">Location:</label>
-
-							<select class="form-select" name='location' id='location' required
-								aria-label="Select location">
-								<option selected disabled value='${report.location.id}'>${report.location.name}</option>
-
-								<c:forEach items="${locations}" var="location">
-									<c:if test="${location.id!=report.location.id}">
-										<option value="${location.id}">${location.name}</option>
-									</c:if>
-								</c:forEach>
-							</select>
+							<!-- Select district -->
+							<div class="mb-2">
+								<label for="district" class="form-label fw-bold">District:</label>
+								<select class="form-select" name='district' id='district' required
+									aria-label="Select district">
+									<option selected value='${report.district.id}'>${report.district.name}</option>
+								</select>
+							</div>
+							<!-- Select POI -->
+							<div class="mb-2">
+								<label for="location" class="form-label fw-bold">Location:</label>
+								<select class="form-select" name='location' id='location' required
+									aria-label="Select location">
+									<option selected value='${report.location.id}'>${report.location.name}</option>
+								</select>
+							</div>
 						</div>
 
 						<!-- Upload Picture -->
 						<div class="form-upload-file mb-2">
-							<img src="${report.media_path}" alt="flood">
 							<label for="report_media" class="form-label fw-bold">Video/Photo:</label>
-							<input class="form-control" name="report_media" type="file" id="report_media" required>
+							<img src="${report.media_path}" alt="flood" style="object-fit:contain; max-height:100%; max-width:100%;">
+							<input class="form-control mt-2" name="report_media" type="file" id="report_media">
 						</div>
 
 						<!-- Addtional Description -->
@@ -104,30 +96,17 @@
 						</div>
 
 
-						//
-						<!-- Submission DateTime -->
-						//
-						<c:set var="now" value="<%=new java.util.Date()%>" />
-						//
-						<fmt:formatDate type="date" pattern="dd-MM-yyyy" value="${now}" />
-
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form>
 
 					<div class='d-flex justify-content-center gap-2 my-4'>
-						<a class='btn btn-primary' href='<c:url value="/Reports" />'>
+						<a class='btn btn-primary' href='<c:url value="/Reports"/>'>
 							Back
 						</a>
-
-						<c:if test="${user.userType == 'ADMIN' || user.id == report.user.id}">
-							<a class='btn btn-info' href='<c:url value="/Reports/Update/${report.id}" />'>
-								Update
-							</a>
 
 							<a class='btn btn-danger' href='<c:url value="/Reports/Delete/${report.id}" />'>
 								Delete
 							</a>
-						</c:if>
 
 					</div>
 				</main>
@@ -137,5 +116,20 @@
 			<c:import url="/includes/footer.jsp" />
 
 		</body>
+
+		<script>
+			$("#state").on("change", function () {
+				$.ajax({
+					type:"POST",
+					url: "/FAW/Reports/",
+					data: {
+						selected_state:$("state :selected").val()
+					},
+					success: function (response) {
+						$("#dis_loc").html(response);
+					}
+				});
+			});
+		</script>
 
 		</html>
