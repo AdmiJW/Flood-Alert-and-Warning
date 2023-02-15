@@ -47,6 +47,8 @@ public class ReportsController {
 			return "Reports";
 		} else {
 			if (AuthUtil.getCurrentUser(request).getUserType().name == "ADMIN") {
+				reports.clear();
+				reports=ReportsDA.getReportsByReviewStatus("Pending");
 				request.setAttribute("reports", reports);
 				return "ReportsAdminEdit";
 			} else {
@@ -276,24 +278,26 @@ public class ReportsController {
 		Report report = ReportsDA.getReportById(reportID);
 		report.setReview_status(review_type);
 		ReportsDA.update(report);
-		return "redirect:/ReportsAdminEdit";
+		List<Report> reports=ReportsDA.getReportsByReviewStatus(review_type);
+		request.setAttribute("reports", reports);
+		return "ReportsAdminEdit";
 	}
 
-	@GetMapping("/Reports/ReviewType/{review_type}")
-	protected String getReportsBasedReview(HttpServletRequest request,
-			@PathVariable("review_type") String review_type,
+	@GetMapping("/Reports/ReviewType")
+	protected ModelAndView getReportsBasedReview(HttpServletRequest request,
+			@RequestParam("review_type") String review_type,
 			RedirectAttributes redirectAttributes) {
 		if (AuthUtil.getCurrentUser(request) == null) {
 			AlertUtil.setWarningAlert(redirectAttributes, "You must be logged in first.");
-			return "redirect:/Login";
+			return new ModelAndView("redirect:/Login");
 		}
 
 		if (AuthUtil.getCurrentUser(request).getUserType() != UserType.ADMIN) {
 			AlertUtil.setDangerAlert(redirectAttributes, "You are not authorized to use this function.");
-			return "redirect:/";
+			return new ModelAndView("redirect:/");
 		}
 		List<Report> reports = ReportsDA.getReportsByReviewStatus(review_type);
 		request.setAttribute("reports", reports);
-		return "ReportsAdminEdit";
+		return new ModelAndView("ReportsAdminItems","reports",reports);
 	}
 }

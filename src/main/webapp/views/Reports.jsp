@@ -115,8 +115,8 @@
 			});
 
 			$("#searchbar").on("keyup", function () {
-				var start_date=null;
-				var end_date=null;
+				var start_date=date1.val();
+				var end_date=date2.val();
 				$.ajax({
 					url: "/FAW/Reports/Search",
 					data: {
@@ -131,18 +131,9 @@
 			});
 
 			$("#datepicker1, #datepicker2").on("change", function () {
-				var date_segments=null;
-				var start_date=null;
-				var end_date=null;
-				if (date1.val()!="") {
-					date_segments = date1.val().split("-");
-					start_date = date_segments[2] + "-" + date_segments[1] + "-" + date_segments[0];
-				}
-				if(date2.val()!=""){
-					date_segments = "";
-					date_segments = date2.val().split("-");
-					end_date = date_segments[2] + "-" + date_segments[1] + "-" + date_segments[0];
-				}
+				var start_date=date1.val();
+				var end_date=date2.val();
+				
 				$.ajax({
 					url: "/FAW/Reports/Search",
 					data: {

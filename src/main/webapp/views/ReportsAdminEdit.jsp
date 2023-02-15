@@ -10,6 +10,8 @@
 			<c:param name="title" value="FAW - Reports" />
 		</c:import>
 
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script> 
+
 		<body>
 			<div class="min-vh-100">
 
@@ -34,105 +36,55 @@
 					</div>
 
 
-					<form action="<c:url value='/Reports/Search'/>" method="get">
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" placeholder="Search and Filter" id="searchbar"
-								name="search_key" aria-label="Search and Filter">
-							<div class="input-append">
-								<div class="input-group date" id="datetimepicker6">
-									<span class="input-group-text" style="border-radius: 0px;"><i
-											class="bi bi-calendar3"></i></span>
-									<input type="text" class="form-control" placeholder="From" id="datetimepicker6"
-										name="start_date" style="border-radius: 0px;">
-								</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Search and Filter" id="searchbar"
+							name="search_key" aria-label="Search and Filter">
+						<div class="input-append">
+							<div class="input-group date" id="datepickergroup1">
+								<span class="input-group-text" style="border-radius: 0px;">From</span>
+								<input type="date" class="form-control" id="datepicker1" name="start_date"
+									style="border-radius: 0px;">
 							</div>
-							<div class="input-append">
-								<div class="input-group date" id="datetimepicker6">
-									<span class="input-group-text" style="border-radius: 0px;"><i
-											class="bi bi-calendar3"></i></span>
-									<input type="text" class="form-control" placeholder="Until" id="datetimepicker7"
-										name="end_date" style="border-radius: 0px;">
-								</div>
-							</div>
-							<input class="btn btn-primary" id="button-addon2" type="submit" value="Search">
 						</div>
-					</form>
+						<div class="input-append">
+							<div class="input-group date" id="datepickergroup2">
+								<span class="input-group-text" style="border-radius: 0px;">Until</span>
+								<input type="date" class="form-control" value="" id="datepicker2"
+									name="end_date" style="border-radius: 0px;">
+							</div>
+						</div>
+					</div>
 
 					<div class='d-flex justify-content-end'>
 						<div class="input-group mb-3" style='max-width: 300px;'>
-							<input type="text" class="form-control" aria-label="Text input with dropdown button">
-
-							<button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown"
-								aria-expanded="false"><i class="bi bi-chevron-down"></i></button>
-
-							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" href="<c:url value='/Reports/ReviewType/Approved'/>">Approved</a></li>
-								<li><a class="dropdown-item" href="<c:url value='/Reports/ReviewType/Pending'/>">Pending</a></li>
-								<li><a class="dropdown-item" href="<c:url value='/Reports/ReviewType/Rejected'/>">Rejected</a></li>
-								<li><a class="dropdown-item" href="<c:url value='/Reports/ReviewType/Expired'/>">Expired</a></li>
-							</ul>
+							
+							<select class="form-select" name='review_type' id='review_type' 
+									aria-label="Select review type">
+									<c:set var="review_type" value="${['Pending','Approved','Denied','Expired']}"/>
+									<c:forEach var="type" items="${review_type}">
+										<c:if test="${type==reports.get(0).review_status}">
+											<option selected value="${type}">${type}</option>
+										</c:if>
+										<c:if test="${type!=reports.get(0).review_status}">
+											<option value="${type}">${type}</option>
+										</c:if>
+									</c:forEach>
+									<!--<option value="Pending">Pending</option>
+									<option value="Approved">Approved</option>
+									<option value="Denied">Denied</option>
+									<option value="Expired">Expired</option>-->
+								</select>
 						</div>
 					</div>
 
 
 
 					<!-- Contents -->
-					<c:forEach items="${reports}" var="report" varStatus="loop">
-
-						<div class="d-grid py-4 gap-4 justify-content-center"
-							style='grid-template-columns: repeat( auto-fit, minmax(250px, 350px) );'>
-
-							<div class="card rounded-4 overflow-hidden">
-								<img src="${report.media_path}" class="card-img-top" alt="flood" />
-
-
-								<div class="card-body">
-									<div class="card-title">
-										<h3>${report.user.username}</h3>
-									</div>
-
-									<div class="card-desc text-muted">
-										<span class="card-date">${report.submission_date}</span> <br>
-										<span class="card-location">${report.location.name}</span><br>
-										<span class="card-location">${report.district.name},
-											${report.state.name}</span><br>
-									</div>
-
-									<p class="card-text mt-4">
-										${report.detail}
-									</p>
-									<c:choose>
-										<c:when test="${report.review_status=='Pending'}">
-											<div class='mt-4'>
-												<a href=
-												"<c:url value='/Reports/Review'>
-													<c:param name='review_type' value='Approved'/>
-													<c:param name='reportID' value='${report.id}'/>
-												</c:url>"
-													class="btn btn-success">Approve</a>
-												<a href="<c:url value='/Reports/Review'>
-													<c:param name='review_type' value='Rejected'/>
-													<c:param name='reportID' value='${report.id}'/>
-												</c:url>"
-													class="btn btn-danger">Reject</a>
-											</div>
-										</c:when>
-										<c:when test="${report.review_status=='Approved'}">
-											<div class='mt-4'>
-												<button class="btn btn-success" disabled>Approved</button>
-											</div>
-										</c:when>
-										<c:when test="${report.review_status=='Rejected'}">
-											<div class='mt-4'>
-												<button class="btn btn-danger" disabled>Rejected</button>
-											</div>
-										</c:when>
-									</c:choose>
-								</div>
-							</div>
-
-						</div>
-					</c:forEach>
+					<div id="ReportsAdminItems">
+						<c:import url="ReportsAdminItems.jsp">
+							<c:param name="reports" value="${reports}"/>
+						</c:import>
+					</div>
 
 
 				</div>
@@ -174,8 +126,8 @@
 			});
 
 			$("#searchbar").on("keyup", function () {
-				var start_date=null;
-				var end_date=null;
+				var start_date=date1.val();
+				var end_date=date2.val();
 				$.ajax({
 					url: "/FAW/Reports/Search",
 					data: {
@@ -184,24 +136,14 @@
 						end_date: end_date
 					},
 					success: function (response) {
-						$("#ReportsItems").html(response);
+						$("#ReportsAdminItems").html(response);
 					}
 				});
 			});
 
 			$("#datepicker1, #datepicker2").on("change", function () {
-				var date_segments=null;
-				var start_date=null;
-				var end_date=null;
-				if (date1.val()!="") {
-					date_segments = date1.val().split("-");
-					start_date = date_segments[2] + "-" + date_segments[1] + "-" + date_segments[0];
-				}
-				if(date2.val()!=""){
-					date_segments = "";
-					date_segments = date2.val().split("-");
-					end_date = date_segments[2] + "-" + date_segments[1] + "-" + date_segments[0];
-				}
+				var start_date=date1.val();
+				var end_date=date2.val();
 				$.ajax({
 					url: "/FAW/Reports/Search",
 					data: {
@@ -210,7 +152,19 @@
 						end_date: end_date
 					},
 					success: function (response) {
-						$("#ReportsItems").html(response);
+						$("#ReportsAdminItems").html(response);
+					}
+				});
+			})
+
+			$("#review_type").on("change",function () {
+				$.ajax({
+					url: "/FAW/Reports/ReviewType",
+					data: {
+						review_type:$("#review_type option:selected").val()
+					},
+					success: function (response) {
+						$("#ReportsAdminItems").html(response);
 					}
 				});
 			})

@@ -15,6 +15,10 @@ import org.hibernate.criterion.Restrictions;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class ReportsDA {
@@ -23,7 +27,7 @@ public class ReportsDA {
 		FAWHibernate.add(report);
 	}
 
-	public static void addAll(List<Report> reportList){
+	public static void addAll(List<Report> reportList) {
 		FAWHibernate.addMany(reportList);
 	}
 
@@ -56,14 +60,12 @@ public class ReportsDA {
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Report> criteria = builder.createQuery(Report.class);
 		Root<Report> root = criteria.from(Report.class);
-
-		if (start_date!="" && end_date!="") {
-			criteria.select(root).where(builder.between(root.get("submission_date"), start_date, end_date));
-		}
-		else if(start_date!=""){
+		
+		if (start_date != "" && end_date != "") {
+			criteria.select(root).where(builder.between(root.get("submission_date"), start_date,end_date));
+		} else if (start_date != "") {
 			criteria.select(root).where(builder.greaterThanOrEqualTo(root.get("submission_date"), start_date));
-		}
-		else if(end_date!=""){
+		} else if (end_date != "") {
 			criteria.select(root).where(builder.lessThanOrEqualTo(root.get("submission_date"), end_date));
 		}
 
@@ -74,7 +76,7 @@ public class ReportsDA {
 	}
 
 	public static List<Report> getReportsBySubString(String substr) {
-		
+
 		Session session = FAWHibernate.getSessionWithTransaction();
 
 		CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -82,13 +84,13 @@ public class ReportsDA {
 		Root<Report> root = criteria.from(Report.class);
 		if (!substr.equals("-")) {
 			criteria.select(root)
-				.where(
-						builder.or(
-								builder.like(root.get("user").get("username"), "%" + substr + "%"),
-								builder.like(root.get("detail"), "%" + substr + "%"),
-								builder.like(root.get("user").get("phone"), "%" + substr + "%"),
-								builder.like(root.get("district").get("name"), "%" + substr + "%"),
-								builder.like(root.get("location").get("name"), "%" + substr + "%")));
+					.where(
+							builder.or(
+									builder.like(root.get("user").get("username"), "%" + substr + "%"),
+									builder.like(root.get("detail"), "%" + substr + "%"),
+									builder.like(root.get("user").get("phone"), "%" + substr + "%"),
+									builder.like(root.get("district").get("name"), "%" + substr + "%"),
+									builder.like(root.get("location").get("name"), "%" + substr + "%")));
 		}
 		List<Report> reports = session.createQuery(criteria).getResultList();
 		FAWHibernate.commitAndCloseSession(session);

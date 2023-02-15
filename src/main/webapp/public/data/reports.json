@@ -33,7 +33,7 @@
 			"id": 1,
 			"name": "Johor"
 		},
-		"submission_date": "01-01-2023",
+		"submission_date": "2023-01-01",
 		"media_path": "https://images.unsplash.com/photo-1604275689235-fdc521556c16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 		"detail": "The first detail of the first report, ABC123",
 		"review_status": "Pending"
@@ -72,7 +72,7 @@
 			"id": 1,
 			"name": "Johor"
 		},
-		"submission_date": "02-02-2023",
+		"submission_date": "2023-02-02",
 		"media_path": "https://images.unsplash.com/photo-1604275689235-fdc521556c16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 		"detail": "The second detail of the second report, IJK456",
 		"review_status": "Pending"
@@ -111,7 +111,7 @@
 			"id": 1,
 			"name": "Johor"
 		},
-		"submission_date": "12-02-2023",
+		"submission_date": "2023-02-12",
 		"media_path": "https://images.unsplash.com/photo-1604275689235-fdc521556c16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 		"detail": "The third detail of the third report, XYZ789",
 		"review_status": "Pending"

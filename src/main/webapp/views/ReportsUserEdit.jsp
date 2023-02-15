@@ -123,7 +123,7 @@
 					type:"POST",
 					url: "/FAW/Reports/",
 					data: {
-						selected_state:$("state :selected").val()
+						selected_state:$("#state option:selected").val()
 					},
 					success: function (response) {
 						$("#dis_loc").html(response);

@@ -1,4 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+	.card:hover{
+		transform: scale(1.05);
+	}
+	.card{
+	  transition: transform .2s; /* Animation */	
+	}
+</style>
 <c:forEach items="${reports}" var="report" varStatus="loop">
 
 	<div class="d-grid py-4 gap-4 justify-content-center"
